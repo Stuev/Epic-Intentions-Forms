@@ -26,5 +26,20 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+        private void AddStudent_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FilterStudent_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditStudent_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -250,3 +250,12 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/WindowsFormsApplication1/WindowsFormsApplication1/epicintentionsDataSet1.xss
+/WindowsFormsApplication1/WindowsFormsApplication1/epicintentionsDataSet1.xsd
+/WindowsFormsApplication1/WindowsFormsApplication1/epicintentionsDataSet1.xsc
+/WindowsFormsApplication1/WindowsFormsApplication1/epicintentionsDataSet1.Designer.cs
+/WindowsFormsApplication1/WindowsFormsApplication1/epicintentionsDataSet.xss
+/WindowsFormsApplication1/WindowsFormsApplication1/epicintentionsDataSet.xsd
+/WindowsFormsApplication1/WindowsFormsApplication1/epicintentionsDataSet.xsc
+/WindowsFormsApplication1/WindowsFormsApplication1/epicintentionsDataSet.Designer.cs
+/WindowsFormsApplication1/WindowsFormsApplication1/epicintentionsDataSet.cs

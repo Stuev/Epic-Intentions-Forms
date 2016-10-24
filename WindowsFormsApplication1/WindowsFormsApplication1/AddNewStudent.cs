@@ -16,5 +16,15 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
+
+        private void School_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddNewStudent_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -44,7 +44,7 @@
             this.label1.Location = new System.Drawing.Point(155, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 16);
+            this.label1.Size = new System.Drawing.Size(123, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select Option";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -52,7 +52,7 @@
             // ViewStudent
             // 
             this.ViewStudent.Location = new System.Drawing.Point(121, 66);
-            this.ViewStudent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ViewStudent.Margin = new System.Windows.Forms.Padding(4);
             this.ViewStudent.Name = "ViewStudent";
             this.ViewStudent.Size = new System.Drawing.Size(155, 28);
             this.ViewStudent.TabIndex = 1;
@@ -62,37 +62,40 @@
             // FilterStudent
             // 
             this.FilterStudent.Location = new System.Drawing.Point(121, 114);
-            this.FilterStudent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FilterStudent.Margin = new System.Windows.Forms.Padding(4);
             this.FilterStudent.Name = "FilterStudent";
             this.FilterStudent.Size = new System.Drawing.Size(155, 28);
             this.FilterStudent.TabIndex = 2;
             this.FilterStudent.Text = "Filter Data";
             this.FilterStudent.UseVisualStyleBackColor = true;
+            this.FilterStudent.Click += new System.EventHandler(this.FilterStudent_Click);
             // 
             // EditStudent
             // 
             this.EditStudent.Location = new System.Drawing.Point(121, 162);
-            this.EditStudent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EditStudent.Margin = new System.Windows.Forms.Padding(4);
             this.EditStudent.Name = "EditStudent";
             this.EditStudent.Size = new System.Drawing.Size(155, 28);
             this.EditStudent.TabIndex = 3;
             this.EditStudent.Text = "Edit Student";
             this.EditStudent.UseVisualStyleBackColor = true;
+            this.EditStudent.Click += new System.EventHandler(this.EditStudent_Click);
             // 
             // AddStudent
             // 
             this.AddStudent.Location = new System.Drawing.Point(121, 210);
-            this.AddStudent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddStudent.Margin = new System.Windows.Forms.Padding(4);
             this.AddStudent.Name = "AddStudent";
             this.AddStudent.Size = new System.Drawing.Size(155, 28);
             this.AddStudent.TabIndex = 4;
             this.AddStudent.Text = "Add New Student";
             this.AddStudent.UseVisualStyleBackColor = true;
+            this.AddStudent.Click += new System.EventHandler(this.AddStudent_Click);
             // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(121, 260);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(155, 28);
             this.button5.TabIndex = 5;
@@ -111,7 +114,7 @@
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(419, 354);
             this.Controls.Add(this.ImportData);
@@ -122,7 +125,7 @@
             this.Controls.Add(this.ViewStudent);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Main";
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
