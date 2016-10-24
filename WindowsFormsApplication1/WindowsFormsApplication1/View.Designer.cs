@@ -36,6 +36,7 @@
             this.ViewID = new System.Windows.Forms.TextBox();
             this.ViewLastName = new System.Windows.Forms.TextBox();
             this.ViewFirstName = new System.Windows.Forms.TextBox();
+            this.ViewSubmit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -108,11 +109,22 @@
             this.ViewFirstName.Size = new System.Drawing.Size(110, 20);
             this.ViewFirstName.TabIndex = 7;
             // 
+            // ViewSubmit
+            // 
+            this.ViewSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ViewSubmit.Location = new System.Drawing.Point(108, 210);
+            this.ViewSubmit.Name = "ViewSubmit";
+            this.ViewSubmit.Size = new System.Drawing.Size(87, 25);
+            this.ViewSubmit.TabIndex = 8;
+            this.ViewSubmit.Text = "Submit";
+            this.ViewSubmit.UseVisualStyleBackColor = true;
+            // 
             // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(313, 271);
+            this.Controls.Add(this.ViewSubmit);
             this.Controls.Add(this.ViewFirstName);
             this.Controls.Add(this.ViewLastName);
             this.Controls.Add(this.ViewID);
@@ -138,5 +150,6 @@
         private System.Windows.Forms.TextBox ViewID;
         private System.Windows.Forms.TextBox ViewLastName;
         private System.Windows.Forms.TextBox ViewFirstName;
+        private System.Windows.Forms.Button ViewSubmit;
     }
 }

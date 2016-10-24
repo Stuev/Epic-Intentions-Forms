@@ -38,6 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.EditSubmit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -126,11 +127,22 @@
             this.label7.TabIndex = 16;
             this.label7.Text = "Add details to existing profile? like gpa? behavior? etc";
             // 
+            // EditSubmit
+            // 
+            this.EditSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditSubmit.Location = new System.Drawing.Point(98, 283);
+            this.EditSubmit.Name = "EditSubmit";
+            this.EditSubmit.Size = new System.Drawing.Size(94, 26);
+            this.EditSubmit.TabIndex = 17;
+            this.EditSubmit.Text = "Submit";
+            this.EditSubmit.UseVisualStyleBackColor = true;
+            // 
             // Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(306, 293);
+            this.ClientSize = new System.Drawing.Size(313, 335);
+            this.Controls.Add(this.EditSubmit);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.EditFirstName);
@@ -160,5 +172,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button EditSubmit;
     }
 }
