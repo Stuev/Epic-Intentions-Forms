@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>WindowsFormsApplication1.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -129,6 +132,7 @@
     <EmbeddedResource Include="View.resx">
       <DependentUpon>View.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="epicintentionsDataSet.xsc">
       <DependentUpon>epicintentionsDataSet.xsd</DependentUpon>
     </None>
