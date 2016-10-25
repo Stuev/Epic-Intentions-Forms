@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.passwordField = new System.Windows.Forms.TextBox();
             this.LoginSubmit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -38,47 +38,53 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(109, 40);
+            this.label1.Location = new System.Drawing.Point(145, 49);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 17);
+            this.label1.Size = new System.Drawing.Size(55, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Login";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 95);
+            this.label2.Location = new System.Drawing.Point(61, 117);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.Size = new System.Drawing.Size(69, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Password";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(126, 88);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(109, 20);
-            this.textBox1.TabIndex = 2;
+            this.passwordField.Location = new System.Drawing.Point(168, 108);
+            this.passwordField.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.passwordField.Name = "textBox1";
+            this.passwordField.Size = new System.Drawing.Size(144, 22);
+            this.passwordField.TabIndex = 2;
             // 
             // LoginSubmit
             // 
             this.LoginSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginSubmit.Location = new System.Drawing.Point(101, 162);
+            this.LoginSubmit.Location = new System.Drawing.Point(135, 199);
+            this.LoginSubmit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LoginSubmit.Name = "LoginSubmit";
-            this.LoginSubmit.Size = new System.Drawing.Size(61, 23);
+            this.LoginSubmit.Size = new System.Drawing.Size(81, 28);
             this.LoginSubmit.TabIndex = 3;
             this.LoginSubmit.Text = "Submit";
             this.LoginSubmit.UseVisualStyleBackColor = true;
+            this.LoginSubmit.Click += new System.EventHandler(this.LoginSubmit_Click);
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(379, 321);
             this.Controls.Add(this.LoginSubmit);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.passwordField);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Login";
             this.Text = "Login";
             this.ResumeLayout(false);
@@ -90,7 +96,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox passwordField;
         private System.Windows.Forms.Button LoginSubmit;
     }
 }

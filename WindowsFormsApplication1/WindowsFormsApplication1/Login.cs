@@ -16,5 +16,19 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
+
+        private void LoginSubmit_Click(object sender, EventArgs e)
+        {
+
+            Model model = new Model(passwordField.Text);
+            if(model.OpenConnection() == true)
+            {
+                this.Hide();
+                Main nextForm = new Main();
+                nextForm.ShowDialog();
+                this.Close();
+            }
+
+        }
     }
 }

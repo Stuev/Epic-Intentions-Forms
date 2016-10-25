@@ -18,7 +18,7 @@ namespace WindowsFormsApplication1
 
         public Model(string pass)
         {
-            pass = password;
+            password = pass;
             Initialize();
         }
 
@@ -29,14 +29,15 @@ namespace WindowsFormsApplication1
             database = "epicintentions";
 
             string connectionString;
-            connectionString = "SERVER=" + server + ";" +
-                "DATABASE=" + database +
-                "UID=" + uid +
-                "PASSWORD=" + password +
-                "uidpersistsecurityinfo = True;";
+            connectionString = "SERVER=" + server +
+                ";DATABASE=" + database +
+                ";UID=" + uid +
+                ";PASSWORD=" + password + ";";
+
+            connection = new MySqlConnection(connectionString);
         }
 
-        private bool OpenConnection()
+        public bool OpenConnection()
         {
             try
             {
@@ -48,23 +49,93 @@ namespace WindowsFormsApplication1
                 if (ex.Number == 0)
                 {
                     MessageBox.Show("Cannot connect to server. Try again.");
-                } else if (1045 == 0)
+                }
+                else if (ex.Number == 0)
                 { 
                     MessageBox.Show("Invalid password, please try again");
                 }
+
+                return false;
             }
         }
 
-        public void UpdateStudentTable(string ID, string Grade, string Modified, string Reg, string Gen, string Rac, string cur, string daysMi)
+        private bool CloseConnection()
         {
-            string statement = "UPDATE student SET Grade_Level = " + Grade
+            try
+            {
+                connection.Close();
+                return true;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+
+        /* Establish a method for updating the student table
+         * 
+         * Everything passed in are the fields of the student table:
+         * ID, First, Last, Grade, Modified Date, Registration Date,
+         * Gender, Race, Whether they are Current, and the days Missed
+         * 
+         * Note that there is no data validation here
+         * Everything passed in should be a string and should be correct.
+         * This is for the buttons elsewhere in the app to call
+         * 
+         */
+        public void UpdateStudentTable(string ID, string First, string Last, 
+            string Grade, string Modified, string Reg, 
+            string Gen, string Rac, string cur, string daysMi)
+        {
+            //Set up a SQL query, plugging in the passed in values into the strings
+            string query = "UPDATE student SET Grade_Level = " + Grade
                 + ", Grade_Modified_Date = " + Modified
                 + ", Registration_Date = " + Reg
                 + ", Gender = " + Gen
                 + ", Race = " + Rac
                 + ", isCurrent = " + cur
-                + ", Days_Missed = " + daysMi 
-                + "WHERE ID = " 
+                + ", Days_Missed = " + daysMi
+                + "WHERE ID = " + ID
+                + "";
+
+            //executes the query into the database
+            //can be copied and pasted at the bottom of every other file
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.CommandText = query;
+
+                cmd.Connection = connection;
+
+                cmd.ExecuteNonQuery();
+
+                this.CloseConnection();
+            }
+
+
+        }
+
+        public void UpdateSchoolTable()
+        {
+
+        }
+
+        public void Insert()
+        {
+
+        }
+
+        public void Delete()
+        {
+
+        }
+
+        public List <string> [] Select()
+        {
+            return null;
         }
 
     }
