@@ -16,12 +16,14 @@ namespace WindowsFormsApplication1
         private string uid;
         private static string password;
 
+        //DO NOT USE EXCEPT FOR THE LOGIN FIELD
         public Model(string pass)
         {
             password = pass;
             Initialize();
         }
 
+        //USE NO ARG CONSTRUCTOR
         public Model()
         {
             Initialize();
