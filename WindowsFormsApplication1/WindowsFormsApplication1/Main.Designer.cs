@@ -44,7 +44,7 @@
             this.label1.Location = new System.Drawing.Point(155, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 20);
+            this.label1.Size = new System.Drawing.Size(101, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select Option";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -104,19 +104,19 @@
             // 
             // ImportData
             // 
-            this.ImportData.Location = new System.Drawing.Point(121, 313);
+            this.ImportData.Location = new System.Drawing.Point(121, 310);
             this.ImportData.Margin = new System.Windows.Forms.Padding(4);
             this.ImportData.Name = "ImportData";
-            this.ImportData.Size = new System.Drawing.Size(155, 28);
+            this.ImportData.Size = new System.Drawing.Size(155, 43);
             this.ImportData.TabIndex = 6;
-            this.ImportData.Text = "Import Data Sheet";
+            this.ImportData.Text = "Import School Data to Insert Multiple Students";
             this.ImportData.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 354);
+            this.ClientSize = new System.Drawing.Size(464, 374);
             this.Controls.Add(this.ImportData);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.AddStudent);
