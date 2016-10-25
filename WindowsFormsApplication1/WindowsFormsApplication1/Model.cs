@@ -14,11 +14,16 @@ namespace WindowsFormsApplication1
         private string server;
         private string database;
         private string uid;
-        private string password;
+        private static string password;
 
         public Model(string pass)
         {
             password = pass;
+            Initialize();
+        }
+
+        public Model()
+        {
             Initialize();
         }
 
