@@ -19,6 +19,8 @@ namespace WindowsFormsApplication1
 
         private void Main_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'epicintentionsDataSet.cum_gpa' table. You can move, or remove it, as needed.
+            this.cum_gpaTableAdapter.Fill(this.epicintentionsDataSet.cum_gpa);
 
         }
 
@@ -39,6 +41,14 @@ namespace WindowsFormsApplication1
 
         private void EditStudent_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void cum_gpaBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.cum_gpaBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.epicintentionsDataSet);
 
         }
     }

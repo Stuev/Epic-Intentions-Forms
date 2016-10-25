@@ -31,5 +31,10 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+        private void ViewFirstName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

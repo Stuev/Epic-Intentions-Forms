@@ -60,24 +60,12 @@
     <Compile Include="AddNewStudent.Designer.cs">
       <DependentUpon>AddNewStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model.cs" />
     <Compile Include="Edit.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Edit.Designer.cs">
       <DependentUpon>Edit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="epicintentionsDataSet.cs">
-      <DependentUpon>epicintentionsDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="epicintentionsDataSet.Designer.cs">
-      <DependentUpon>epicintentionsDataSet.xsd</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="epicintentionsDataSet11.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>epicintentionsDataSet11.xsd</DependentUpon>
     </Compile>
     <Compile Include="Filter.cs">
       <SubType>Form</SubType>
@@ -133,28 +121,6 @@
       <DependentUpon>View.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
-    <None Include="epicintentionsDataSet.xsc">
-      <DependentUpon>epicintentionsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="epicintentionsDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>epicintentionsDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="epicintentionsDataSet.xss">
-      <DependentUpon>epicintentionsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="epicintentionsDataSet11.xsc">
-      <DependentUpon>epicintentionsDataSet11.xsd</DependentUpon>
-    </None>
-    <None Include="epicintentionsDataSet11.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>epicintentionsDataSet11.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="epicintentionsDataSet11.xss">
-      <DependentUpon>epicintentionsDataSet11.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
