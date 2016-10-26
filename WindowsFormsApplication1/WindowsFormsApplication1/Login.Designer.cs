@@ -55,11 +55,12 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Password";
             // 
-            // textBox1
+            // passwordField
             // 
             this.passwordField.Location = new System.Drawing.Point(168, 108);
-            this.passwordField.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.passwordField.Name = "textBox1";
+            this.passwordField.Margin = new System.Windows.Forms.Padding(4);
+            this.passwordField.Name = "passwordField";
+            this.passwordField.PasswordChar = '*';
             this.passwordField.Size = new System.Drawing.Size(144, 22);
             this.passwordField.TabIndex = 2;
             // 
@@ -67,7 +68,7 @@
             // 
             this.LoginSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoginSubmit.Location = new System.Drawing.Point(135, 199);
-            this.LoginSubmit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LoginSubmit.Margin = new System.Windows.Forms.Padding(4);
             this.LoginSubmit.Name = "LoginSubmit";
             this.LoginSubmit.Size = new System.Drawing.Size(81, 28);
             this.LoginSubmit.TabIndex = 3;
@@ -84,7 +85,7 @@
             this.Controls.Add(this.passwordField);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Login";
             this.Text = "Login";
             this.ResumeLayout(false);
