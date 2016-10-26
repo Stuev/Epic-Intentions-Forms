@@ -58,6 +58,7 @@
             this.ViewStudent.TabIndex = 1;
             this.ViewStudent.Text = "View Student Profile ";
             this.ViewStudent.UseVisualStyleBackColor = true;
+            this.ViewStudent.Click += new System.EventHandler(this.ViewStudent_Click);
             // 
             // FilterStudent
             // 

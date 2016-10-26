@@ -41,7 +41,10 @@ namespace WindowsFormsApplication1
 
         private void EditStudent_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Edit nextForm = new Edit();
+            nextForm.ShowDialog();
+            this.Show();
         }
 
         private void cum_gpaBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -50,6 +53,14 @@ namespace WindowsFormsApplication1
             //this.cum_gpaBindingSource.EndEdit();
             //this.tableAdapterManager.UpdateAll(this.epicintentionsDataSet);
 
+        }
+
+        private void ViewStudent_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            View nextForm = new View();
+            nextForm.ShowDialog();
+            this.Show();
         }
     }
 }
