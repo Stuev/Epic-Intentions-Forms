@@ -105,7 +105,7 @@ namespace WindowsFormsApplication1
                 + ", isCurrent = " + cur
                 + ", Days_Missed = " + daysMi
                 + "WHERE ID = " + ID
-                + "";
+                + "OR AND(First_Name =" + First + "Last_Name=" + Last;
 
             //executes the query into the database
             //can be copied and pasted at the bottom of every other file
