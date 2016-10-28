@@ -41,79 +41,107 @@ namespace WindowsFormsApplication1
 
         private void ViewSubmit_Click(object sender, EventArgs e)
         {
-            Excel.Application oXL;
-            Excel._Workbook oWB;
-            Excel._Worksheet oSheet;
-            Excel.Range oRng;
-
-            try
+            string ID = "";
+            int n;
+            Model model = new Model();
+            if (ViewID.Text == "")
             {
-                //Start Excel and get Application object.
-                oXL = new Excel.Application();
-                oXL.Visible = true;
-
-                //Get a new workbook.
-                oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
-                oSheet = (Excel._Worksheet)oWB.ActiveSheet;
-
-                //Add table headers going cell by cell.
-                oSheet.Cells[1, 1] = "First Name";
-                oSheet.Cells[1, 2] = "Last Name";
-                oSheet.Cells[1, 3] = "Full Name";
-                oSheet.Cells[1, 4] = "Salary";
-
-                //Format A1:D1 as bold, vertical alignment = center.
-                oSheet.get_Range("A1", "D1").Font.Bold = true;
-                oSheet.get_Range("A1", "D1").VerticalAlignment =
-                    Excel.XlVAlign.xlVAlignCenter;
-
-                // Create an array to multiple values at once.
-                string[,] saNames = new string[5, 2];
-
-                saNames[0, 0] = "John";
-                saNames[0, 1] = "Smith";
-                saNames[1, 0] = "Tom";
-                saNames[1, 1] = "Brown";
-                saNames[2, 0] = "Sue";
-                saNames[2, 1] = "Thomas";
-                saNames[3, 0] = "Jane";
-                saNames[3, 1] = "Jones";
-                saNames[4, 0] = "Adam";
-                saNames[4, 1] = "Johnson";
-
-                //Fill A2:B6 with an array of values (First and Last Names).
-                oSheet.get_Range("A2", "B6").Value2 = saNames;
-
-                //Fill C2:C6 with a relative formula (=A2 & " " & B2).
-                oRng = oSheet.get_Range("C2", "C6");
-                oRng.Formula = "=A2 & \" \" & B2";
-
-                //Fill D2:D6 with a formula(=RAND()*100000) and apply format.
-                oRng = oSheet.get_Range("D2", "D6");
-                oRng.Formula = "=RAND()*100000";
-                oRng.NumberFormat = "$0.00";
-
-                //AutoFit columns A:D.
-                oRng = oSheet.get_Range("A1", "D1");
-                oRng.EntireColumn.AutoFit();
-
-                //Manipulate a variable number of columns for Quarterly Sales Data.
-                //DisplayQuarterlySales(oSheet);
-
-                //Make sure Excel is visible and give the user control
-                //of Microsoft Excel's lifetime.
-                oXL.Visible = true;
-                oXL.UserControl = true;
+                if (ViewLastName.Text == "" || ViewFirstName.Text == "")
+                {
+                    MessageBox.Show("Please type in a Student ID or a First and Last Name!");
+                    return;
+                }
+                else
+                {
+                    ID = model.FindIDFromName(ViewFirstName.Text, ViewLastName.Text);
+                }
             }
-            catch (Exception theException)
+            else
             {
-                String errorMessage;
-                errorMessage = "Error: ";
-                errorMessage = String.Concat(errorMessage, theException.Message);
-                errorMessage = String.Concat(errorMessage, " Line: ");
-                errorMessage = String.Concat(errorMessage, theException.Source);
+                ID = ViewID.Text;
+            }
 
-                MessageBox.Show(errorMessage, "Error");
+            if (ID != "" && int.TryParse(ID, out n))
+            {
+                List<string>[] list = model.SelectStudent(ID);
+                Excel.Application oXL;
+                Excel._Workbook oWB;
+                Excel._Worksheet oSheet;
+                Excel.Range oRng;
+
+                if (list[0].Count != 0)
+                {
+
+                    try
+                    {
+                        //Start Excel and get Application object.
+                        oXL = new Excel.Application();
+                        oXL.Visible = true;
+
+                        //Get a new workbook.
+                        oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
+                        oSheet = (Excel._Worksheet)oWB.ActiveSheet;
+
+                        //Add table headers going cell by cell.
+                        oSheet.Cells[1, 1] = "ID";
+                        oSheet.Cells[1, 2] = "First Name";
+                        oSheet.Cells[1, 3] = "Last Name";
+                        oSheet.Cells[1, 4] = "Grade Level";
+                        oSheet.Cells[1, 5] = "Grade Modified Date";
+                        oSheet.Cells[1, 6] = "Registration Date";
+                        oSheet.Cells[1, 7] = "Gender";
+                        oSheet.Cells[1, 8] = "Race";
+                        oSheet.Cells[1, 9] = "Current?";
+                        oSheet.Cells[1, 10] = "Days Missed";
+
+                        //Format A1:D1 as bold, vertical alignment = center.
+                        oSheet.get_Range("A1", "J1").Font.Bold = true;
+                        oSheet.get_Range("A1", "J1").VerticalAlignment =
+                            Excel.XlVAlign.xlVAlignCenter;
+
+                        // Create an array to multiple values at once.
+                        string[] saNames = new string[10];
+
+
+                        for (int i = 0; i < list.Count(); i = i + 1)
+                        {
+                            saNames[i] = list[i][0];
+                        }
+
+                        //Fill A2:B6 with an array of values (First and Last Names).
+                        oSheet.get_Range("A2", "J2").Value2 = saNames;
+
+                        //AutoFit columns A:D.
+                        oRng = oSheet.get_Range("A1", "J1");
+                        oRng.EntireColumn.AutoFit();
+
+                        //Manipulate a variable number of columns for Quarterly Sales Data.
+                        //DisplayQuarterlySales(oSheet);
+
+                        //Make sure Excel is visible and give the user control
+                        //of Microsoft Excel's lifetime.
+                        oXL.Visible = true;
+                        oXL.UserControl = true;
+                    }
+                    catch (Exception theException)
+                    {
+                        String errorMessage;
+                        errorMessage = "Error: ";
+                        errorMessage = String.Concat(errorMessage, theException.Message);
+                        errorMessage = String.Concat(errorMessage, " Line: ");
+                        errorMessage = String.Concat(errorMessage, theException.Source);
+
+                        MessageBox.Show(errorMessage, "Error");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ID Provided is Not Correct!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Name Provided is Not Correct!");
             }
         }
     }

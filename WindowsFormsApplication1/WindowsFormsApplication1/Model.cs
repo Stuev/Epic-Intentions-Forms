@@ -232,6 +232,7 @@ namespace WindowsFormsApplication1
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
+
                     ID = dataReader["ID"] + "";
                 }
 
@@ -249,12 +250,12 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public List <string> [] SelectStudent(string ID)
+        public List <string>[] SelectStudent(string ID)
         {
             {
-                string query = "SELECT * FROM student"
+                string query = "SELECT * FROM student "
                 +"WHERE ID = '" + ID
-                + "' AND ;";
+                + "';";
 
                 //Create a list to store the result
                 List<string>[] list = new List<string>[10];
@@ -283,13 +284,13 @@ namespace WindowsFormsApplication1
                         list[0].Add(dataReader["ID"] + "");
                         list[1].Add(dataReader["First_Name"] + "");
                         list[2].Add(dataReader["Last_Name"] + "");
-                        list[0].Add(dataReader["Grade_Level"] + "");
-                        list[1].Add(dataReader["Grade_Modified_Date"] + "");
-                        list[2].Add(dataReader["Registration_Date"] + "");
-                        list[0].Add(dataReader["Gender"] + "");
-                        list[1].Add(dataReader["Race"] + "");
-                        list[2].Add(dataReader["isCurrent"] + "");
-                        list[0].Add(dataReader["Days_Missed"] + "");
+                        list[3].Add(dataReader["Grade_Level"] + "");
+                        list[4].Add(dataReader["Grade_Modified_Date"] + "");
+                        list[5].Add(dataReader["Registration_Date"] + "");
+                        list[6].Add(dataReader["Gender"] + "");
+                        list[7].Add(dataReader["Race"] + "");
+                        list[8].Add(dataReader["isCurrent"] + "");
+                        list[9].Add(dataReader["Days_Missed"] + "");
                     }
 
                     //close Data Reader

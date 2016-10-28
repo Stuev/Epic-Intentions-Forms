@@ -274,7 +274,7 @@
             this.label9.Size = new System.Drawing.Size(182, 13);
             this.label9.TabIndex = 65;
             this.label9.Text = "Note: GPA is preferred. Do not insert ";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
+            //this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // label10
             // 
