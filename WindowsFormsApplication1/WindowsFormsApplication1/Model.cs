@@ -92,25 +92,58 @@ namespace WindowsFormsApplication1
          * This is for the buttons elsewhere in the app to call
          * 
          */
-        public void UpdateStudentTable(string ID, string First, string Last, 
+        public void UpdateStudentTable(string ID, 
             string Grade, string Modified, string Reg, 
             string Gen, string Rac, string cur, string daysMi)
         {
             //Set up a SQL query, plugging in the passed in values into the strings
-            string query = "UPDATE student SET Grade_Level = " + Grade
-                + ", Grade_Modified_Date = " + Modified
-                + ", Registration_Date = " + Reg
-                + ", Gender = " + Gen
-                + ", Race = " + Rac
-                + ", isCurrent = " + cur
-                + ", Days_Missed = " + daysMi
-                + "WHERE ID = " + ID
-                + "OR AND(First_Name =" + First + "Last_Name=" + Last;
+            string query = "UPDATE student SET Grade_Level = '" + Grade
+                + "', Grade_Modified_Date = '" + Modified
+                + "', Registration_Date = '" + Reg
+                + "', Gender = " + Gen
+                + "', Race = " + Rac
+                + "', isCurrent = '" + cur
+                + "', Days_Missed = '" + daysMi
+                + "'WHERE ID = '" + ID
+                + "';";
 
+            //OR (First_Name='Bob' AND Last_Name='White')
             //executes the query into the database
             //can be copied and pasted at the bottom of every other file
             //select statement will be slightly different
             if (this.OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    //this would return something useful in select statement
+                    cmd.ExecuteNonQuery();
+
+                    this.CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        public void UpdateEndDate(string ID, string newDate)
+        {
+            string query = "UPDATE attends SET End_Date= '" + newDate
+                + "'WHERE ID = '" + ID
+                + "';";
+
+            //OR (First_Name='Bob' AND Last_Name='White')
+            //executes the query into the database
+            //can be copied and pasted at the bottom of every other file
+            //select statement will be slightly different
+            try
             {
                 MySqlCommand cmd = new MySqlCommand();
 
@@ -123,9 +156,42 @@ namespace WindowsFormsApplication1
 
                 this.CloseConnection();
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        public void UpdateSchoolTable()
+        public void UpdateSchoolName(string oldSchool, string newSchool)
+        {
+            string query = "UPDATE school SET Name= '" + newSchool
+                + "'WHERE Name= '" + oldSchool
+                + "';";
+
+            //OR (First_Name='Bob' AND Last_Name='White')
+            //executes the query into the database
+            //can be copied and pasted at the bottom of every other file
+            //select statement will be slightly different
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.CommandText = query;
+
+                cmd.Connection = connection;
+
+                //this would return something useful in select statement
+                cmd.ExecuteNonQuery();
+
+                this.CloseConnection();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void InsertToPastStudent()
         {
 
         }
@@ -135,14 +201,111 @@ namespace WindowsFormsApplication1
 
         }
 
-        public void Delete()
+        public void DeleteReferral()
         {
 
         }
 
-        public List <string> [] Select()
+        public void DeleteCumGPA()
         {
-            return null;
+
+        }
+
+        public void DeleteUnCumGPA()
+        {
+
+        }
+
+        public string FindIDFromName(string First, string Last)
+        {
+            string query = "SELECT * FROM student WHERE "
+                + "First_Name = '" + First + "' AND Last_Name = '" + Last + "'; ";
+            string ID = null;
+
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    ID = dataReader["ID"] + "";
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return ID;
+            } else
+            {
+                return ID;
+            }
+        }
+
+        public List <string> [] SelectStudent(string ID)
+        {
+            {
+                string query = "SELECT * FROM student"
+                +"WHERE ID = '" + ID
+                + "' AND ;";
+
+                //Create a list to store the result
+                List<string>[] list = new List<string>[10];
+                list[0] = new List<string>();
+                list[1] = new List<string>();
+                list[2] = new List<string>();
+                list[3] = new List<string>();
+                list[4] = new List<string>();
+                list[5] = new List<string>();
+                list[6] = new List<string>();
+                list[7] = new List<string>();
+                list[8] = new List<string>();
+                list[9] = new List<string>();
+
+                //Open connection
+                if (this.OpenConnection() == true)
+                {
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        list[0].Add(dataReader["ID"] + "");
+                        list[1].Add(dataReader["First_Name"] + "");
+                        list[2].Add(dataReader["Last_Name"] + "");
+                        list[0].Add(dataReader["Grade_Level"] + "");
+                        list[1].Add(dataReader["Grade_Modified_Date"] + "");
+                        list[2].Add(dataReader["Registration_Date"] + "");
+                        list[0].Add(dataReader["Gender"] + "");
+                        list[1].Add(dataReader["Race"] + "");
+                        list[2].Add(dataReader["isCurrent"] + "");
+                        list[0].Add(dataReader["Days_Missed"] + "");
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+
+                    //close Connection
+                    this.CloseConnection();
+
+                    //return list to be displayed
+                    return list;
+                }
+                else
+                {
+                    return list;
+                }
+            }
         }
 
     }
