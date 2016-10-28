@@ -109,6 +109,7 @@ namespace WindowsFormsApplication1
 
             //executes the query into the database
             //can be copied and pasted at the bottom of every other file
+            //select statement will be slightly different
             if (this.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand();
@@ -117,12 +118,11 @@ namespace WindowsFormsApplication1
 
                 cmd.Connection = connection;
 
+                //this would return something useful in select statement
                 cmd.ExecuteNonQuery();
 
                 this.CloseConnection();
             }
-
-
         }
 
         public void UpdateSchoolTable()

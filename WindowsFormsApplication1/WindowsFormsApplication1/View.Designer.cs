@@ -96,7 +96,7 @@
             // ViewID
             // 
             this.ViewID.Location = new System.Drawing.Point(176, 108);
-            this.ViewID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ViewID.Margin = new System.Windows.Forms.Padding(4);
             this.ViewID.Name = "ViewID";
             this.ViewID.Size = new System.Drawing.Size(145, 22);
             this.ViewID.TabIndex = 5;
@@ -104,7 +104,7 @@
             // ViewLastName
             // 
             this.ViewLastName.Location = new System.Drawing.Point(176, 154);
-            this.ViewLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ViewLastName.Margin = new System.Windows.Forms.Padding(4);
             this.ViewLastName.Name = "ViewLastName";
             this.ViewLastName.Size = new System.Drawing.Size(145, 22);
             this.ViewLastName.TabIndex = 6;
@@ -112,7 +112,7 @@
             // ViewFirstName
             // 
             this.ViewFirstName.Location = new System.Drawing.Point(176, 197);
-            this.ViewFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ViewFirstName.Margin = new System.Windows.Forms.Padding(4);
             this.ViewFirstName.Name = "ViewFirstName";
             this.ViewFirstName.Size = new System.Drawing.Size(145, 22);
             this.ViewFirstName.TabIndex = 7;
@@ -122,12 +122,13 @@
             // 
             this.ViewSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ViewSubmit.Location = new System.Drawing.Point(144, 258);
-            this.ViewSubmit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ViewSubmit.Margin = new System.Windows.Forms.Padding(4);
             this.ViewSubmit.Name = "ViewSubmit";
             this.ViewSubmit.Size = new System.Drawing.Size(116, 31);
             this.ViewSubmit.TabIndex = 8;
             this.ViewSubmit.Text = "Submit";
             this.ViewSubmit.UseVisualStyleBackColor = true;
+            this.ViewSubmit.Click += new System.EventHandler(this.ViewSubmit_Click);
             // 
             // View
             // 
@@ -143,7 +144,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "View";
             this.Text = "View";
             this.ResumeLayout(false);

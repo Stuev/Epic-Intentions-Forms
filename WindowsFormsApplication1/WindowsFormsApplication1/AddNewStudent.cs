@@ -66,5 +66,10 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+        private void AddStudentSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
