@@ -368,12 +368,12 @@ namespace WindowsFormsApplication1
 
         public static int getMin(string table, string col)
         {
-            string query = "SELECT MIN(" + col + ") FROM " + table + "';";
+            string query = "SELECT MIN(" + col + ") AS min FROM " + table + ";";
 
             if (OpenConnection() == true)
             {
-                List<string>[] list = new List<string>[1];
 
+                int returnval = 0;
                 //Create Command
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 //Create a data reader and Execute the command
@@ -382,8 +382,7 @@ namespace WindowsFormsApplication1
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    list[0].Add(dataReader[col] + "");
-
+                    returnval = Int32.Parse(dataReader["min"] + "");
                 }
 
                 //close Data Reader
@@ -392,30 +391,58 @@ namespace WindowsFormsApplication1
                 //close Connection
                 CloseConnection();
 
-                //return list to be displayed
-                return 0;
+                return returnval;
+                
             }
             else
             {
                 return 0;
             }
-            return 0;
         }
 
         public static int getMax(string table, string col)
         {
-            string query = "SELECT MAX(" + col + ") FROM " + table + "';";
-            return 0;
+            string query = "SELECT MAX(" + col + ") AS max FROM " + table + ";";
+
+            if (OpenConnection() == true)
+            {
+
+                int returnval = 0;
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    returnval = Int32.Parse(dataReader["max"] + "");
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                CloseConnection();
+
+                return returnval;
+
+            }
+            else
+            {
+                return 0;
+            }
         }
+
 
         public static int getMinGPA()
         {
-            return 0;
+            return getMin("cum_GPA", "GPA");
         }
 
         public static int getMaxGPA()
         {
-            return 0;
+            return getMax("cum_GPA", "GPA");
         }
 
         public static List<string> getSchools()
@@ -425,32 +452,32 @@ namespace WindowsFormsApplication1
 
         public static int getMinGrade()
         {
-            return 0;
+            return getMin("Student", "Grade_Level");
         }
 
         public static int getMaxGrade()
         {
-            return 0;
+            return getMax("Student", "Grade_Level");
         }
 
         public static int getMinReferrals()
         {
-            return 0;
+            return getMin("cum_GPA", "GPA");
         }
 
         public static int getMaxReferrals()
         {
-            return 0;
+            return getMax("cum_GPA", "GPA");
         }
 
         public static int getMinDaysMissed()
         {
-            return 0;
+            return getMin("Student", "Days_Missed");
         }
 
         public static int getMaxDaysMissed()
         {
-            return 0;
+            return getMax("Student", "Days_Missed");
         }
 
         public static List<string> getGenders()

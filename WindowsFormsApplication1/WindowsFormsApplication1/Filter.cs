@@ -29,11 +29,11 @@ namespace WindowsFormsApplication1
             Race.DataSource = Model.getRaces();
             Current.DataSource = Model.getCurrentStudentOptions();
 
-            Gender.Items.Add("All");
+            /*Gender.Items.Add("All");
             School.Items.Add("All");
             Race.Items.Add("All");
             Current.Items.Add("All");
-                        
+              */          
             Gender.DropDownStyle = ComboBoxStyle.DropDownList;
             School.DropDownStyle = ComboBoxStyle.DropDownList;
             Race.DropDownStyle = ComboBoxStyle.DropDownList;
