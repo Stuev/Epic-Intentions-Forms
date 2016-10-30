@@ -36,7 +36,10 @@ namespace WindowsFormsApplication1
 
         private void FilterStudent_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Filter nextForm = new Filter();
+            nextForm.ShowDialog();
+            this.Show();
         }
 
         private void EditStudent_Click(object sender, EventArgs e)
