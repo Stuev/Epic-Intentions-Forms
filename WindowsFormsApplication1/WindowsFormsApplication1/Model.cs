@@ -79,7 +79,7 @@ namespace WindowsFormsApplication1
                 return false;
             }
         }
-
+        
 
         /* Establish a method for updating the student table
          * 
@@ -309,5 +309,74 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public int getMin()
+        {
+            return 0;
+        }
+
+        public int getMax()
+        {
+            return 0;
+        }
+
+        public int getMinGPA()
+        {
+            return 0;
+        }
+
+        public int getMaxGPA()
+        {
+            return 0;
+        }
+
+        public List<string> getSchools()
+        {
+            return new List<string>();
+        }
+
+        public int getMinGrade()
+        {
+            return 0;
+        }
+
+        public int getMaxGrade()
+        {
+            return 0;
+        }
+
+        public int getMinReferrals()
+        {
+            return 0;
+        }
+
+        public int getMaxReferrals()
+        {
+            return 0;
+        }
+
+        public int getMinDaysMissed()
+        {
+            return 0;
+        }
+
+        public int getMaxDaysMissed()
+        {
+            return 0;
+        }
+
+        public List<string> getGenders()
+        {
+            return new List<string>();
+        }
+
+        public List<string> getRaces()
+        {
+            return new List<string>();
+        }
+
+        public List<string> getCurrentStudentOptions()
+        {
+            return new List<string>();
+        }
     }
 }
