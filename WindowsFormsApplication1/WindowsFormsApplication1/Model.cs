@@ -10,22 +10,16 @@ namespace WindowsFormsApplication1
 {
     class Model
     {
-        private MySqlConnection connection;
-        private string server;
-        private string database;
-        private string uid;
+        private static MySqlConnection connection;
+        private static string server;
+        private static string database;
+        private static string uid;
         private static string password;
 
         //DO NOT USE EXCEPT FOR THE LOGIN FIELD
         public Model(string pass)
         {
             password = pass;
-            Initialize();
-        }
-
-        //USE NO ARG CONSTRUCTOR
-        public Model()
-        {
             Initialize();
         }
 
@@ -44,7 +38,7 @@ namespace WindowsFormsApplication1
             connection = new MySqlConnection(connectionString);
         }
 
-        public bool OpenConnection()
+        public static bool OpenConnection()
         {
             try
             {
@@ -66,7 +60,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private bool CloseConnection()
+        private static bool CloseConnection()
         {
             try
             {
@@ -92,7 +86,7 @@ namespace WindowsFormsApplication1
          * This is for the buttons elsewhere in the app to call
          * 
          */
-        public void UpdateStudentTable(string ID, 
+        public static void UpdateStudentTable(string ID, 
             string Grade, string Modified, string Reg, 
             string Gen, string Rac, string cur, string daysMi)
         {
@@ -111,7 +105,7 @@ namespace WindowsFormsApplication1
             //executes the query into the database
             //can be copied and pasted at the bottom of every other file
             //select statement will be slightly different
-            if (this.OpenConnection() == true)
+            if (OpenConnection() == true)
             {
                 try
                 {
@@ -124,7 +118,7 @@ namespace WindowsFormsApplication1
                     //this would return something useful in select statement
                     cmd.ExecuteNonQuery();
 
-                    this.CloseConnection();
+                    CloseConnection();
                 }
                 catch (MySqlException ex)
                 {
@@ -133,7 +127,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public void UpdateEndDate(string ID, string newDate)
+        public static void UpdateEndDate(string ID, string newDate)
         {
             string query = "UPDATE attends SET End_Date= '" + newDate
                 + "'WHERE ID = '" + ID
@@ -162,7 +156,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public void UpdateSchoolName(string oldSchool, string newSchool)
+        public static void UpdateSchoolName(string oldSchool, string newSchool)
         {
             string query = "UPDATE school SET Name= '" + newSchool
                 + "'WHERE Name= '" + oldSchool
@@ -191,38 +185,38 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public void InsertToPastStudent()
+        public static void InsertToPastStudent()
         {
 
         }
 
-        public void Insert()
+        public static void Insert()
         {
 
         }
 
-        public void DeleteReferral()
+        public static void DeleteReferral()
         {
 
         }
 
-        public void DeleteCumGPA()
+        public static void DeleteCumGPA()
         {
 
         }
 
-        public void DeleteUnCumGPA()
+        public static void DeleteUnCumGPA()
         {
 
         }
 
-        public string FindIDFromName(string First, string Last)
+        public static string FindIDFromName(string First, string Last)
         {
             string query = "SELECT * FROM student WHERE "
-                + "First_Name = '" + First + "' AND Last_Name = '" + Last + "'; ";
+                + "First_Name = \"" + First + "\" AND Last_Name = \"" + Last + "\"; ";
             string ID = null;
 
-            if (this.OpenConnection() == true)
+            if (OpenConnection() == true)
             {
                 //Create Command
                 MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -240,7 +234,7 @@ namespace WindowsFormsApplication1
                 dataReader.Close();
 
                 //close Connection
-                this.CloseConnection();
+                CloseConnection();
 
                 //return list to be displayed
                 return ID;
@@ -250,7 +244,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public List <string>[] SelectStudent(string ID)
+        public static List <string>[] SelectStudent(string ID)
         {
             {
                 string query = "SELECT * FROM student "
@@ -271,7 +265,7 @@ namespace WindowsFormsApplication1
                 list[9] = new List<string>();
 
                 //Open connection
-                if (this.OpenConnection() == true)
+                if (OpenConnection() == true)
                 {
                     //Create Command
                     MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -297,7 +291,7 @@ namespace WindowsFormsApplication1
                     dataReader.Close();
 
                     //close Connection
-                    this.CloseConnection();
+                    CloseConnection();
 
                     //return list to be displayed
                     return list;
@@ -307,6 +301,31 @@ namespace WindowsFormsApplication1
                     return list;
                 }
             }
+        }
+
+        public static List<string>[] SelectAllCumGPA(string ID)
+        {
+            return null;
+        }
+
+        public static List<string>[] SelectAllUnCumGPA(string ID)
+        {
+            return null;
+        }
+
+        public static List<string>[] SelectAllAttends(string ID)
+        {
+            return null;
+        }
+
+        public static List<string>[] SelectAllPast(string ID)
+        {
+            return null;
+        }
+
+        public static List<string>[] SelectAllReferrals(string ID)
+        {
+            return null;
         }
 
     }
