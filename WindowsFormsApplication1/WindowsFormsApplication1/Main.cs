@@ -31,7 +31,10 @@ namespace WindowsFormsApplication1
 
         private void AddStudent_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            AddNewStudent nextForm = new AddNewStudent();
+            nextForm.ShowDialog();
+            this.Show();
         }
 
         private void FilterStudent_Click(object sender, EventArgs e)
