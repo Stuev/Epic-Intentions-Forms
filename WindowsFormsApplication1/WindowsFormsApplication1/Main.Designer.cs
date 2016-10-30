@@ -102,7 +102,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(155, 45);
             this.button5.TabIndex = 5;
-            this.button5.Text = "Add Info??";
+            this.button5.Text = "Add Info to Existing Student";
             this.button5.UseVisualStyleBackColor = true;
             // 
             // ImportData
@@ -139,7 +139,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 374);
+            this.ClientSize = new System.Drawing.Size(413, 374);
             this.Controls.Add(this.PastStudents);
             this.Controls.Add(this.ViewAll);
             this.Controls.Add(this.ImportData);
