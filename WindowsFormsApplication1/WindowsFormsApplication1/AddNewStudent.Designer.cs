@@ -30,7 +30,6 @@
         {
             this.AddCurrent = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.AddRace = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.AddAttend = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -40,7 +39,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.AddGrade = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.School = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.AddGPA = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -53,12 +51,20 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.raceBox = new System.Windows.Forms.TextBox();
+            this.addSchool = new System.Windows.Forms.ComboBox();
+            this.addStudentID = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.addLastName = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.addFirstName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // AddCurrent
             // 
             this.AddCurrent.FormattingEnabled = true;
-            this.AddCurrent.Location = new System.Drawing.Point(163, 306);
+            this.AddCurrent.Location = new System.Drawing.Point(165, 358);
             this.AddCurrent.Name = "AddCurrent";
             this.AddCurrent.Size = new System.Drawing.Size(92, 21);
             this.AddCurrent.TabIndex = 60;
@@ -67,26 +73,18 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(74, 309);
+            this.label19.Location = new System.Drawing.Point(74, 361);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(81, 13);
             this.label19.TabIndex = 59;
             this.label19.Text = "Current Student";
             this.label19.Click += new System.EventHandler(this.label19_Click);
             // 
-            // AddRace
-            // 
-            this.AddRace.FormattingEnabled = true;
-            this.AddRace.Location = new System.Drawing.Point(163, 274);
-            this.AddRace.Name = "AddRace";
-            this.AddRace.Size = new System.Drawing.Size(92, 21);
-            this.AddRace.TabIndex = 58;
-            // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(117, 274);
+            this.label18.Location = new System.Drawing.Point(117, 326);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(33, 13);
             this.label18.TabIndex = 57;
@@ -95,7 +93,7 @@
             // 
             // AddAttend
             // 
-            this.AddAttend.Location = new System.Drawing.Point(165, 204);
+            this.AddAttend.Location = new System.Drawing.Point(165, 256);
             this.AddAttend.Name = "AddAttend";
             this.AddAttend.Size = new System.Drawing.Size(42, 20);
             this.AddAttend.TabIndex = 54;
@@ -104,7 +102,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(78, 207);
+            this.label17.Location = new System.Drawing.Point(78, 259);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(77, 13);
             this.label17.TabIndex = 52;
@@ -113,7 +111,7 @@
             // 
             // AddBehavior
             // 
-            this.AddBehavior.Location = new System.Drawing.Point(165, 174);
+            this.AddBehavior.Location = new System.Drawing.Point(165, 226);
             this.AddBehavior.Name = "AddBehavior";
             this.AddBehavior.Size = new System.Drawing.Size(42, 20);
             this.AddBehavior.TabIndex = 49;
@@ -122,7 +120,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(95, 177);
+            this.label14.Location = new System.Drawing.Point(95, 229);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(59, 13);
             this.label14.TabIndex = 47;
@@ -132,7 +130,7 @@
             // AddGender
             // 
             this.AddGender.FormattingEnabled = true;
-            this.AddGender.Location = new System.Drawing.Point(165, 239);
+            this.AddGender.Location = new System.Drawing.Point(165, 291);
             this.AddGender.Name = "AddGender";
             this.AddGender.Size = new System.Drawing.Size(90, 21);
             this.AddGender.TabIndex = 46;
@@ -141,7 +139,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(108, 242);
+            this.label11.Location = new System.Drawing.Point(108, 294);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(42, 13);
             this.label11.TabIndex = 45;
@@ -150,7 +148,7 @@
             // 
             // AddGrade
             // 
-            this.AddGrade.Location = new System.Drawing.Point(165, 144);
+            this.AddGrade.Location = new System.Drawing.Point(165, 196);
             this.AddGrade.Name = "AddGrade";
             this.AddGrade.Size = new System.Drawing.Size(42, 20);
             this.AddGrade.TabIndex = 42;
@@ -159,27 +157,18 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(114, 147);
+            this.label8.Location = new System.Drawing.Point(114, 199);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 13);
             this.label8.TabIndex = 40;
             this.label8.Text = "Grade";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
-            // School
-            // 
-            this.School.FormattingEnabled = true;
-            this.School.Location = new System.Drawing.Point(165, 111);
-            this.School.Name = "School";
-            this.School.Size = new System.Drawing.Size(90, 21);
-            this.School.TabIndex = 39;
-            this.School.SelectedIndexChanged += new System.EventHandler(this.School_SelectedIndexChanged);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(114, 114);
+            this.label7.Location = new System.Drawing.Point(114, 166);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(40, 13);
             this.label7.TabIndex = 38;
@@ -188,7 +177,7 @@
             // 
             // AddGPA
             // 
-            this.AddGPA.Location = new System.Drawing.Point(165, 56);
+            this.AddGPA.Location = new System.Drawing.Point(165, 108);
             this.AddGPA.Name = "AddGPA";
             this.AddGPA.Size = new System.Drawing.Size(42, 20);
             this.AddGPA.TabIndex = 35;
@@ -196,7 +185,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(154, 59);
+            this.label5.Location = new System.Drawing.Point(154, 111);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 13);
             this.label5.TabIndex = 34;
@@ -205,7 +194,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(69, 59);
+            this.label4.Location = new System.Drawing.Point(69, 111);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 13);
             this.label4.TabIndex = 33;
@@ -215,7 +204,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(162, 39);
+            this.label3.Location = new System.Drawing.Point(162, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 32;
@@ -232,7 +221,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(53, 22);
+            this.label1.Location = new System.Drawing.Point(92, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(225, 17);
             this.label1.TabIndex = 61;
@@ -241,16 +230,17 @@
             // AddStudentSubmit
             // 
             this.AddStudentSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddStudentSubmit.Location = new System.Drawing.Point(121, 335);
+            this.AddStudentSubmit.Location = new System.Drawing.Point(121, 387);
             this.AddStudentSubmit.Name = "AddStudentSubmit";
             this.AddStudentSubmit.Size = new System.Drawing.Size(70, 27);
             this.AddStudentSubmit.TabIndex = 62;
             this.AddStudentSubmit.Text = "Submit";
             this.AddStudentSubmit.UseVisualStyleBackColor = true;
+            this.AddStudentSubmit.Click += new System.EventHandler(this.AddStudentSubmit_Click_1);
             // 
             // CumGradeAdd
             // 
-            this.CumGradeAdd.Location = new System.Drawing.Point(165, 83);
+            this.CumGradeAdd.Location = new System.Drawing.Point(165, 135);
             this.CumGradeAdd.Name = "CumGradeAdd";
             this.CumGradeAdd.Size = new System.Drawing.Size(42, 20);
             this.CumGradeAdd.TabIndex = 63;
@@ -259,7 +249,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(22, 86);
+            this.label6.Location = new System.Drawing.Point(22, 138);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(130, 13);
             this.label6.TabIndex = 64;
@@ -268,28 +258,100 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(213, 59);
+            this.label9.Location = new System.Drawing.Point(213, 111);
             this.label9.Name = "label9";
             this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label9.Size = new System.Drawing.Size(182, 13);
             this.label9.TabIndex = 65;
             this.label9.Text = "Note: GPA is preferred. Do not insert ";
-            //this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(213, 72);
+            this.label10.Location = new System.Drawing.Point(213, 124);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(207, 13);
             this.label10.TabIndex = 66;
             this.label10.Text = "both GPA and Cum. Grade for one student";
             // 
+            // raceBox
+            // 
+            this.raceBox.Location = new System.Drawing.Point(165, 326);
+            this.raceBox.Name = "raceBox";
+            this.raceBox.Size = new System.Drawing.Size(100, 20);
+            this.raceBox.TabIndex = 68;
+            // 
+            // addSchool
+            // 
+            this.addSchool.FormattingEnabled = true;
+            this.addSchool.Location = new System.Drawing.Point(165, 163);
+            this.addSchool.Name = "addSchool";
+            this.addSchool.Size = new System.Drawing.Size(121, 21);
+            this.addSchool.TabIndex = 69;
+            // 
+            // addStudentID
+            // 
+            this.addStudentID.Location = new System.Drawing.Point(165, 82);
+            this.addStudentID.Name = "addStudentID";
+            this.addStudentID.Size = new System.Drawing.Size(55, 20);
+            this.addStudentID.TabIndex = 70;
+            this.addStudentID.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(92, 82);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(58, 13);
+            this.label12.TabIndex = 71;
+            this.label12.Text = "Student ID";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(92, 57);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(58, 13);
+            this.label13.TabIndex = 72;
+            this.label13.Text = "Last Name";
+            // 
+            // addLastName
+            // 
+            this.addLastName.Location = new System.Drawing.Point(165, 54);
+            this.addLastName.Name = "addLastName";
+            this.addLastName.Size = new System.Drawing.Size(100, 20);
+            this.addLastName.TabIndex = 73;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(95, 30);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(57, 13);
+            this.label15.TabIndex = 74;
+            this.label15.Text = "First Name";
+            // 
+            // addFirstName
+            // 
+            this.addFirstName.Location = new System.Drawing.Point(165, 27);
+            this.addFirstName.Name = "addFirstName";
+            this.addFirstName.Size = new System.Drawing.Size(92, 20);
+            this.addFirstName.TabIndex = 75;
+            // 
             // AddNewStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 393);
+            this.ClientSize = new System.Drawing.Size(421, 422);
+            this.Controls.Add(this.addFirstName);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.addLastName);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.addStudentID);
+            this.Controls.Add(this.addSchool);
+            this.Controls.Add(this.raceBox);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label6);
@@ -298,7 +360,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AddCurrent);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.AddRace);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.AddAttend);
             this.Controls.Add(this.label17);
@@ -308,7 +369,6 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.AddGrade);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.School);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.AddGPA);
             this.Controls.Add(this.label5);
@@ -327,7 +387,6 @@
 
         private System.Windows.Forms.ComboBox AddCurrent;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.ComboBox AddRace;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox AddAttend;
         private System.Windows.Forms.Label label17;
@@ -337,7 +396,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox AddGrade;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox School;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox AddGPA;
         private System.Windows.Forms.Label label5;
@@ -350,5 +408,13 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox raceBox;
+        private System.Windows.Forms.ComboBox addSchool;
+        private System.Windows.Forms.TextBox addStudentID;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox addLastName;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox addFirstName;
     }
 }
