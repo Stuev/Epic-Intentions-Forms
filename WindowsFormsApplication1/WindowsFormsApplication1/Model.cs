@@ -211,11 +211,11 @@ namespace WindowsFormsApplication1
             string query = "INSERT INTO student SET Grade_Level = '" + grade
                 + "', ID = '" + studentID
                 + "', First_Name = '" + firstName
-                + ", Last_Name = '" + lastName
+                + "', Last_Name = '" + lastName
                 + "', Grade_Modified_Date = '" + curDay
                 + "', Registration_Date = '" + curDay
-                + "', Gender = " + gender
-                + "', Race = " + race
+                + "', Gender = '" + gender
+                + "', Race = '" + race
                 + "', isCurrent = '" + curStudentInt
                 + "', Days_Missed = '" + daysMissed
                 + "';";
