@@ -36,6 +36,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.PastStudentSubmit = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -50,21 +52,21 @@
             // 
             // PastStudentFirstName
             // 
-            this.PastStudentFirstName.Location = new System.Drawing.Point(185, 162);
+            this.PastStudentFirstName.Location = new System.Drawing.Point(185, 137);
             this.PastStudentFirstName.Name = "PastStudentFirstName";
             this.PastStudentFirstName.Size = new System.Drawing.Size(110, 20);
             this.PastStudentFirstName.TabIndex = 13;
             // 
             // PastStudentLastName
             // 
-            this.PastStudentLastName.Location = new System.Drawing.Point(185, 127);
+            this.PastStudentLastName.Location = new System.Drawing.Point(185, 102);
             this.PastStudentLastName.Name = "PastStudentLastName";
             this.PastStudentLastName.Size = new System.Drawing.Size(110, 20);
             this.PastStudentLastName.TabIndex = 12;
             // 
             // PastStudentID
             // 
-            this.PastStudentID.Location = new System.Drawing.Point(185, 90);
+            this.PastStudentID.Location = new System.Drawing.Point(185, 65);
             this.PastStudentID.Name = "PastStudentID";
             this.PastStudentID.Size = new System.Drawing.Size(110, 20);
             this.PastStudentID.TabIndex = 11;
@@ -72,7 +74,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(75, 162);
+            this.label4.Location = new System.Drawing.Point(75, 137);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 10;
@@ -81,7 +83,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(75, 127);
+            this.label3.Location = new System.Drawing.Point(75, 102);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 13);
             this.label3.TabIndex = 9;
@@ -90,7 +92,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(74, 90);
+            this.label2.Location = new System.Drawing.Point(74, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 13);
             this.label2.TabIndex = 8;
@@ -105,11 +107,29 @@
             this.PastStudentSubmit.Text = "Change Status";
             this.PastStudentSubmit.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(33, 173);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(128, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Enter Reason for Leaving";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(185, 170);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(197, 20);
+            this.textBox1.TabIndex = 16;
+            // 
             // PastStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 275);
+            this.ClientSize = new System.Drawing.Size(422, 290);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.PastStudentSubmit);
             this.Controls.Add(this.PastStudentFirstName);
             this.Controls.Add(this.PastStudentLastName);
@@ -135,5 +155,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button PastStudentSubmit;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

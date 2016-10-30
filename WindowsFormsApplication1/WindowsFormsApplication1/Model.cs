@@ -462,12 +462,69 @@ namespace WindowsFormsApplication1
 
         public static int getMinReferrals()
         {
-            return getMin("cum_GPA", "GPA");
+            string query = "SELECT MIN(mycount) AS min FROM(SELECT id, COUNT(id) mycount FROM referrals GROUP BY id) AS MyCounts;";
+
+            if (OpenConnection() == true)
+            {
+
+                int returnval = 0;
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    returnval = Int32.Parse(dataReader["min"] + "");
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                CloseConnection();
+
+                return returnval;
+
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public static int getMaxReferrals()
         {
-            return getMax("cum_GPA", "GPA");
+            string query = "SELECT MAX(mycount) AS max FROM(SELECT id, COUNT(id) mycount FROM referrals GROUP BY id) AS MyCounts;";
+            if (OpenConnection() == true)
+            {
+
+                int returnval = 0;
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    returnval = Int32.Parse(dataReader["max"] + "");
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                CloseConnection();
+
+                return returnval;
+
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public static int getMinDaysMissed()
