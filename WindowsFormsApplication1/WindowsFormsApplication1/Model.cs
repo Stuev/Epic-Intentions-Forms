@@ -191,6 +191,57 @@ namespace WindowsFormsApplication1
 
         }
 
+        public static void InsertStudent(String firstName, String lastName, int studentID, Double gpa,
+            String school, int grade, int numRefs, int daysMissed, String gender, String race, String curStudent)
+        {
+            DateTime date = DateTime.Now;
+            String year = date.Year.ToString();
+            String month = date.Month.ToString();
+            String day = date.Day.ToString();
+            String curDay = year + '-' + month + '-' + day;
+            int curStudentInt;
+            if (curStudent.ToLower() == "yes")
+            {
+                curStudentInt = 1;
+            }
+            else
+            {
+                curStudentInt = 0;
+            }
+            string query = "INSERT INTO student SET Grade_Level = '" + grade
+                + "', ID = '" + studentID
+                + "', First_Name = '" + firstName
+                + ", Last_Name = '" + lastName
+                + "', Grade_Modified_Date = '" + curDay
+                + "', Registration_Date = '" + curDay
+                + "', Gender = " + gender
+                + "', Race = " + race
+                + "', isCurrent = '" + curStudentInt
+                + "', Days_Missed = '" + daysMissed
+                + "';";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    //this would return something useful in select statement
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
         public static void DeleteReferral()
         {
 
