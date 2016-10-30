@@ -23,7 +23,7 @@ namespace WindowsFormsApplication1
         {
 
             Model model = new Model(passwordField.Text);
-            if(model.OpenConnection() == true)
+            if(Model.OpenConnection() == true)
             {
                 this.Hide();
                 Main nextForm = new Main();

@@ -148,7 +148,7 @@ namespace WindowsFormsApplication1
                 //this would return something useful in select statement
                 cmd.ExecuteNonQuery();
 
-                this.CloseConnection();
+                CloseConnection();
             }
             catch (MySqlException ex)
             {
@@ -177,7 +177,7 @@ namespace WindowsFormsApplication1
                 //this would return something useful in select statement
                 cmd.ExecuteNonQuery();
 
-                this.CloseConnection();
+                CloseConnection();
             }
             catch (MySqlException ex)
             {

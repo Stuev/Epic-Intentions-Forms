@@ -43,7 +43,6 @@ namespace WindowsFormsApplication1
         {
             string ID = "";
             int n;
-            Model model = new Model();
             if (ViewID.Text == "")
             {
                 if (ViewLastName.Text == "" || ViewFirstName.Text == "")
@@ -53,7 +52,12 @@ namespace WindowsFormsApplication1
                 }
                 else
                 {
-                    ID = model.FindIDFromName(ViewFirstName.Text, ViewLastName.Text);
+                    if(ViewLastName.Text.Contains(";") || ViewFirstName.Text.Contains(";"))
+                    {
+                        MessageBox.Show("Semicolons are not a valid character in student names");
+                        return;
+                    }
+                    ID = Model.FindIDFromName(ViewFirstName.Text, ViewLastName.Text);
                 }
             }
             else
@@ -63,13 +67,13 @@ namespace WindowsFormsApplication1
 
             if (ID != "" && int.TryParse(ID, out n))
             {
-                List<string>[] list = model.SelectStudent(ID);
+                List<string>[] studentList = Model.SelectStudent(ID);
                 Excel.Application oXL;
                 Excel._Workbook oWB;
                 Excel._Worksheet oSheet;
                 Excel.Range oRng;
 
-                if (list[0].Count != 0)
+                if (studentList[0].Count != 0)
                 {
 
                     try
@@ -103,9 +107,9 @@ namespace WindowsFormsApplication1
                         string[] saNames = new string[10];
 
 
-                        for (int i = 0; i < list.Count(); i = i + 1)
+                        for (int i = 0; i < studentList.Count(); i = i + 1)
                         {
-                            saNames[i] = list[i][0];
+                            saNames[i] = studentList[i][0];
                         }
 
                         //Fill A2:B6 with an array of values (First and Last Names).
@@ -141,7 +145,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                MessageBox.Show("Name Provided is Not Correct!");
+                MessageBox.Show("Information Provided is Not Correct!");
             }
         }
     }
