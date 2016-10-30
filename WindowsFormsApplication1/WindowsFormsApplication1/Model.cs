@@ -366,5 +366,106 @@ namespace WindowsFormsApplication1
             return null;
         }
 
+        public static int getMin(string table, string col)
+        {
+            string query = "SELECT MIN(" + col + ") FROM " + table + "';";
+
+            if (OpenConnection() == true)
+            {
+                List<string>[] list = new List<string>[1];
+
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    list[0].Add(dataReader[col] + "");
+
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                CloseConnection();
+
+                //return list to be displayed
+                return 0;
+            }
+            else
+            {
+                return 0;
+            }
+            return 0;
+        }
+
+        public static int getMax(string table, string col)
+        {
+            string query = "SELECT MAX(" + col + ") FROM " + table + "';";
+            return 0;
+        }
+
+        public static int getMinGPA()
+        {
+            return 0;
+        }
+
+        public static int getMaxGPA()
+        {
+            return 0;
+        }
+
+        public static List<string> getSchools()
+        {
+            return new List<string>();
+        }
+
+        public static int getMinGrade()
+        {
+            return 0;
+        }
+
+        public static int getMaxGrade()
+        {
+            return 0;
+        }
+
+        public static int getMinReferrals()
+        {
+            return 0;
+        }
+
+        public static int getMaxReferrals()
+        {
+            return 0;
+        }
+
+        public static int getMinDaysMissed()
+        {
+            return 0;
+        }
+
+        public static int getMaxDaysMissed()
+        {
+            return 0;
+        }
+
+        public static List<string> getGenders()
+        {
+            return new List<string>();
+        }
+
+        public static List<string> getRaces()
+        {
+            return new List<string>();
+        }
+
+        public static List<string> getCurrentStudentOptions()
+        {
+            return new List<string>();
+        }
     }
 }
