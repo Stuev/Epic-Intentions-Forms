@@ -26,6 +26,7 @@ namespace WindowsFormsApplication1
             if(Model.OpenConnection() == true)
             {
                 this.Hide();
+                Model.CloseConnection();
                 Main nextForm = new Main();
                 nextForm.ShowDialog();
                 this.Close();

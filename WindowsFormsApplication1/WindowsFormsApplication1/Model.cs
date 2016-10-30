@@ -51,16 +51,12 @@ namespace WindowsFormsApplication1
                 {
                     MessageBox.Show("Cannot connect to server. Try again.");
                 }
-                else if (ex.Number == 0)
-                { 
-                    MessageBox.Show("Invalid password, please try again");
-                }
 
                 return false;
             }
         }
 
-        private static bool CloseConnection()
+        public static bool CloseConnection()
         {
             try
             {
@@ -267,6 +263,7 @@ namespace WindowsFormsApplication1
                 //Open connection
                 if (OpenConnection() == true)
                 {
+          
                     //Create Command
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     //Create a data reader and Execute the command
@@ -305,7 +302,48 @@ namespace WindowsFormsApplication1
 
         public static List<string>[] SelectAllCumGPA(string ID)
         {
-            return null;
+            {
+                string query = "SELECT * FROM cum_gpa "
+                + "WHERE ID = '" + ID
+                + "';";
+
+                //Create a list to store the result
+                List<string>[] list = new List<string>[3];
+                list[0] = new List<string>();
+                list[1] = new List<string>();
+                list[2] = new List<string>();
+
+                //Open connection
+                if (OpenConnection() == true)
+                {
+
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        list[0].Add(dataReader["ID"] + "");
+                        list[1].Add(dataReader["GPA"] + "");
+                        list[2].Add(dataReader["GPA_Entry_Date"] + "");
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+
+                    //close Connection
+                    CloseConnection();
+
+                    //return list to be displayed
+                    return list;
+                }
+                else
+                {
+                    return list;
+                }
+            }
         }
 
         public static List<string>[] SelectAllUnCumGPA(string ID)
