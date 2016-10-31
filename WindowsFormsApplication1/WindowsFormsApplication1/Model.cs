@@ -725,5 +725,10 @@ namespace WindowsFormsApplication1
 
             return options;
         }
+
+        public static List<string>[] filterSelectStudent(int minGPA, int maxGPA, List<string> schools, int minGrade, int maxGrade, int minReferrals, int maxReferrals, int minDaysMissed, int maxDaysMissed, List<string> genders, List<string> races, List<string> statuses)
+        {
+            return new List<string>[1];
+        }
     }
 }
