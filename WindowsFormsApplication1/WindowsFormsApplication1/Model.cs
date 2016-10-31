@@ -399,12 +399,96 @@ namespace WindowsFormsApplication1
 
         public static List<string>[] SelectAllUnCumGPA(string ID)
         {
-            return null;
+            {
+                string query = "SELECT * FROM un_cum_gpa "
+                + "WHERE ID = '" + ID
+                + "';";
+
+                //Create a list to store the result
+                List<string>[] list = new List<string>[3];
+                list[0] = new List<string>();
+                list[1] = new List<string>();
+                list[2] = new List<string>();
+
+                //Open connection
+                if (OpenConnection() == true)
+                {
+
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        list[0].Add(dataReader["ID"] + "");
+                        list[1].Add(dataReader["GPA"] + "");
+                        list[2].Add(dataReader["GPA_Entry_Date"] + "");
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+
+                    //close Connection
+                    CloseConnection();
+
+                    //return list to be displayed
+                    return list;
+                }
+                else
+                {
+                    return list;
+                }
+            }
         }
 
         public static List<string>[] SelectAllAttends(string ID)
         {
-            return null;
+            {
+                string query = "SELECT * FROM cum_gpa "
+                + "WHERE ID = '" + ID
+                + "';";
+
+                //Create a list to store the result
+                List<string>[] list = new List<string>[4];
+                list[0] = new List<string>();
+                list[1] = new List<string>();
+                list[2] = new List<string>();
+                list[3] = new List<string>();
+
+                //Open connection
+                if (OpenConnection() == true)
+                {
+
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        list[0].Add(dataReader["Student_ID"] + "");
+                        list[1].Add(dataReader["School_Name"] + "");
+                        list[2].Add(dataReader["Start_Date"] + "");
+                        list[3].Add(dataReader["End_Date"] + "");
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+
+                    //close Connection
+                    CloseConnection();
+
+                    //return list to be displayed
+                    return list;
+                }
+                else
+                {
+                    return list;
+                }
+            }
         }
 
         public static List<string>[] SelectAllPast(string ID)
