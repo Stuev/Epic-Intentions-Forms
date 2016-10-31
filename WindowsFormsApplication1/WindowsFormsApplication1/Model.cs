@@ -569,6 +569,41 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public static List<string> selectCol(string table, string col)
+        {
+            string query = "SELECT DISTINCT " + col + " FROM " + table + ";";
+
+            if (OpenConnection() == true)
+            {
+
+                List<string> returnval = new List<string>();
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    returnval.Add(dataReader[col] + "");
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                CloseConnection();
+
+                return returnval;
+
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
 
         public static int getMinGPA()
         {
@@ -582,7 +617,7 @@ namespace WindowsFormsApplication1
 
         public static List<string> getSchools()
         {
-            return new List<string>();
+            return selectCol("school", "Name");
         }
 
         public static int getMinGrade()
@@ -674,17 +709,21 @@ namespace WindowsFormsApplication1
 
         public static List<string> getGenders()
         {
-            return new List<string>();
+            return selectCol("student", "gender");
         }
 
         public static List<string> getRaces()
         {
-            return new List<string>();
+            return selectCol("student", "race");
         }
 
         public static List<string> getCurrentStudentOptions()
         {
-            return new List<string>();
+            List<string> options = new List<string>();
+            options.Add("current");
+            options.Add("alumni");
+
+            return options;
         }
     }
 }
