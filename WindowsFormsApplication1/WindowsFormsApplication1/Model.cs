@@ -97,10 +97,6 @@ namespace WindowsFormsApplication1
                 + "'WHERE ID = '" + ID
                 + "';";
 
-            //OR (First_Name='Bob' AND Last_Name='White')
-            //executes the query into the database
-            //can be copied and pasted at the bottom of every other file
-            //select statement will be slightly different
             if (OpenConnection() == true)
             {
                 try
@@ -111,7 +107,6 @@ namespace WindowsFormsApplication1
 
                     cmd.Connection = connection;
 
-                    //this would return something useful in select statement
                     cmd.ExecuteNonQuery();
 
                     CloseConnection();
@@ -129,10 +124,6 @@ namespace WindowsFormsApplication1
                 + "'WHERE ID = '" + ID
                 + "';";
 
-            //OR (First_Name='Bob' AND Last_Name='White')
-            //executes the query into the database
-            //can be copied and pasted at the bottom of every other file
-            //select statement will be slightly different
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
@@ -141,7 +132,6 @@ namespace WindowsFormsApplication1
 
                 cmd.Connection = connection;
 
-                //this would return something useful in select statement
                 cmd.ExecuteNonQuery();
 
                 CloseConnection();
@@ -158,10 +148,6 @@ namespace WindowsFormsApplication1
                 + "'WHERE Name= '" + oldSchool
                 + "';";
 
-            //OR (First_Name='Bob' AND Last_Name='White')
-            //executes the query into the database
-            //can be copied and pasted at the bottom of every other file
-            //select statement will be slightly different
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
@@ -170,7 +156,6 @@ namespace WindowsFormsApplication1
 
                 cmd.Connection = connection;
 
-                //this would return something useful in select statement
                 cmd.ExecuteNonQuery();
 
                 CloseConnection();
@@ -230,7 +215,6 @@ namespace WindowsFormsApplication1
 
                     cmd.Connection = connection;
 
-                    //this would return something useful in select statement
                     cmd.ExecuteNonQuery();
 
                     CloseConnection();
@@ -265,25 +249,24 @@ namespace WindowsFormsApplication1
 
             if (OpenConnection() == true)
             {
-                //Create Command
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-                //Create a data reader and Execute the command
+
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
-                //Read the data and store them in the list
+
                 while (dataReader.Read())
                 {
 
                     ID = dataReader["ID"] + "";
                 }
 
-                //close Data Reader
+
                 dataReader.Close();
 
-                //close Connection
+
                 CloseConnection();
 
-                //return list to be displayed
+
                 return ID;
             } else
             {
@@ -358,22 +341,20 @@ namespace WindowsFormsApplication1
                 + "WHERE ID = '" + ID
                 + "';";
 
-                //Create a list to store the result
                 List<string>[] list = new List<string>[3];
                 list[0] = new List<string>();
                 list[1] = new List<string>();
                 list[2] = new List<string>();
 
-                //Open connection
                 if (OpenConnection() == true)
                 {
 
-                    //Create Command
+
                     MySqlCommand cmd = new MySqlCommand(query, connection);
-                    //Create a data reader and Execute the command
+
                     MySqlDataReader dataReader = cmd.ExecuteReader();
 
-                    //Read the data and store them in the list
+
                     while (dataReader.Read())
                     {
                         list[0].Add(dataReader["ID"] + "");
@@ -381,13 +362,13 @@ namespace WindowsFormsApplication1
                         list[2].Add(dataReader["GPA_Entry_Date"] + "");
                     }
 
-                    //close Data Reader
+
                     dataReader.Close();
 
-                    //close Connection
+
                     CloseConnection();
 
-                    //return list to be displayed
+
                     return list;
                 }
                 else
@@ -404,22 +385,22 @@ namespace WindowsFormsApplication1
                 + "WHERE ID = '" + ID
                 + "';";
 
-                //Create a list to store the result
+
                 List<string>[] list = new List<string>[3];
                 list[0] = new List<string>();
                 list[1] = new List<string>();
                 list[2] = new List<string>();
 
-                //Open connection
+
                 if (OpenConnection() == true)
                 {
 
-                    //Create Command
+
                     MySqlCommand cmd = new MySqlCommand(query, connection);
-                    //Create a data reader and Execute the command
+
                     MySqlDataReader dataReader = cmd.ExecuteReader();
 
-                    //Read the data and store them in the list
+
                     while (dataReader.Read())
                     {
                         list[0].Add(dataReader["ID"] + "");
@@ -427,13 +408,11 @@ namespace WindowsFormsApplication1
                         list[2].Add(dataReader["GPA_Entry_Date"] + "");
                     }
 
-                    //close Data Reader
+
                     dataReader.Close();
 
-                    //close Connection
                     CloseConnection();
 
-                    //return list to be displayed
                     return list;
                 }
                 else
@@ -446,27 +425,27 @@ namespace WindowsFormsApplication1
         public static List<string>[] SelectAllAttends(string ID)
         {
             {
-                string query = "SELECT * FROM cum_gpa "
-                + "WHERE ID = '" + ID
+                string query = "SELECT * FROM attends "
+                + "WHERE Student_ID = '" + ID
                 + "';";
 
-                //Create a list to store the result
+
                 List<string>[] list = new List<string>[4];
                 list[0] = new List<string>();
                 list[1] = new List<string>();
                 list[2] = new List<string>();
                 list[3] = new List<string>();
 
-                //Open connection
+
                 if (OpenConnection() == true)
                 {
 
-                    //Create Command
+
                     MySqlCommand cmd = new MySqlCommand(query, connection);
-                    //Create a data reader and Execute the command
+
                     MySqlDataReader dataReader = cmd.ExecuteReader();
 
-                    //Read the data and store them in the list
+
                     while (dataReader.Read())
                     {
                         list[0].Add(dataReader["Student_ID"] + "");
@@ -475,13 +454,13 @@ namespace WindowsFormsApplication1
                         list[3].Add(dataReader["End_Date"] + "");
                     }
 
-                    //close Data Reader
+
                     dataReader.Close();
 
-                    //close Connection
+
                     CloseConnection();
 
-                    //return list to be displayed
+
                     return list;
                 }
                 else
@@ -493,12 +472,95 @@ namespace WindowsFormsApplication1
 
         public static List<string>[] SelectAllPast(string ID)
         {
-            return null;
+            {
+                string query = "SELECT * FROM past_student "
+                + "WHERE ID = '" + ID
+                + "';";
+
+                List<string>[] list = new List<string>[4];
+                list[0] = new List<string>();
+                list[1] = new List<string>();
+                list[2] = new List<string>();
+
+
+                if (OpenConnection() == true)
+                {
+
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
+                    while (dataReader.Read())
+                    {
+                        list[0].Add(dataReader["ID"] + "");
+                        list[1].Add(dataReader["Reason"] + "");
+                        list[2].Add(dataReader["Leave_Date"] + "");
+                    }
+
+
+                    dataReader.Close();
+
+
+                    CloseConnection();
+
+
+                    return list;
+                }
+                else
+                {
+                    return list;
+                }
+            }
         }
 
         public static List<string>[] SelectAllReferrals(string ID)
         {
-            return null;
+            string query = "SELECT * FROM referrals "
+            + "WHERE ID = '" + ID
+            + "';";
+
+
+            List<string>[] list = new List<string>[4];
+            list[0] = new List<string>();
+            list[1] = new List<string>();
+            list[2] = new List<string>();
+            list[3] = new List<string>();
+            list[4] = new List<string>();
+
+
+            if (OpenConnection() == true)
+            {
+
+
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
+                while (dataReader.Read())
+                {
+                    list[0].Add(dataReader["ID"] + "");
+                    list[1].Add(dataReader["Referral_Number"] + "");
+                    list[2].Add(dataReader["Referral_Date"] + "");
+                    list[3].Add(dataReader["Type"] + "");
+                    list[4].Add(dataReader["Description"] + "");
+                }
+
+
+                dataReader.Close();
+
+
+                CloseConnection();
+
+
+                return list;
+            }
+            else
+            {
+                return list;
+            }
         }
 
         public static int getMin(string table, string col)
