@@ -92,7 +92,7 @@ namespace WindowsFormsApplication1
                 {
                     //Start Excel and get Application object.
                     oXL = new Excel.Application();
-                    oXL.Visible = true;
+                    oXL.Visible = false;
 
                     //Get a new workbook. Set up worksheets
                     oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
