@@ -274,6 +274,287 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public static List<string>[] SelectAllStudents()
+        {
+            string query = "SELECT * FROM student;";
+
+            //Create a list to store the result
+            List<string>[] list = new List<string>[10];
+            list[0] = new List<string>();
+            list[1] = new List<string>();
+            list[2] = new List<string>();
+            list[3] = new List<string>();
+            list[4] = new List<string>();
+            list[5] = new List<string>();
+            list[6] = new List<string>();
+            list[7] = new List<string>();
+            list[8] = new List<string>();
+            list[9] = new List<string>();
+
+            //Open connection
+            if (OpenConnection() == true)
+            {
+
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    list[0].Add(dataReader["ID"] + "");
+                    list[1].Add(dataReader["First_Name"] + "");
+                    list[2].Add(dataReader["Last_Name"] + "");
+                    list[3].Add(dataReader["Grade_Level"] + "");
+                    list[4].Add(dataReader["Grade_Modified_Date"] + "");
+                    list[5].Add(dataReader["Registration_Date"] + "");
+                    list[6].Add(dataReader["Gender"] + "");
+                    list[7].Add(dataReader["Race"] + "");
+                    list[8].Add(dataReader["isCurrent"] + "");
+                    list[9].Add(dataReader["Days_Missed"] + "");
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                CloseConnection();
+
+                //return list to be displayed
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+        }
+
+        public static List<string>[] SelectAllCumGPAS()
+        {
+            {
+                string query = "SELECT * FROM cum_gpa;";
+
+                List<string>[] list = new List<string>[3];
+                list[0] = new List<string>();
+                list[1] = new List<string>();
+                list[2] = new List<string>();
+
+                if (OpenConnection() == true)
+                {
+
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
+                    while (dataReader.Read())
+                    {
+                        list[0].Add(dataReader["ID"] + "");
+                        list[1].Add(dataReader["GPA"] + "");
+                        list[2].Add(dataReader["GPA_Entry_Date"] + "");
+                    }
+
+
+                    dataReader.Close();
+
+
+                    CloseConnection();
+
+
+                    return list;
+                }
+                else
+                {
+                    return list;
+                }
+            }
+        }
+
+        public static List<string>[] SelectAllUnCumGPAS()
+        {
+            {
+                string query = "SELECT * FROM un_cum_gpa;";
+
+
+                List<string>[] list = new List<string>[3];
+                list[0] = new List<string>();
+                list[1] = new List<string>();
+                list[2] = new List<string>();
+
+
+                if (OpenConnection() == true)
+                {
+
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
+                    while (dataReader.Read())
+                    {
+                        list[0].Add(dataReader["ID"] + "");
+                        list[1].Add(dataReader["GPA"] + "");
+                        list[2].Add(dataReader["GPA_Entry_Date"] + "");
+                    }
+
+
+                    dataReader.Close();
+
+                    CloseConnection();
+
+                    return list;
+                }
+                else
+                {
+                    return list;
+                }
+            }
+        }
+
+        public static List<string>[] SelectAllAttends()
+        {
+            {
+                string query = "SELECT * FROM attends;";
+
+
+                List<string>[] list = new List<string>[4];
+                list[0] = new List<string>();
+                list[1] = new List<string>();
+                list[2] = new List<string>();
+                list[3] = new List<string>();
+
+
+                if (OpenConnection() == true)
+                {
+
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
+                    while (dataReader.Read())
+                    {
+                        list[0].Add(dataReader["Student_ID"] + "");
+                        list[1].Add(dataReader["School_Name"] + "");
+                        list[2].Add(dataReader["Start_Date"] + "");
+                        list[3].Add(dataReader["End_Date"] + "");
+                    }
+
+
+                    dataReader.Close();
+
+
+                    CloseConnection();
+
+
+                    return list;
+                }
+                else
+                {
+                    return list;
+                }
+            }
+        }
+
+        public static List<string>[] SelectAllPasts()
+        {
+            {
+                string query = "SELECT * FROM past_student;";
+
+                List<string>[] list = new List<string>[3];
+                list[0] = new List<string>();
+                list[1] = new List<string>();
+                list[2] = new List<string>();
+
+
+                if (OpenConnection() == true)
+                {
+
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
+                    while (dataReader.Read())
+                    {
+                        list[0].Add(dataReader["ID"] + "");
+                        list[1].Add(dataReader["Reason"] + "");
+                        list[2].Add(dataReader["Leave_Date"] + "");
+                    }
+
+
+                    dataReader.Close();
+
+
+                    CloseConnection();
+
+
+                    return list;
+                }
+                else
+                {
+                    return list;
+                }
+            }
+        }
+
+        public static List<string>[] SelectAllReferrals()
+        {
+            string query = "SELECT * FROM referrals;";
+
+
+            List<string>[] list = new List<string>[5];
+            list[0] = new List<string>();
+            list[1] = new List<string>();
+            list[2] = new List<string>();
+            list[3] = new List<string>();
+            list[4] = new List<string>();
+
+
+            if (OpenConnection() == true)
+            {
+
+
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
+                while (dataReader.Read())
+                {
+                    list[0].Add(dataReader["ID"] + "");
+                    list[1].Add(dataReader["Referral_Number"] + "");
+                    list[2].Add(dataReader["Referral_Date"] + "");
+                    list[3].Add(dataReader["Type"] + "");
+                    list[4].Add(dataReader["Description"] + "");
+                }
+
+
+                dataReader.Close();
+
+
+                CloseConnection();
+
+
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+        }
+
+
+
+
+
+
+
         public static List <string>[] SelectStudent(string ID)
         {
             {
@@ -422,7 +703,9 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public static List<string>[] SelectAllAttends(string ID)
+
+
+        public static List<string>[] SelectAllAttend(string ID)
         {
             {
                 string query = "SELECT * FROM attends "
@@ -477,7 +760,7 @@ namespace WindowsFormsApplication1
                 + "WHERE ID = '" + ID
                 + "';";
 
-                List<string>[] list = new List<string>[4];
+                List<string>[] list = new List<string>[3];
                 list[0] = new List<string>();
                 list[1] = new List<string>();
                 list[2] = new List<string>();
@@ -515,14 +798,14 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public static List<string>[] SelectAllReferrals(string ID)
+        public static List<string>[] SelectAllReferral(string ID)
         {
             string query = "SELECT * FROM referrals "
             + "WHERE ID = '" + ID
             + "';";
 
 
-            List<string>[] list = new List<string>[4];
+            List<string>[] list = new List<string>[5];
             list[0] = new List<string>();
             list[1] = new List<string>();
             list[2] = new List<string>();
