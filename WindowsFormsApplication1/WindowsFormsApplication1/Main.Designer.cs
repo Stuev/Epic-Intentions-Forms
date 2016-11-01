@@ -46,7 +46,7 @@
             this.label1.Location = new System.Drawing.Point(150, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 16);
+            this.label1.Size = new System.Drawing.Size(123, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select Option";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -124,6 +124,7 @@
             this.ViewAll.TabIndex = 7;
             this.ViewAll.Text = "View All Students";
             this.ViewAll.UseVisualStyleBackColor = true;
+            this.ViewAll.Click += new System.EventHandler(this.ViewAll_Click);
             // 
             // PastStudents
             // 
@@ -137,7 +138,7 @@
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 374);
             this.Controls.Add(this.PastStudents);

@@ -271,7 +271,7 @@ namespace WindowsFormsApplication1
                                 toPrint[i] = referralsList[i][j];
                             }
                             //Fill with an array of values (First and Last Names).
-                            oSheet.get_Range("A" + k, "D" + k).Value2 = toPrint;
+                            oSheet.get_Range("A" + k, "E" + k).Value2 = toPrint;
                         }
 
                         //Fill A2:B6 with an array of values (First and Last Names).
@@ -305,7 +305,6 @@ namespace WindowsFormsApplication1
                                     toPrint[i] = pastStudent[i][j];
                                 }
                                 //Fill with an array of values (First and Last Names).
-                                MessageBox.Show("GOT HERE");
                                 oSheet.get_Range("A" + k, "C" + k).Value2 = toPrint;
                             }
 
