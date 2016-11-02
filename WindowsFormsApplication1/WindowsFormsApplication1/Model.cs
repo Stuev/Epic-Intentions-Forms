@@ -84,7 +84,7 @@ namespace WindowsFormsApplication1
          */
         public static void UpdateStudentTable(string ID, 
             string Grade, string Modified, string Reg, 
-            string Gen, string Rac, string cur, string daysMi)
+            string Gen, string Rac, string daysMi)
         {
             //Set up a SQL query, plugging in the passed in values into the strings
             string query = "UPDATE student SET Grade_Level = '" + Grade
@@ -92,7 +92,6 @@ namespace WindowsFormsApplication1
                 + "', Registration_Date = '" + Reg
                 + "', Gender = " + Gen
                 + "', Race = " + Rac
-                + "', isCurrent = '" + cur
                 + "', Days_Missed = '" + daysMi
                 + "'WHERE ID = '" + ID
                 + "';";
