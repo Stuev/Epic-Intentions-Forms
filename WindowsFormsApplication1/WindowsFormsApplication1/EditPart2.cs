@@ -36,12 +36,14 @@ namespace WindowsFormsApplication1
         private string attendsEndDate;
         private string attendsSchoolName;
         private List<float> unCumGPAs;
+        private List<string>[] oldUnCumGPAs;
         private List<string> unCumGPAEntries;
 
         public EditPart2(string ID)
         {
             InitializeComponent();
             thisID = ID;
+            oldUnCumGPAs = Model.SelectAllUnCumGPA(ID);
         }
 
         private void label3_Click(object sender, EventArgs e)

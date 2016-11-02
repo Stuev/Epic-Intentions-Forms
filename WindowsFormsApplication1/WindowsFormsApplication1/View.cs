@@ -85,8 +85,12 @@ namespace WindowsFormsApplication1
 
 
                 bool cur;
-                if (studentList[8][0] == "True") { cur = true; }
-                else { cur = false; }
+                if (studentList[8].Count() > 0)
+                {
+                    if (studentList[8][0] == "True") { cur = true; }
+                    else { cur = false; }
+                }
+                else { cur = true; }
 
                 Excel.Application oXL;
                 Excel._Workbook oWB;
@@ -164,14 +168,19 @@ namespace WindowsFormsApplication1
                     // Create an array to multiple values at once.
                     toPrint = new string[3];
 
-
-                    for (int i = 0; i < cumGPAList.Count(); i = i + 1)
+                    if (cumGPAList[0].Count() > 0)
                     {
-                        toPrint[i] = cumGPAList[i][0];
+                        for (int i = 0; i < cumGPAList.Count(); i = i + 1)
+                        {
+                            toPrint[i] = cumGPAList[i][0];
+                        }
                     }
 
                     //Fill A2:B6 with an array of values (First and Last Names).
-                    oSheet.get_Range("A2", "C2").Value2 = toPrint;
+                    if (toPrint.Count() == 3)
+                    {
+                        oSheet.get_Range("A2", "C2").Value2 = toPrint;
+                    }
                     oRng = oSheet.get_Range("A1", "J1");
                     oRng.EntireColumn.AutoFit();
 
@@ -193,16 +202,18 @@ namespace WindowsFormsApplication1
                     // Create an array to multiple values at once.
                     toPrint = new string[3];
 
-
-                    for (int j = 0; j < unCumGPAList[0].Count(); j = j + 1)
+                    if (unCumGPAList[0].Count() > 0)
                     {
-                        int k = j + 2;
-                        for (int i = 0; i < unCumGPAList.Count(); i = i + 1)
+                        for (int j = 0; j < unCumGPAList[0].Count(); j = j + 1)
                         {
-                            toPrint[i] = unCumGPAList[i][j];
+                            int k = j + 2;
+                            for (int i = 0; i < unCumGPAList.Count(); i = i + 1)
+                            {
+                                toPrint[i] = unCumGPAList[i][j];
+                            }
+                            //Fill with an array of values (First and Last Names).
+                            oSheet.get_Range("A" + k, "C" + k).Value2 = toPrint;
                         }
-                        //Fill with an array of values (First and Last Names).
-                        oSheet.get_Range("A" + k, "C" + k).Value2 = toPrint;
                     }
 
                     //Fill A2:B6 with an array of values (First and Last Names).
