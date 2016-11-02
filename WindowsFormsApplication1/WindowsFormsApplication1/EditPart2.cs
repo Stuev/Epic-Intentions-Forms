@@ -24,6 +24,19 @@ namespace WindowsFormsApplication1
         private string race;
         private string regDate;
         private string gradeMod;
+        private float cumGPA;
+        private string cumGPAEntry;
+        private List<string> referrals;
+        private List<string> refDate;
+        private List<string> refType;
+        private List<string> refDescr;
+        private string pastReason;
+        private string pastDate;
+        private string attendsStartDate;
+        private string attendsEndDate;
+        private string attendsSchoolName;
+        private List<float> unCumGPAs;
+        private List<string> unCumGPAEntries;
 
         public EditPart2(string ID)
         {
@@ -135,7 +148,11 @@ namespace WindowsFormsApplication1
                     this.Close();
                     return;
                 }
-                           
+
+                oSheet = (Excel._Worksheet)oWB.Sheets[2];
+                oRng = oSheet.UsedRange;
+
+
 
                 oWB.Close(false);
             }

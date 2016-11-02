@@ -241,7 +241,7 @@ namespace WindowsFormsApplication1
 
                     //Add table headers going cell by cell.
                     //oSheet.Cells[1, 1] = "ID";
-                    oSheet.Cells[1, 2] = "Referral Number";
+                    //oSheet.Cells[1, 2] = "Referral Number";
                     oSheet.Cells[1, 3] = "Referral Date";
                     oSheet.Cells[1, 4] = "Type";
                     oSheet.Cells[1, 5] = "Description";
@@ -258,7 +258,7 @@ namespace WindowsFormsApplication1
                     for (int j = 0; j < referralsList[0].Count(); j = j + 1)
                     {
                         int k = j + 2;
-                        for (int i = 1; i < referralsList.Count(); i = i + 1)
+                        for (int i = 2; i < referralsList.Count(); i = i + 1)
                         {
                             toPrint[i] = referralsList[i][j];
                         }

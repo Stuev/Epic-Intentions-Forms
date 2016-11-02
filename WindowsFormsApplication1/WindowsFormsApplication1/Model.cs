@@ -87,14 +87,14 @@ namespace WindowsFormsApplication1
             string Gen, string Rac, string daysMi)
         {
             //Set up a SQL query, plugging in the passed in values into the strings
-            string query = "UPDATE student SET Grade_Level = '" + Grade
-                + "', Grade_Modified_Date = '" + Modified
-                + "', Registration_Date = '" + Reg
-                + "', Gender = " + Gen
-                + "', Race = " + Rac
-                + "', Days_Missed = '" + daysMi
-                + "'WHERE ID = '" + ID
-                + "';";
+            string query = "UPDATE student SET Grade_Level =\"" + Grade
+                + "\", Grade_Modified_Date = \"" + Modified
+                + "\", Registration_Date = \"" + Reg
+                + "\", Gender = \"" + Gen
+                + "\", Race = \"" + Rac
+                + "\", Days_Missed = \"" + daysMi
+                + "\" WHERE ID = \"" + ID
+                + "\";";
 
             if (OpenConnection() == true)
             {
