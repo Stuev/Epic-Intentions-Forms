@@ -113,35 +113,35 @@ namespace WindowsFormsApplication1
                 oSheet = (Excel._Worksheet)oWB.Sheets[1];
                 oRng = oSheet.UsedRange;
 
-                rows = oSheet.Rows.Count;
-
+                rows = oRng.Rows.Count;
                 for (int r = 2; r <= rows; r++)
                 {
 
                     try
                     {
-                        studentID = int.Parse((string)oRng.Cells[r, 1]);
+                        studentID = int.Parse(oSheet.Cells[r, 1]);
                     }
                     catch
                     {
                         oWB.Close(false);
-                        MessageBox.Show("There is an error in the Student ID. Please make sure there is a number.");
+                        MessageBox.Show((string) oSheet.Cells[r, 1]);
+                        //MessageBox.Show("There is an error in the Student ID. Please make sure there is a number.");
                         this.Close();
                         return;
                     }
-                    firstName = oRng.Cells[r, 2].Value2 + "";
-                    lastName = oRng.Cells[r, 3].Value2 + "";
-                    gender = oRng.Cells[r, 4].Value2 + "";
-                    race = oRng.Cells[r, 5].Value2 + "";
+                    firstName = oSheet.Cells[r, 2] + "";
+                    lastName = oSheet.Cells[r, 3] + "";
+                    gender = oSheet.Cells[r, 4] + "";
+                    race = oSheet.Cells[r, 5] + "";
                     try
                     {
-                        gpa = float.Parse((string)oRng.Cells[r, 6]);
+                        gpa = float.Parse((string)oSheet.Cells[r, 6]);
                     }
                     catch
                     {
                         try
                         {
-                            gpa = float.Parse((string)oRng.Cells[r, 7]);
+                            gpa = float.Parse((string)oSheet.Cells[r, 7]);
                             gpa = gpa / 25;
                         }
                         catch
@@ -149,7 +149,7 @@ namespace WindowsFormsApplication1
                             ;
                         }
                     }
-                    gradeMod = oRng.Cells[r, 8].Value2 + "";
+                    gradeMod = oSheet.Cells[r, 8] + "";
                     if (gradeMod.Equals(""))
                     {
                         DateTime date = DateTime.Now;
@@ -158,11 +158,11 @@ namespace WindowsFormsApplication1
                         String day = date.Day.ToString();
                         String gradeMod = year + '-' + month + '-' + day;
                     }
-                    daysAbsent = int.Parse((string)oRng.Cells[r, 9]);
-                    numRefs = int.Parse((string)oRng.Cells[r, 10]);
-                    school = oRng.Cells[r, 11].Value2 + "";
-                    regDate = oRng.Cells[r, 12].Value2 + "";
-                    grade = int.Parse((string)oRng.Cells[r, 13]);
+                    daysAbsent = int.Parse((string)oSheet.Cells[r, 9]);
+                    numRefs = int.Parse((string)oSheet.Cells[r, 10]);
+                    school = oSheet.Cells[r, 11] + "";
+                    regDate = oSheet.Cells[r, 12] + "";
+                    grade = int.Parse((string)oSheet.Cells[r, 13]);
 
                     students = Model.getStudentIDs();
                     foreach (String s in students)
@@ -170,13 +170,26 @@ namespace WindowsFormsApplication1
                         if (s.Equals(studentID))
                         {
                             //update data
-                            Model.UpdateStudentTable(studentID.ToString(), grade.ToString(), gradeMod, regDate, gender, race, daysAbsent.ToString());
+                            try
+                            {
+                                Model.UpdateStudentTable(studentID.ToString(), grade.ToString(), gradeMod, regDate, gender, race, daysAbsent.ToString());
+                            } catch
+                            {
+                                MessageBox.Show("SQL update didn't work");
+
+                            }
                         }
                         else
                         {
                             //add new student
-                            Model.InsertStudent(firstName, lastName, studentID, gpa, school, grade, numRefs,
-                                daysAbsent, gender, race, "yes");
+                            try
+                            {
+                                Model.InsertStudent(firstName, lastName, studentID, gpa, school, grade, numRefs,
+                                    daysAbsent, gender, race, "yes");
+                            } catch
+                            {
+                                MessageBox.Show("sql insert didn't work");
+                            }
                         }
                     }
                 }
