@@ -75,6 +75,12 @@
     <Compile Include="EditPart2.Designer.cs">
       <DependentUpon>EditPart2.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImportSchoolData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportSchoolData.Designer.cs">
+      <DependentUpon>ImportSchoolData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model.cs" />
     <Compile Include="Edit.cs">
       <SubType>Form</SubType>
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportSchoolData.resx">
+      <DependentUpon>ImportSchoolData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

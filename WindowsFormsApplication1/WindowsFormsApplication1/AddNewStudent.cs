@@ -102,6 +102,7 @@ namespace WindowsFormsApplication1
             String curStudent = AddCurrent.Text;
 
             Model.InsertStudent(firstName, lastName, studentID, gpa, school, grade, numRefs, daysMissed, gender, race, curStudent);
+            this.Close();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

@@ -334,5 +334,13 @@ namespace WindowsFormsApplication1
 
             }
         }
+
+        private void ImportData_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ImportSchoolData nextForm = new ImportSchoolData();
+            nextForm.ShowDialog();
+            this.Show();
+        }
     }
 }
