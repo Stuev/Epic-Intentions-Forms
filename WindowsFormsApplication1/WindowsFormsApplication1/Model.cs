@@ -272,7 +272,6 @@ namespace WindowsFormsApplication1
                 return ID;
             }
         }
-
         public static List<string>[] SelectAllStudents()
         {
             string query = "SELECT * FROM student;";
@@ -964,6 +963,10 @@ namespace WindowsFormsApplication1
             return selectCol("school", "Name");
         }
 
+        public static List<string> getStudentIDs()
+        {
+            return selectCol("Student", "ID");
+        }
         public static int getMinGrade()
         {
             return getMin("Student", "Grade_Level");
