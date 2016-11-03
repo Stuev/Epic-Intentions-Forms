@@ -176,13 +176,8 @@ namespace WindowsFormsApplication1
         }
 
         public static void InsertStudent(String firstName, String lastName, int studentID, Double gpa,
-            String school, int grade, int numRefs, int daysMissed, String gender, String race, String curStudent)
+            String school, int grade, int numRefs, int daysMissed, String gender, String race, String curStudent, String RegDate, String GradeMod)
         {
-            DateTime date = DateTime.Now;
-            String year = date.Year.ToString();
-            String month = date.Month.ToString();
-            String day = date.Day.ToString();
-            String curDay = year + '-' + month + '-' + day;
             int curStudentInt;
             if (curStudent.ToLower() == "yes")
             {
@@ -196,8 +191,8 @@ namespace WindowsFormsApplication1
                 + "', ID = '" + studentID
                 + "', First_Name = '" + firstName
                 + "', Last_Name = '" + lastName
-                + "', Grade_Modified_Date = '" + curDay
-                + "', Registration_Date = '" + curDay
+                + "', Grade_Modified_Date = '" + GradeMod
+                + "', Registration_Date = '" + RegDate
                 + "', Gender = '" + gender
                 + "', Race = '" + race
                 + "', isCurrent = '" + curStudentInt

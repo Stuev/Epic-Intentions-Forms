@@ -10,8 +10,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
 using System.IO;
-
-
+using System.Globalization;
 
 namespace WindowsFormsApplication1
 {
@@ -101,47 +100,49 @@ namespace WindowsFormsApplication1
             Excel._Worksheet oSheet;
             Excel.Range oRng;
 
-
+            int test = 0;
+            int r = 0;
             try
             {
                 //Start Excel and get Application object.
                 oXL = new Excel.Application();
                 oXL.Visible = false;
 
-
+                
                 oWB = oXL.Workbooks.Open("ImportData.xlsx");
-                oSheet = (Excel._Worksheet)oWB.Sheets[1];
+                oSheet = (Excel._Worksheet)oWB.ActiveSheet;
                 oRng = oSheet.UsedRange;
 
                 rows = oRng.Rows.Count;
-                for (int r = 2; r <= rows; r++)
+                for (r = 2; r <= rows; r++)
                 {
-
                     try
                     {
-                        studentID = int.Parse(oSheet.Cells[r, 1]);
+                    //studentID = oRng.Cells[r, 1] + "";
+                    studentID = int.Parse(oRng.Cells[r, 1].Value.ToString());
                     }
                     catch
                     {
                         oWB.Close(false);
-                        MessageBox.Show((string) oSheet.Cells[r, 1]);
+                        MessageBox.Show("error");
                         //MessageBox.Show("There is an error in the Student ID. Please make sure there is a number.");
                         this.Close();
                         return;
                     }
-                    firstName = oSheet.Cells[r, 2] + "";
-                    lastName = oSheet.Cells[r, 3] + "";
-                    gender = oSheet.Cells[r, 4] + "";
-                    race = oSheet.Cells[r, 5] + "";
+                    test = 1;
+                    firstName = oSheet.Cells[r, 2].Value.ToString();
+                    lastName = oSheet.Cells[r, 3].Value.ToString();
+                    gender = oSheet.Cells[r, 4].Value.ToString();
+                    race = oSheet.Cells[r, 5].Value.ToString();
                     try
                     {
-                        gpa = float.Parse((string)oSheet.Cells[r, 6]);
+                        gpa = float.Parse((string)oSheet.Cells[r, 6].Value.ToString());
                     }
                     catch
                     {
                         try
                         {
-                            gpa = float.Parse((string)oSheet.Cells[r, 7]);
+                            gpa = float.Parse((string)oSheet.Cells[r, 7].Value.ToString());
                             gpa = gpa / 25;
                         }
                         catch
@@ -149,51 +150,82 @@ namespace WindowsFormsApplication1
                             ;
                         }
                     }
-                    gradeMod = oSheet.Cells[r, 8] + "";
-                    if (gradeMod.Equals(""))
-                    {
-                        DateTime date = DateTime.Now;
-                        String year = date.Year.ToString();
-                        String month = date.Month.ToString();
-                        String day = date.Day.ToString();
-                        String gradeMod = year + '-' + month + '-' + day;
-                    }
-                    daysAbsent = int.Parse((string)oSheet.Cells[r, 9]);
-                    numRefs = int.Parse((string)oSheet.Cells[r, 10]);
-                    school = oSheet.Cells[r, 11] + "";
-                    regDate = oSheet.Cells[r, 12] + "";
-                    grade = int.Parse((string)oSheet.Cells[r, 13]);
-
+                    test = 2;
+                try
+                {
+                    string gradeDate = oRng.Cells[r, 8].Value.ToString();
+                    string[] gradeDate2 = gradeDate.Split(' ');
+                        gradeDate = gradeDate2[0];
+                        gradeDate2 = gradeDate.Split('/');
+                        string month = gradeDate2[0];
+                        string day = gradeDate2[1];
+                        string year = gradeDate2[2];
+//                double d = double.Parse((string) oRng.Cells[r, 8].Value.ToString());
+ //                       MessageBox.Show(d.ToString() + "grademod");
+ //                   DateTime conv = DateTime.FromOADate(d);
+                    //String year = conv.Year.ToString();
+                    //String month = conv.Month.ToString();
+                    //String day = conv.Day.ToString();
+                    gradeMod = year + '-' + month + '-' + day;
+                } 
+                catch
+                {
+                    DateTime date = DateTime.Now;
+                    String year = date.Year.ToString();
+                    String month = date.Month.ToString();
+                    String day = date.Day.ToString();
+                    gradeMod = year + '-' + month + '-' + day;
+                    
+                }
+                    daysAbsent = int.Parse((string)oSheet.Cells[r, 9].Value.ToString());
+                    numRefs = int.Parse((string)oSheet.Cells[r, 10].Value.ToString());
+                    school = oSheet.Cells[r, 11].Value.ToString();
+                    String y = "";
+                    String m = "";
+                    String da = "";
+                try
+                {
+                        string gradeDate = oRng.Cells[r, 12].Value.ToString();
+                        string[] gradeDate2 = gradeDate.Split(' ');
+                        gradeDate = gradeDate2[0];
+                        gradeDate2 = gradeDate.Split('/');
+                        m = gradeDate2[0];
+                        da = gradeDate2[1];
+                        y = gradeDate2[2];
+                        regDate = y + '-' + m + '-' + da;
+                }
+                catch
+                {
+                    MessageBox.Show("regdate");
+                }
+                    grade = int.Parse((string)oSheet.Cells[r, 13].Value.ToString());
+               
                     students = Model.getStudentIDs();
-                    foreach (String s in students)
+                    if (students.Contains(studentID.ToString()))
                     {
-                        if (s.Equals(studentID))
+                        try
                         {
-                            //update data
-                            try
-                            {
-                                Model.UpdateStudentTable(studentID.ToString(), grade.ToString(), gradeMod, regDate, gender, race, daysAbsent.ToString());
-                            } catch
-                            {
-                                MessageBox.Show("SQL update didn't work");
-
-                            }
+                            Model.UpdateStudentTable(studentID.ToString(), grade.ToString(), gradeMod, regDate, gender, race, daysAbsent.ToString());
                         }
-                        else
+                        catch
                         {
-                            //add new student
-                            try
-                            {
-                                Model.InsertStudent(firstName, lastName, studentID, gpa, school, grade, numRefs,
-                                    daysAbsent, gender, race, "yes");
-                            } catch
-                            {
-                                MessageBox.Show("sql insert didn't work");
-                            }
+                            MessageBox.Show("SQL update didn't work");
+                            oWB.Close(false);
+                        }
+                    } else
+                    {
+                        try
+                        {
+                            Model.InsertStudent(firstName, lastName, studentID, gpa, school, grade, numRefs,
+                                daysAbsent, gender, race, "yes", regDate, gradeMod);
+                        }
+                        catch
+                        {
+                            MessageBox.Show("sql insert didn't work");
+                            oWB.Close(false);
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -202,10 +234,10 @@ namespace WindowsFormsApplication1
                 errorMessage = string.Concat(errorMessage, ex.Message);
                 errorMessage = string.Concat(errorMessage, " Line: ");
                 errorMessage = string.Concat(errorMessage, ex.Source);
+                errorMessage = string.Concat(errorMessage, ex.StackTrace);
 
+                MessageBox.Show(errorMessage);
                 //oWB.Close(false);
-
-                MessageBox.Show(errorMessage, "Error");
             }
             this.Close();
         }

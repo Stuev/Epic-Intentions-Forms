@@ -100,8 +100,13 @@ namespace WindowsFormsApplication1
             String gender = AddGender.Text;
             String race = raceBox.Text;
             String curStudent = AddCurrent.Text;
+            DateTime date = DateTime.Now;
+            String year = date.Year.ToString();
+            String month = date.Month.ToString();
+            String day = date.Day.ToString();
+            String curDay = year + '-' + month + '-' + day;
 
-            Model.InsertStudent(firstName, lastName, studentID, gpa, school, grade, numRefs, daysMissed, gender, race, curStudent);
+            Model.InsertStudent(firstName, lastName, studentID, gpa, school, grade, numRefs, daysMissed, gender, race, curStudent, curDay, curDay);
             this.Close();
         }
 
