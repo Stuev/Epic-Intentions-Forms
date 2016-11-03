@@ -57,7 +57,6 @@ namespace WindowsFormsApplication1
                 //Get a new workbook. Set up worksheets
                 oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
                 oSheet = (Excel._Worksheet)oWB.ActiveSheet;
-                oSheet = (Excel.Worksheet)oWB.Worksheets.Add();
                 oSheet.Name = "Basic Information";
 
              
@@ -92,6 +91,11 @@ namespace WindowsFormsApplication1
 
         private void label1_Click(object sender, EventArgs e)
         {
+            
+            }
+
+        private void subButton_Click(object sender, EventArgs e)
+        {
             Excel.Application oXL;
             Excel._Workbook oWB;
             Excel._Worksheet oSheet;
@@ -116,12 +120,12 @@ namespace WindowsFormsApplication1
 
                     try
                     {
-                        studentID = oRng.Cells[r, 1].Value2 + "";
+                        studentID = int.Parse((string)oRng.Cells[r, 1]);
                     }
                     catch
                     {
                         oWB.Close(false);
-                        MessageBox.Show("Something went wrong in reading the student ID. Please try again. Make sure there is a number in the cell.");
+                        MessageBox.Show("There is an error in the Student ID. Please make sure there is a number.");
                         this.Close();
                         return;
                     }
@@ -160,12 +164,13 @@ namespace WindowsFormsApplication1
                     regDate = oRng.Cells[r, 12].Value2 + "";
                     grade = int.Parse((string)oRng.Cells[r, 13]);
 
-                    students = getStudentIDs();
-                    for (String s : students)
+                    students = Model.getStudentIDs();
+                    foreach (String s in students)
                     {
                         if (s.Equals(studentID))
                         {
                             //update data
+                            Model.UpdateStudentTable(studentID.ToString(), grade.ToString(), gradeMod, regDate, gender, race, daysAbsent.ToString());
                         }
                         else
                         {
@@ -175,8 +180,9 @@ namespace WindowsFormsApplication1
                         }
                     }
                 }
-               
-            } catch (Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 string errorMessage;
                 errorMessage = "Error: ";
@@ -188,6 +194,7 @@ namespace WindowsFormsApplication1
 
                 MessageBox.Show(errorMessage, "Error");
             }
-            }
+            this.Close();
+        }
     }
 }

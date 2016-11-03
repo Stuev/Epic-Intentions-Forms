@@ -51,6 +51,7 @@
             this.subButton.TabIndex = 1;
             this.subButton.Text = "Submit";
             this.subButton.UseVisualStyleBackColor = true;
+            this.subButton.Click += new System.EventHandler(this.subButton_Click);
             // 
             // label1
             // 
