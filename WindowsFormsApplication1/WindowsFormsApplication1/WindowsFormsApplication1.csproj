@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCumGPA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCumGPA.Designer.cs">
+      <DependentUpon>AddCumGPA.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,24 @@
     </Compile>
     <Compile Include="AddNewStudent.Designer.cs">
       <DependentUpon>AddNewStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddReferral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddReferral.Designer.cs">
+      <DependentUpon>AddReferral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddSchool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSchool.Designer.cs">
+      <DependentUpon>AddSchool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddUnCumGPA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddUnCumGPA.Designer.cs">
+      <DependentUpon>AddUnCumGPA.cs</DependentUpon>
     </Compile>
     <Compile Include="EditPart2.cs">
       <SubType>Form</SubType>
@@ -126,11 +150,23 @@
     <Compile Include="View.Designer.cs">
       <DependentUpon>View.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddCumGPA.resx">
+      <DependentUpon>AddCumGPA.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddInfo.resx">
       <DependentUpon>AddInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddNewStudent.resx">
       <DependentUpon>AddNewStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddReferral.resx">
+      <DependentUpon>AddReferral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSchool.resx">
+      <DependentUpon>AddSchool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddUnCumGPA.resx">
+      <DependentUpon>AddUnCumGPA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Edit.resx">
       <DependentUpon>Edit.cs</DependentUpon>

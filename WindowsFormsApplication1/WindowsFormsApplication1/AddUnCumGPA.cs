@@ -10,19 +10,16 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class AddInfo : Form
+    public partial class AddUnCumGPA : Form
     {
-        public AddInfo()
+        public AddUnCumGPA()
         {
             InitializeComponent();
         }
 
-        private void AddSchool_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            AddSchool nextForm = new AddSchool();
-            nextForm.ShowDialog();
-            this.Show();
+
         }
     }
 }

@@ -10,19 +10,16 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class AddInfo : Form
+    public partial class AddSchool : Form
     {
-        public AddInfo()
+        public AddSchool()
         {
             InitializeComponent();
         }
 
-        private void AddSchool_Click(object sender, EventArgs e)
+        private void AddSchool_Button_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            AddSchool nextForm = new AddSchool();
-            nextForm.ShowDialog();
-            this.Show();
+
         }
     }
 }

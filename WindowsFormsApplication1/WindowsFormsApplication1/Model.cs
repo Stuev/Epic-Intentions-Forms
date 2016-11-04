@@ -170,8 +170,55 @@ namespace WindowsFormsApplication1
 
         }
 
-        public static void Insert()
+        public static bool SelectSchool(String SchoolName)
         {
+            string query = "SELECT * FROM school WHERE Name ='" + SchoolName + "';";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+        }
+
+        public static void InsertSchool(String SchoolName)
+        {
+            string query = "INSERT INTO school SET Name = '" + SchoolName + "';";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
 
         }
 

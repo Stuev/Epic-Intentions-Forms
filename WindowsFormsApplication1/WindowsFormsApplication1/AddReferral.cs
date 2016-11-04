@@ -10,19 +10,11 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class AddInfo : Form
+    public partial class AddReferral : Form
     {
-        public AddInfo()
+        public AddReferral()
         {
             InitializeComponent();
-        }
-
-        private void AddSchool_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            AddSchool nextForm = new AddSchool();
-            nextForm.ShowDialog();
-            this.Show();
         }
     }
 }

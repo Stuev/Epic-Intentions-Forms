@@ -51,7 +51,7 @@
             this.AddUncumGPA.Name = "AddUncumGPA";
             this.AddUncumGPA.Size = new System.Drawing.Size(204, 36);
             this.AddUncumGPA.TabIndex = 1;
-            this.AddUncumGPA.Text = "Add UnCummulative GPA from Student Reports";
+            this.AddUncumGPA.Text = "Add UnCumulative GPA from Student Reports";
             this.AddUncumGPA.UseVisualStyleBackColor = true;
             // 
             // AddCumGPA
@@ -60,7 +60,7 @@
             this.AddCumGPA.Name = "AddCumGPA";
             this.AddCumGPA.Size = new System.Drawing.Size(204, 38);
             this.AddCumGPA.TabIndex = 2;
-            this.AddCumGPA.Text = "Add Official Cummulative GPA from Progress Report";
+            this.AddCumGPA.Text = "Add Official School Cumulative GPA from Semester Progress Report";
             this.AddCumGPA.UseVisualStyleBackColor = true;
             // 
             // AddSchool
@@ -71,6 +71,7 @@
             this.AddSchool.TabIndex = 3;
             this.AddSchool.Text = "Add School";
             this.AddSchool.UseVisualStyleBackColor = true;
+            this.AddSchool.Click += new System.EventHandler(this.AddSchool_Click);
             // 
             // AddReferral
             // 
