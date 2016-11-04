@@ -117,6 +117,139 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public static void UpdateCumGPA(string ID, string oldDate, string newGPA, string newDate)
+        {
+            string query = "UPDATE cum_gpa SET GPA = '" + newGPA
+                + "', GPA_Entry_Date = '" + newDate
+                + "' WHERE ID = '" + ID 
+                + "' AND GPA_Entry_Date = '" + oldDate
+                + "';";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.CommandText = query;
+
+                cmd.Connection = connection;
+
+                cmd.ExecuteNonQuery();
+
+                CloseConnection();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void UpdateUnCumGPA(string ID, string oldDate, string newGPA, string newDate)
+        {
+            string query = "UPDATE un_cum_gpa SET GPA = '" + newGPA
+                + "', GPA_Entry_Date = '" + newDate
+                + "' WHERE ID = '" + ID
+                + "' AND GPA_Entry_Date = '" + oldDate
+                + "';";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.CommandText = query;
+
+                cmd.Connection = connection;
+
+                cmd.ExecuteNonQuery();
+
+                CloseConnection();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+    
+
+    public static void UpdateAttends(string ID, string oldSchool, string newSchool, string staDate, string endDate)
+    {
+        string query = "UPDATE attends SET Start_Date = '" + staDate
+            + "', End_Date = '" + endDate
+            + "', WHERE ID = '" + ID
+            + "' AND School_Name = '" + oldSchool
+            + "';";
+
+        try
+        {
+            MySqlCommand cmd = new MySqlCommand();
+
+            cmd.CommandText = query;
+
+            cmd.Connection = connection;
+
+            cmd.ExecuteNonQuery();
+
+            CloseConnection();
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+    }
+
+        public static void UpdateReferrals (string RefID, string RefDate, string Type, string Description)
+        {
+            string query = "UPDATE referrals SET Referral_Date = '" + RefDate
+                + "', Type = '" + Type
+                + "', Description = '" + Description
+                + "' WHERE Referral_Number = '" + RefID
+                + "';";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.CommandText = query;
+
+                cmd.Connection = connection;
+
+                cmd.ExecuteNonQuery();
+
+                CloseConnection();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void UpdatePastStudent(string ID, string reason, string date)
+        {
+            string query = "UPDATE past_student SET Reason = '" + reason
+                + "', Leave_Date = '" + date
+                + "' WHERE ID = '" + ID
+                + "';";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.CommandText = query;
+
+                cmd.Connection = connection;
+
+                cmd.ExecuteNonQuery();
+
+                CloseConnection();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+
+
         public static void UpdateEndDate(string ID, string newDate)
         {
             string query = "UPDATE attends SET End_Date= '" + newDate
@@ -274,6 +407,8 @@ namespace WindowsFormsApplication1
                 }
             }
         }
+
+
 
         public static void DeleteReferral()
         {
