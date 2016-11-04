@@ -51,10 +51,16 @@ namespace WindowsFormsApplication1
             int minAttendence = Int32.Parse(Attend1.Text);
             int maxAttendence = Int32.Parse(Attend2.Text);
 
-            string gender = Gender.GetItemText(Gender.SelectedItem);
-            string school = School.GetItemText(School.SelectedItem);
-            string race = Gender.GetItemText(Race.SelectedItem);
-            string current = Current.GetItemText(Current.SelectedItem);
+            List<string> genders = new List<string>();
+            genders.Add(Gender.GetItemText(Gender.SelectedItem));
+            List<string> schools = new List<string>();
+            schools.Add(School.GetItemText(School.SelectedItem));
+            List<string> races = new List<string>();
+            races.Add(Gender.GetItemText(Race.SelectedItem));
+            List<string> statuses = new List<string>();
+            statuses.Add(Current.GetItemText(Current.SelectedItem));
+
+            List<string>[] selectedVals= Model.filterSelectStudent(minGPA, maxGPA, schools, minGrade, maxGrade, minBehavior, maxBehavior, minAttendence, maxAttendence, genders, races, statuses);
 
             if (Model.OpenConnection() == true)
             {

@@ -82,8 +82,8 @@ namespace WindowsFormsApplication1
          * This is for the buttons elsewhere in the app to call
          * 
          */
-        public static void UpdateStudentTable(string ID, 
-            string Grade, string Modified, string Reg, 
+        public static void UpdateStudentTable(string ID,
+            string Grade, string Modified, string Reg,
             string Gen, string Rac, string daysMi)
         {
             //Set up a SQL query, plugging in the passed in values into the strings
@@ -262,7 +262,8 @@ namespace WindowsFormsApplication1
 
 
                 return ID;
-            } else
+            }
+            else
             {
                 return ID;
             }
@@ -548,11 +549,11 @@ namespace WindowsFormsApplication1
 
 
 
-        public static List <string>[] SelectStudent(string ID)
+        public static List<string>[] SelectStudent(string ID)
         {
             {
                 string query = "SELECT * FROM student "
-                +"WHERE ID = '" + ID
+                + "WHERE ID = '" + ID
                 + "';";
 
                 //Create a list to store the result
@@ -571,12 +572,12 @@ namespace WindowsFormsApplication1
                 //Open connection
                 if (OpenConnection() == true)
                 {
-          
+
                     //Create Command
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     //Create a data reader and Execute the command
                     MySqlDataReader dataReader = cmd.ExecuteReader();
-                    
+
                     //Read the data and store them in the list
                     while (dataReader.Read())
                     {
@@ -865,7 +866,7 @@ namespace WindowsFormsApplication1
                 CloseConnection();
 
                 return returnval;
-                
+
             }
             else
             {
@@ -1062,15 +1063,89 @@ namespace WindowsFormsApplication1
         public static List<string> getCurrentStudentOptions()
         {
             List<string> options = new List<string>();
-            options.Add("current");
-            options.Add("alumni");
+            options.Add("1");
+            options.Add("0");
 
             return options;
         }
 
+        public static string genTextOrComp(List<string> items, string colName)
+        {
+            string orComp = "(" + colName + " = '" + items[0] + "'";
+            for (int i = 1; i < items.Count(); i++ )
+            {
+                orComp += " OR " + colName + " = '" + items[i] + "'";
+            }
+            orComp += ")";
+            return orComp;
+        }
+
+        public static string genIntOrComp(List<string> items, string colName)
+        {
+            string orComp = "(" + colName + " = " + items[0];
+            for (int i = 1; i < items.Count(); i++)
+            {
+                orComp += " OR " + colName + " = " + items[i];
+            }
+            orComp += ")";
+            return orComp;
+        }
+
         public static List<string>[] filterSelectStudent(int minGPA, int maxGPA, List<string> schools, int minGrade, int maxGrade, int minReferrals, int maxReferrals, int minDaysMissed, int maxDaysMissed, List<string> genders, List<string> races, List<string> statuses)
         {
-            return new List<string>[1];
+            string schoolComp = genTextOrComp(schools, "School_Name");
+            string genderComp = genTextOrComp(genders, "Gender");
+            string raceComp = genTextOrComp(races, "Race");
+            string statusComp = genIntOrComp(statuses, "isCurrent");
+
+            string query = "SELECT * FROM student INNER JOIN cum_gpa ON student.ID = cum_gpa.ID INNER JOIN attends ON cum_gpa.ID = attends.student_ID INNER JOIN (SELECT id, COUNT(id)referral_count FROM referrals GROUP BY id) AS MyCounts ON cum_gpa.ID = MyCounts.id WHERE GPA> 0 AND GPA< 100 AND " + schoolComp + " AND Grade_Level> 0 AND Grade_Level< 100 AND referral_count> 0 AND referral_count< 100 AND Days_Missed> 0 AND Days_Missed< 100 AND" + genderComp + " AND " + raceComp + " AND " + statusComp + ";";
+
+            if (OpenConnection() == true)
+            {
+
+                List<string>[] returnval = new List<string>[16];
+                for (int i = 0; i < 16; i++)
+                {
+                    returnval[i] = new List<string>();
+                }
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    returnval[0].Add(dataReader["ID"] + "");
+                    returnval[1].Add(dataReader["First_Name"] + "");
+                    returnval[2].Add(dataReader["Last_Name"] + "");
+                    returnval[3].Add(dataReader["Grade_Level"] + "");
+                    returnval[4].Add(dataReader["Grade_Modified_Date"] + "");
+                    returnval[5].Add(dataReader["Registration_Date"] + "");
+                    returnval[6].Add(dataReader["Gender"] + "");
+                    returnval[7].Add(dataReader["Race"] + "");
+                    returnval[8].Add(dataReader["isCurrent"] + "");
+                    returnval[9].Add(dataReader["Days_Missed"] + "");
+                    returnval[10].Add(dataReader["GPA"] + "");
+                    returnval[11].Add(dataReader["GPA_Entry_Date"] + "");
+                    returnval[12].Add(dataReader["Start_Date"] + "");
+                    returnval[13].Add(dataReader["End_Date"] + "");
+                    returnval[14].Add(dataReader["School_Name"] + "");
+                    returnval[15].Add(dataReader["referral_count"] + "");
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                CloseConnection();
+                return returnval;
+
+            }
+            else
+            {
+                return new List<string>[1];
+            }
         }
     }
 }
