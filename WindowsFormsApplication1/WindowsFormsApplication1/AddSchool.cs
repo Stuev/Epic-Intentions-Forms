@@ -20,6 +20,23 @@ namespace WindowsFormsApplication1
         private void AddSchool_Button_Click(object sender, EventArgs e)
         {
 
+            string school = AddSchool_Name.Text;
+            if (school == "")
+            {
+                MessageBox.Show("School Field is Empty!");
+                return;
+            }
+            school.Replace("\'", "\\\'");
+
+            if (!Model.SchoolExists(school))
+            {
+                Model.InsertSchool(school);
+            }
+            else
+            {
+                MessageBox.Show("School already exists!");
+                return;
+            }
         }
     }
 }
