@@ -15,6 +15,17 @@ namespace WindowsFormsApplication1
         public AddReferral()
         {
             InitializeComponent();
+            var dataSource = new List<string>();
+            dataSource.Add("Drugs");
+            dataSource.Add("Fighting");
+
+            AddReferral_Category.DataSource = dataSource;
+        }
+
+        private void AddReferral_Category_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
         }
     }
 }
