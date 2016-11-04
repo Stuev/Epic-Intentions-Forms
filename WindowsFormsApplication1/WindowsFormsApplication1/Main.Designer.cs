@@ -46,7 +46,7 @@
             this.label1.Location = new System.Drawing.Point(150, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 25);
+            this.label1.Size = new System.Drawing.Size(101, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select Option";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -104,6 +104,7 @@
             this.button5.TabIndex = 5;
             this.button5.Text = "Add Info to Existing Student";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // ImportData
             // 
@@ -139,7 +140,7 @@
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 374);
             this.Controls.Add(this.PastStudents);

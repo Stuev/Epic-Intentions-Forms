@@ -24,5 +24,29 @@ namespace WindowsFormsApplication1
             nextForm.ShowDialog();
             this.Show();
         }
+
+        private void AddUncumGPA_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AddUnCumGPA nextForm = new AddUnCumGPA();
+            nextForm.ShowDialog();
+            this.Show();
+        }
+
+        private void AddCumGPA_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AddCumGPA nextForm = new AddCumGPA();
+            nextForm.ShowDialog();
+            this.Show();
+        }
+
+        private void AddReferral_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AddReferral nextForm = new AddReferral();
+            nextForm.ShowDialog();
+            this.Show();
+        }
     }
 }
