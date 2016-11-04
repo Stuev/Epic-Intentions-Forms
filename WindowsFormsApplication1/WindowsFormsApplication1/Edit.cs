@@ -70,10 +70,13 @@ namespace WindowsFormsApplication1
                 List<string>[] pastStudent = Model.SelectAllPast(ID);
                 List<string>[] referralsList = Model.SelectAllReferral(ID);
 
-
                 bool cur;
-                if (studentList[8][0] == "True") { cur = true; }
-                else { cur = false; }
+                if (studentList[8].Count() > 0)
+                {
+                    if (studentList[8][0] == "True") { cur = true; }
+                    else { cur = false; }
+                }
+                else { cur = true; }
 
                 Excel.Application oXL;
                 Excel._Workbook oWB;
@@ -109,7 +112,7 @@ namespace WindowsFormsApplication1
                     oSheet.Cells[1, 6] = "Registration Date";
                     oSheet.Cells[1, 7] = "Gender";
                     oSheet.Cells[1, 8] = "Race";
-                    
+                    //oSheet.Cells[1, 9] = "Current?";
                     oSheet.Cells[1, 10] = "Days Missed";
 
                     //Format A1:D1 as bold, vertical alignment = center.
@@ -123,10 +126,7 @@ namespace WindowsFormsApplication1
 
                     for (int i = 1; i < studentList.Count(); i = i + 1)
                     {
-                        if (i != 8)
-                        {
-                            toPrint[i] = studentList[i][0];
-                        }
+                        if (i != 8) { toPrint[i] = studentList[i][0]; }
                     }
 
                     //Fill A2:B6 with an array of values (First and Last Names).
@@ -138,12 +138,13 @@ namespace WindowsFormsApplication1
 
 
 
+
                     oSheet = (Excel.Worksheet)oWB.Sheets[2];
 
                     //Add table headers going cell by cell.
                     //oSheet.Cells[1, 1] = "ID";
                     oSheet.Cells[1, 2] = "GPA";
-                    oSheet.Cells[1, 3] = "Entry Date";
+                    //oSheet.Cells[1, 3] = "Entry Date";
 
 
                     //Format A1:D1 as bold, vertical alignment = center.
@@ -154,16 +155,28 @@ namespace WindowsFormsApplication1
                     // Create an array to multiple values at once.
                     toPrint = new string[3];
 
-
-                    for (int i = 1; i < cumGPAList.Count(); i = i + 1)
+                    if (cumGPAList[0].Count() > 0)
                     {
-                        toPrint[i] = cumGPAList[i][0];
+                        for (int j = 0; j < cumGPAList[0].Count(); j = j + 1)
+                        {
+                            int k = j + 2;
+                            for (int i = 1; i < cumGPAList.Count() - 1; i = i + 1)
+                            {
+                                toPrint[i] = cumGPAList[i][j];
+                            }
+                            //Fill with an array of values (First and Last Names).
+                            oSheet.get_Range("B" + k).Value2 = toPrint;
+                        }
                     }
 
                     //Fill A2:B6 with an array of values (First and Last Names).
-                    oSheet.get_Range("A2", "C2").Value2 = toPrint;
+                    if (toPrint.Count() == 3)
+                    {
+                        oSheet.get_Range("A2", "C2").Value2 = toPrint;
+                    }
                     oRng = oSheet.get_Range("A1", "J1");
                     oRng.EntireColumn.AutoFit();
+
 
 
 
@@ -172,7 +185,7 @@ namespace WindowsFormsApplication1
                     //Add table headers going cell by cell.
                     //oSheet.Cells[1, 1] = "ID";
                     oSheet.Cells[1, 2] = "GPA";
-                    oSheet.Cells[1, 3] = "Entry Date";
+                    //oSheet.Cells[1, 3] = "Entry Date";
 
 
                     //Format A1:D1 as bold, vertical alignment = center.
@@ -183,16 +196,18 @@ namespace WindowsFormsApplication1
                     // Create an array to multiple values at once.
                     toPrint = new string[3];
 
-
-                    for (int j = 0; j < unCumGPAList[0].Count(); j = j + 1)
+                    if (unCumGPAList[0].Count() > 0)
                     {
-                        int k = j + 2;
-                        for (int i = 1; i < unCumGPAList.Count(); i = i + 1)
+                        for (int j = 0; j < unCumGPAList[0].Count(); j = j + 1)
                         {
-                            toPrint[i] = unCumGPAList[i][j];
+                            int k = j + 2;
+                            for (int i = 1; i < unCumGPAList.Count() - 1; i = i + 1)
+                            {
+                                toPrint[i] = unCumGPAList[i][j];
+                            }
+                            //Fill with an array of values (First and Last Names).
+                            oSheet.get_Range("A" + k, "C" + k).Value2 = toPrint;
                         }
-                        //Fill with an array of values (First and Last Names).
-                        oSheet.get_Range("A" + k, "C" + k).Value2 = toPrint;
                     }
 
                     //Fill A2:B6 with an array of values (First and Last Names).
@@ -305,8 +320,6 @@ namespace WindowsFormsApplication1
                         oRng.EntireColumn.AutoFit();
                     }
 
-                    //Make sure Excel is visible and give the user control
-                    //of Microsoft Excel's lifetime.
 
                     oXL.DisplayAlerts = false;
                     if (File.Exists("Editing.xlsx"))

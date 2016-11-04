@@ -170,28 +170,36 @@ namespace WindowsFormsApplication1
 
         }
 
-        public static bool SelectSchool(String SchoolName)
+        public static bool SchoolExists(String SchoolName)
         {
             string query = "SELECT * FROM school WHERE Name ='" + SchoolName + "';";
 
+            List<string> school = new List<string>();
             if (OpenConnection() == true)
             {
-                try
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
+                while (dataReader.Read())
                 {
-                    MySqlCommand cmd = new MySqlCommand();
-
-                    cmd.CommandText = query;
-
-                    cmd.Connection = connection;
-
-                    cmd.ExecuteNonQuery();
-
-                    CloseConnection();
+                    school.Add(dataReader["Name"] + "");
                 }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+
+
+
+                dataReader.Close();
+
+
+                CloseConnection();
+
+                return (school.Count > 0);
+            }
+
+            else
+            {
+                return false;
             }
 
         }
