@@ -107,6 +107,7 @@
             this.AddReferral_Category.Name = "AddReferral_Category";
             this.AddReferral_Category.Size = new System.Drawing.Size(88, 21);
             this.AddReferral_Category.TabIndex = 9;
+            this.AddReferral_Category.SelectedIndexChanged += new System.EventHandler(this.AddReferral_Category_SelectedIndexChanged);
             // 
             // textBox1
             // 
