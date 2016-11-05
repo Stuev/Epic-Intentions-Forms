@@ -144,7 +144,7 @@ namespace WindowsFormsApplication1
                     //Add table headers going cell by cell.
                     //oSheet.Cells[1, 1] = "ID";
                     oSheet.Cells[1, 2] = "GPA";
-                    //oSheet.Cells[1, 3] = "Entry Date";
+                    oSheet.Cells[1, 3] = "Entry Date";
 
 
                     //Format A1:D1 as bold, vertical alignment = center.
@@ -160,7 +160,7 @@ namespace WindowsFormsApplication1
                         for (int j = 0; j < cumGPAList[0].Count(); j = j + 1)
                         {
                             int k = j + 2;
-                            for (int i = 1; i < cumGPAList.Count() - 1; i = i + 1)
+                            for (int i = 1; i < cumGPAList.Count(); i = i + 1)
                             {
                                 toPrint[i] = cumGPAList[i][j];
                             }
@@ -185,7 +185,7 @@ namespace WindowsFormsApplication1
                     //Add table headers going cell by cell.
                     //oSheet.Cells[1, 1] = "ID";
                     oSheet.Cells[1, 2] = "GPA";
-                    //oSheet.Cells[1, 3] = "Entry Date";
+                    oSheet.Cells[1, 3] = "Entry Date";
 
 
                     //Format A1:D1 as bold, vertical alignment = center.
@@ -201,7 +201,7 @@ namespace WindowsFormsApplication1
                         for (int j = 0; j < unCumGPAList[0].Count(); j = j + 1)
                         {
                             int k = j + 2;
-                            for (int i = 1; i < unCumGPAList.Count() - 1; i = i + 1)
+                            for (int i = 1; i < unCumGPAList.Count(); i = i + 1)
                             {
                                 toPrint[i] = unCumGPAList[i][j];
                             }

@@ -26,13 +26,13 @@ namespace WindowsFormsApplication1
         private string gradeMod;
         private List<float> cumGPAs;
         //private List<string> cumGPAEntries;
-        private List<string> referrals;
         private List<string> refDate;
         private List<string> refType;
         private List<string> refDescr;
         private List<string>[] oldReferralList;
         private string pastReason;
         private string pastDate;
+        private bool pastUpdate = false;
         private List<string> attendsStartDate;
         private List<string> attendsEndDate;
         private List<string> attendsSchoolName;
@@ -315,15 +315,12 @@ namespace WindowsFormsApplication1
                     }
                     catch
                     {
-                        try
+                        if (oRng.Cells[i + 2, 4].Value2 + "" == "")
                         {
-                            if (oRng.Cells[i + 2, 4].Value2 + "" == "")
-                            {
-                                attendsEndDate.Add("");
-                            }
+                            attendsEndDate.Add("");
                         }
-                        catch
-                        {
+                        else
+                        { 
                             oWB.Close(false);
                             MessageBox.Show("Something went wrong in reading the input dates. Please try again. Make sure they are in MM/DD/YYYY format.");
                             this.Close();
@@ -332,10 +329,82 @@ namespace WindowsFormsApplication1
                     }
                 }
 
+                
             }
 
+            oSheet = (Excel._Worksheet)oWB.Sheets[5];
+            oRng = oSheet.UsedRange;
+
+            refType = new List<string>();
+            refDate = new List<string>();
+            refDescr = new List<string>();
 
 
+            for (int i = 0; i < oldReferralList[0].Count(); i = i + 1)
+            {
+                try
+                {
+                    double d = double.Parse(oRng.Cells[i + 2, 3].Value2 + "");
+                    DateTime conv = DateTime.FromOADate(d);
+                    refDate.Add(conv.ToShortDateString());
+                }
+                catch
+                {
+                    try
+                    {
+                        DateTime conv = DateTime.Parse(oRng.Cells[i + 2, 3].Value2 + "");
+                        refDate.Add(conv.ToShortDateString());
+                    }
+                    catch
+                    {
+                        oWB.Close(false);
+                        MessageBox.Show("Something went wrong in reading the input dates. Please try again. Make sure they are in MM/DD/YYYY format.");
+                        this.Close();
+                        return;
+                    }
+                }
+
+                refType.Add(oRng.Cells[i + 2, 4].Value2 + "");
+                refType[refType.Count - 1].Replace("\'", "\\\'");
+
+                refDescr.Add(oRng.Cells[i + 2, 5].Value2 + "");
+                refDescr[refDescr.Count - 1].Replace("\'", "\\\'");
+
+                
+            }
+
+            oSheet = (Excel._Worksheet)oWB.Sheets[6];
+            oRng = oSheet.UsedRange;
+
+            if(oSheet.Name == "Past Student Information")
+            {
+                pastUpdate = true;
+
+                try
+                {
+                    double d = double.Parse(oRng.Cells[2, 3].Value2 + "");
+                    DateTime conv = DateTime.FromOADate(d);
+                    pastDate = conv.ToShortDateString();
+                }
+                catch
+                {
+                    try
+                    {
+                        DateTime conv = DateTime.Parse(oRng.Cells[2, 3].Value2 + "");
+                        pastDate = conv.ToShortDateString();
+                    }
+                    catch
+                    {
+                        oWB.Close(false);
+                        MessageBox.Show("Something went wrong in reading the input dates. Please try again. Make sure they are in MM/DD/YYYY format.");
+                        this.Close();
+                        return;
+                    }
+                }
+
+                pastReason = oRng.Cells[2, 2].Value2 + "";
+
+            }
 
             oWB.Close(false);
             MessageBox.Show("File has been successfully imported! Press \"Complete Edit\" Button to save changes!");
