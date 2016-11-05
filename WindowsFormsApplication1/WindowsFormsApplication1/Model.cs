@@ -489,12 +489,14 @@ namespace WindowsFormsApplication1
 
         public static bool SchoolExists(String SchoolName)
         {
-            string query = "SELECT * FROM school WHERE Name ='" + SchoolName + "';";
+            string query = "SELECT * FROM school WHERE Name = @SchoolName;";
 
             List<string> school = new List<string>();
             if (OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@SchoolName", SchoolName);
+
 
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
@@ -523,7 +525,7 @@ namespace WindowsFormsApplication1
 
         public static void InsertSchool(String SchoolName)
         {
-            string query = "INSERT INTO school SET Name = '" + SchoolName + "';";
+            string query = "INSERT INTO school SET Name = @SchoolName;";
 
             if (OpenConnection() == true)
             {
@@ -532,6 +534,7 @@ namespace WindowsFormsApplication1
                     MySqlCommand cmd = new MySqlCommand();
 
                     cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@SchoolName", SchoolName);
 
                     cmd.Connection = connection;
 
