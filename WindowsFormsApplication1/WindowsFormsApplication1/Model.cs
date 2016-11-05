@@ -113,6 +113,7 @@ namespace WindowsFormsApplication1
                 catch (MySqlException ex)
                 {
                     MessageBox.Show(ex.Message);
+                    CloseConnection();
                 }
             }
         }
@@ -125,21 +126,25 @@ namespace WindowsFormsApplication1
                 + "' AND GPA_Entry_Date = '" + oldDate
                 + "';";
 
-            try
+            if (OpenConnection() == true)
             {
-                MySqlCommand cmd = new MySqlCommand();
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
 
-                cmd.CommandText = query;
+                    cmd.CommandText = query;
 
-                cmd.Connection = connection;
+                    cmd.Connection = connection;
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                CloseConnection();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
             }
         }
 
@@ -151,50 +156,57 @@ namespace WindowsFormsApplication1
                 + "' AND GPA_Entry_Date = '" + oldDate
                 + "';";
 
-            try
+            if (OpenConnection() == true)
             {
-                MySqlCommand cmd = new MySqlCommand();
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
 
-                cmd.CommandText = query;
+                    cmd.CommandText = query;
 
-                cmd.Connection = connection;
+                    cmd.Connection = connection;
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                CloseConnection();
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
             }
-            catch (MySqlException ex)
+        }
+
+
+        public static void UpdateAttends(string ID, string oldSchool, string newSchool, string staDate, string endDate)
+        {
+            string query = "UPDATE attends SET Start_Date = '" + staDate
+                + "', End_Date = '" + endDate
+                + "', WHERE ID = '" + ID
+                + "' AND School_Name = '" + oldSchool
+                + "';";
+            if (OpenConnection() == true)
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
             }
         }
-    
-
-    public static void UpdateAttends(string ID, string oldSchool, string newSchool, string staDate, string endDate)
-    {
-        string query = "UPDATE attends SET Start_Date = '" + staDate
-            + "', End_Date = '" + endDate
-            + "', WHERE ID = '" + ID
-            + "' AND School_Name = '" + oldSchool
-            + "';";
-
-        try
-        {
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = query;
-
-            cmd.Connection = connection;
-
-            cmd.ExecuteNonQuery();
-
-            CloseConnection();
-        }
-        catch (MySqlException ex)
-        {
-            MessageBox.Show(ex.Message);
-        }
-    }
 
         public static void UpdateReferrals (string RefID, string RefDate, string Type, string Description)
         {
@@ -204,21 +216,25 @@ namespace WindowsFormsApplication1
                 + "' WHERE Referral_Number = '" + RefID
                 + "';";
 
-            try
+            if (OpenConnection() == true)
             {
-                MySqlCommand cmd = new MySqlCommand();
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
 
-                cmd.CommandText = query;
+                    cmd.CommandText = query;
 
-                cmd.Connection = connection;
+                    cmd.Connection = connection;
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                CloseConnection();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
             }
         }
 
@@ -229,21 +245,25 @@ namespace WindowsFormsApplication1
                 + "' WHERE ID = '" + ID
                 + "';";
 
-            try
+            if (OpenConnection() == true)
             {
-                MySqlCommand cmd = new MySqlCommand();
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
 
-                cmd.CommandText = query;
+                    cmd.CommandText = query;
 
-                cmd.Connection = connection;
+                    cmd.Connection = connection;
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                CloseConnection();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
             }
         }
 
@@ -256,21 +276,25 @@ namespace WindowsFormsApplication1
                 + "'WHERE ID = '" + ID
                 + "';";
 
-            try
+            if (OpenConnection() == true)
             {
-                MySqlCommand cmd = new MySqlCommand();
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
 
-                cmd.CommandText = query;
+                    cmd.CommandText = query;
 
-                cmd.Connection = connection;
+                    cmd.Connection = connection;
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                CloseConnection();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
             }
         }
 
@@ -280,21 +304,25 @@ namespace WindowsFormsApplication1
                 + "'WHERE Name= '" + oldSchool
                 + "';";
 
-            try
+            if (OpenConnection() == true)
             {
-                MySqlCommand cmd = new MySqlCommand();
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
 
-                cmd.CommandText = query;
+                    cmd.CommandText = query;
 
-                cmd.Connection = connection;
+                    cmd.Connection = connection;
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                CloseConnection();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
             }
         }
 

@@ -418,6 +418,8 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Please import the file before trying to save changes!");
                 return;
             }
+
+            Model.UpdateStudentTable(thisID, grade.ToString(), gradeMod, regDate, gender, race, daysMissed.ToString()); 
             this.Close();
         }
 
