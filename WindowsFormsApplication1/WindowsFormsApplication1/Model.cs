@@ -167,12 +167,104 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public static List<string> SelectCumGPAID(string ID)
+        {
+            string query = "SELECT * FROM cum_gpa "
+            + "WHERE ID = '" + ID
+            + "';";
 
-        public static void UpdateCumGPA(string ID, string newGPA, string oldGPA)
+            List<string> list = new List<string>();
+
+
+            if (OpenConnection() == true)
+            {
+
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        list.Add(dataReader["GPA_Num"] + "");
+                    }
+
+
+                    dataReader.Close();
+
+
+                    CloseConnection();
+
+
+                    return list;
+
+                }
+                catch
+                {
+                    MessageBox.Show("Please update the database to the current one on the Google Drive. -Elie, 11/5/16");
+                    return list;
+                }
+            }
+            else
+            {
+                return list;
+            }
+        }
+
+        public static List<string> SelectUnCumGPAID(string ID)
+        {
+            string query = "SELECT * FROM un_cum_gpa "
+            + "WHERE ID = '" + ID
+            + "';";
+
+            List<string> list = new List<string>();
+
+
+            if (OpenConnection() == true)
+            {
+
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        list.Add(dataReader["GPA_Num"] + "");
+                    }
+
+
+                    dataReader.Close();
+
+
+                    CloseConnection();
+
+
+                    return list;
+
+                }
+                catch
+                {
+                    MessageBox.Show("Please update the database to the current one on the Google Drive. -Elie, 11/5/16");
+                    return list;
+                }
+
+
+            }
+            else
+            {
+                return list;
+            }
+        }
+
+
+
+        public static void UpdateCumGPA(string ID, string newGPA, string oldGPAID)
         {
             string query = "UPDATE cum_gpa SET GPA = '" + newGPA
-                + "' WHERE ID = '" + ID
-                + "' AND GPA = '" + oldGPA
+                + "' WHERE GPA_Num = '" + oldGPAID
                 + "';";
 
             if (OpenConnection() == true)
@@ -197,12 +289,11 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public static void UpdateUnCumGPA(string ID, string newGPA, string oldGPA)
+        public static void UpdateUnCumGPA(string ID, string newGPA, string oldGPAID)
         {
             string query = "UPDATE un_cum_gpa SET GPA = '" + newGPA
-                + "' WHERE (ID = '" + ID
-                + "') AND (GPA = '" + oldGPA
-                + "');";
+                + "' WHERE GPA_Num = '" + oldGPAID
+                + "';";
 
             if (OpenConnection() == true)
             {
@@ -270,11 +361,10 @@ namespace WindowsFormsApplication1
 
         public static void UpdateReferrals (string RefID, string RefDate, string Type, string Description)
         {
-            string query = "UPDATE referrals SET Referral_Date = '" + RefDate
-                + "', Type = '" + Type
-                + "', Description = '" + Description
-                + "' WHERE Referral_Number = '" + RefID
-                + "';";
+            string query = "UPDATE referrals SET Referral_Date = @RefDate, "
+                + " Type = @type, "
+                + " Description = @Descr "
+                + " WHERE Referral_Number = @RefID;";
 
             if (OpenConnection() == true)
             {
@@ -283,6 +373,10 @@ namespace WindowsFormsApplication1
                     MySqlCommand cmd = new MySqlCommand();
 
                     cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@RefDate", RefDate);
+                    cmd.Parameters.AddWithValue("@type", Type);
+                    cmd.Parameters.AddWithValue("@Descr", Description);
+                    cmd.Parameters.AddWithValue("@RefID", RefID);
 
                     cmd.Connection = connection;
 
@@ -300,8 +394,8 @@ namespace WindowsFormsApplication1
 
         public static void UpdatePastStudent(string ID, string reason, string date)
         {
-            string query = "UPDATE past_student SET Reason = '" + reason
-                + "', Leave_Date = '" + date
+            string query = "UPDATE past_student SET Reason = @reason,"
+                + "Leave_Date = '" + date
                 + "' WHERE ID = '" + ID
                 + "';";
 
@@ -312,6 +406,8 @@ namespace WindowsFormsApplication1
                     MySqlCommand cmd = new MySqlCommand();
 
                     cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@reason", reason);
+
 
                     cmd.Connection = connection;
 
