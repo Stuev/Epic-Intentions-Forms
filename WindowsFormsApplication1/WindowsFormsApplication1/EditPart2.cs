@@ -440,6 +440,7 @@ namespace WindowsFormsApplication1
                 }
 
                 pastReason = oRng.Cells[2, 2].Value2 + "";
+                pastReason.Replace("\'", "\\\'");
 
             }
 
@@ -456,7 +457,33 @@ namespace WindowsFormsApplication1
                 return;
             }
 
-            Model.UpdateStudentTable(thisID, grade.ToString(), gradeMod, regDate, gender, race, daysMissed.ToString()); 
+            
+
+            Model.UpdateStudentTable(thisID, firstName, lastName, grade.ToString(), gradeMod, regDate, gender, race, daysMissed.ToString());
+            for (int i = 0; i < oldCumGPAs[0].Count; i = i + 1)
+            {
+                Model.UpdateCumGPA(thisID, cumGPAs[i].ToString(), oldCumGPAs[1][i]);
+            }
+
+            for (int i = 0; i < oldUnCumGPAs[0].Count; i = i + 1)
+            {
+                Model.UpdateCumGPA(thisID, unCumGPAs[i].ToString(), oldUnCumGPAs[1][i]);
+            }
+
+            for (int i = 0; i < oldAttends[0].Count; i = i + 1)
+            {
+                Model.UpdateAttends(thisID, oldAttends[1][i], attendsStartDate[i], attendsEndDate[i]);
+            }
+
+            for (int i = 0; i < oldReferralList[0].Count; i = i + 1)
+            {
+                Model.UpdateReferrals(oldReferralList[1][i], refDate[i], refType[i], refDescr[i]);
+            }
+            if (pastUpdate)
+            {
+                Model.UpdatePastStudent(thisID, pastReason, pastDate);
+            }
+
             this.Close();
         }
 

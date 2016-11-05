@@ -168,12 +168,11 @@ namespace WindowsFormsApplication1
         }
 
 
-        public static void UpdateCumGPA(string ID, string oldDate, string newGPA, string newDate)
+        public static void UpdateCumGPA(string ID, string newGPA, string oldGPA)
         {
             string query = "UPDATE cum_gpa SET GPA = '" + newGPA
-                + "', GPA_Entry_Date = '" + newDate
-                + "' WHERE ID = '" + ID 
-                + "' AND GPA_Entry_Date = '" + oldDate
+                + "' WHERE ID = '" + ID
+                + "' AND GPA = '" + oldGPA
                 + "';";
 
             if (OpenConnection() == true)
@@ -198,13 +197,12 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public static void UpdateUnCumGPA(string ID, string oldDate, string newGPA, string newDate)
+        public static void UpdateUnCumGPA(string ID, string newGPA, string oldGPA)
         {
             string query = "UPDATE un_cum_gpa SET GPA = '" + newGPA
-                + "', GPA_Entry_Date = '" + newDate
-                + "' WHERE ID = '" + ID
-                + "' AND GPA_Entry_Date = '" + oldDate
-                + "';";
+                + "' WHERE (ID = '" + ID
+                + "') AND (GPA = '" + oldGPA
+                + "');";
 
             if (OpenConnection() == true)
             {
@@ -229,13 +227,25 @@ namespace WindowsFormsApplication1
         }
 
 
-        public static void UpdateAttends(string ID, string oldSchool, string newSchool, string staDate, string endDate)
+        public static void UpdateAttends(string ID, string school, string staDate, string endDate)
         {
-            string query = "UPDATE attends SET Start_Date = '" + staDate
-                + "', End_Date = '" + endDate
-                + "', WHERE ID = '" + ID
-                + "' AND School_Name = '" + oldSchool
-                + "';";
+
+            string query; 
+            if (endDate == "")
+            {
+                query = "UPDATE attends SET Start_Date = \"" + staDate
+                + "\" WHERE Student_ID = \"" + ID
+                + "\" AND School_Name = \"" + school
+                + "\";";
+            }
+            else
+            {
+                 query = "UPDATE attends SET Start_Date = \"" + staDate
+                    + "\", End_Date = \"" + endDate
+                    + "\" WHERE Student_ID = \"" + ID
+                    + "\" AND School_Name = \"" + school
+                    + "\";";
+            }
             if (OpenConnection() == true)
             {
                 try
