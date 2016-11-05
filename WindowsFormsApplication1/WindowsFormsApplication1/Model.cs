@@ -82,6 +82,55 @@ namespace WindowsFormsApplication1
          * This is for the buttons elsewhere in the app to call
          * 
          */
+        public static void UpdateStudentTable(string ID, string first, string last,
+            string Grade, string Modified, string Reg,
+            string Gen, string Rac, string daysMi)
+        {
+            //Set up a SQL query, plugging in the passed in values into the strings
+            string query = "UPDATE student SET First_Name = \"" + first
+                + "\", Last_Name = \"" + last
+                + "\", Grade_Level =\"" + Grade
+                + "\", Grade_Modified_Date = \"" + Modified
+                + "\", Registration_Date = \"" + Reg
+                + "\", Gender = \"" + Gen
+                + "\", Race = \"" + Rac
+                + "\", Days_Missed = \"" + daysMi
+                + "\" WHERE ID = \"" + ID
+                + "\";";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
+        /* Establish a method for updating the student table
+ * 
+ * Everything passed in are the fields of the student table:
+ * ID, First, Last, Grade, Modified Date, Registration Date,
+ * Gender, Race, Whether they are Current, and the days Missed
+ * 
+ * Note that there is no data validation here
+ * Everything passed in should be a string and should be correct.
+ * This is for the buttons elsewhere in the app to call
+ * 
+ */
         public static void UpdateStudentTable(string ID,
             string Grade, string Modified, string Reg,
             string Gen, string Rac, string daysMi)
@@ -117,6 +166,7 @@ namespace WindowsFormsApplication1
                 }
             }
         }
+
 
         public static void UpdateCumGPA(string ID, string oldDate, string newGPA, string newDate)
         {

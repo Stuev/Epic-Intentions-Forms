@@ -165,15 +165,22 @@ namespace WindowsFormsApplication1
             try
             {
                 double d = double.Parse(oRng.Cells[2, 5].Value2 + "");
-                DateTime conv = DateTime.FromOADate(d);
-                gradeMod = conv.ToShortDateString();
+                DateTime date = DateTime.FromOADate(d);
+                String year = date.Year.ToString();
+                String month = date.Month.ToString();
+                String day = date.Day.ToString();
+                gradeMod = year + "-" + month + "-" + day;
             }
             catch
             {
                 try
                 {
-                    DateTime conv = DateTime.Parse(oRng.Cells[2, 5].Value2 + "");
-                    gradeMod = conv.ToShortDateString();
+                    DateTime date = DateTime.Parse(oRng.Cells[2, 5].Value2 + "");
+                    
+                    String year = date.Year.ToString();
+                    String month = date.Month.ToString();
+                    String day = date.Day.ToString();
+                    gradeMod = year + "-" + month + "-" + day;
                 }
                 catch
                 {
@@ -189,15 +196,21 @@ namespace WindowsFormsApplication1
             try
             {
                 double d = double.Parse(oRng.Cells[2, 6].Value2 + "");
-                DateTime conv = DateTime.FromOADate(d);
-                regDate = conv.ToShortDateString();
+                DateTime date = DateTime.FromOADate(d);
+                String year = date.Year.ToString();
+                String month = date.Month.ToString();
+                String day = date.Day.ToString();
+                regDate = year + '-' + month + '-' + day;
             }
             catch
             {
                 try
                 {
-                    DateTime conv = DateTime.Parse(oRng.Cells[2, 6].Value2 + "");
-                    regDate = conv.ToShortDateString();
+                    DateTime date = DateTime.Parse(oRng.Cells[2, 6].Value2 + "");
+                    String year = date.Year.ToString();
+                    String month = date.Month.ToString();
+                    String day = date.Day.ToString();
+                    regDate = year + '-' + month + '-' + day;
                 }
                 catch
                 {
@@ -281,15 +294,21 @@ namespace WindowsFormsApplication1
                 try
                 {
                     double d = double.Parse(oRng.Cells[i + 2, 3].Value2 + "");
-                    DateTime conv = DateTime.FromOADate(d);
-                    attendsStartDate.Add(conv.ToShortDateString());
+                    DateTime date = DateTime.FromOADate(d);
+                    String year = date.Year.ToString();
+                    String month = date.Month.ToString();
+                    String day = date.Day.ToString();
+                    attendsStartDate.Add(year + '-' + month + '-' + day);
                 }
                 catch
                 {
                     try
                     {
-                        DateTime conv = DateTime.Parse(oRng.Cells[i + 2, 3].Value2 + "");
-                        attendsStartDate.Add(conv.ToShortDateString());
+                        DateTime date = DateTime.Parse(oRng.Cells[i + 2, 3].Value2 + "");
+                        String year = date.Year.ToString();
+                        String month = date.Month.ToString();
+                        String day = date.Day.ToString();
+                        attendsStartDate.Add(year + '-' + month + '-' + day);
                     }
                     catch
                     {
@@ -303,15 +322,21 @@ namespace WindowsFormsApplication1
                 try
                 {
                     double d = double.Parse(oRng.Cells[i + 2, 4].Value2 + "");
-                    DateTime conv = DateTime.FromOADate(d);
-                    attendsEndDate.Add(conv.ToShortDateString());
+                    DateTime date = DateTime.FromOADate(d);
+                    String year = date.Year.ToString();
+                    String month = date.Month.ToString();
+                    String day = date.Day.ToString();
+                    attendsEndDate.Add(year + '-' + month + '-' + day);
                 }
                 catch
                 {
                     try
                     {
-                        DateTime conv = DateTime.Parse(oRng.Cells[i + 2, 4].Value2 + "");
-                        attendsEndDate.Add(conv.ToShortDateString());
+                        DateTime date = DateTime.Parse(oRng.Cells[i + 2, 4].Value2 + "");
+                        String year = date.Year.ToString();
+                        String month = date.Month.ToString();
+                        String day = date.Day.ToString();
+                        attendsEndDate.Add(year + '-' + month + '-' + day);
                     }
                     catch
                     {
@@ -345,15 +370,21 @@ namespace WindowsFormsApplication1
                 try
                 {
                     double d = double.Parse(oRng.Cells[i + 2, 3].Value2 + "");
-                    DateTime conv = DateTime.FromOADate(d);
-                    refDate.Add(conv.ToShortDateString());
+                    DateTime date = DateTime.FromOADate(d);
+                    String year = date.Year.ToString();
+                    String month = date.Month.ToString();
+                    String day = date.Day.ToString();
+                    refDate.Add(year + '-' + month + '-' + day);
                 }
                 catch
                 {
                     try
                     {
-                        DateTime conv = DateTime.Parse(oRng.Cells[i + 2, 3].Value2 + "");
-                        refDate.Add(conv.ToShortDateString());
+                        DateTime date = DateTime.Parse(oRng.Cells[i + 2, 3].Value2 + "");
+                        String year = date.Year.ToString();
+                        String month = date.Month.ToString();
+                        String day = date.Day.ToString();
+                        refDate.Add(year + '-' + month + '-' + day);
                     }
                     catch
                     {
@@ -383,15 +414,21 @@ namespace WindowsFormsApplication1
                 try
                 {
                     double d = double.Parse(oRng.Cells[2, 3].Value2 + "");
-                    DateTime conv = DateTime.FromOADate(d);
-                    pastDate = conv.ToShortDateString();
+                    DateTime date = DateTime.FromOADate(d);
+                    String year = date.Year.ToString();
+                    String month = date.Month.ToString();
+                    String day = date.Day.ToString();
+                    pastDate = year + '-' + month + '-' + day;
                 }
                 catch
                 {
                     try
                     {
-                        DateTime conv = DateTime.Parse(oRng.Cells[2, 3].Value2 + "");
-                        pastDate = conv.ToShortDateString();
+                        DateTime date = DateTime.Parse(oRng.Cells[2, 3].Value2 + "");
+                        String year = date.Year.ToString();
+                        String month = date.Month.ToString();
+                        String day = date.Day.ToString();
+                        pastDate = year + '-' + month + '-' + day;
                     }
                     catch
                     {
