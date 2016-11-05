@@ -121,16 +121,16 @@ namespace WindowsFormsApplication1
         }
 
         /* Establish a method for updating the student table
- * 
- * Everything passed in are the fields of the student table:
- * ID, First, Last, Grade, Modified Date, Registration Date,
- * Gender, Race, Whether they are Current, and the days Missed
- * 
- * Note that there is no data validation here
- * Everything passed in should be a string and should be correct.
- * This is for the buttons elsewhere in the app to call
- * 
- */
+         * 
+         * Everything passed in are the fields of the student table:
+         * ID, First, Last, Grade, Modified Date, Registration Date,
+         * Gender, Race, Whether they are Current, and the days Missed
+         * 
+         * Note that there is no data validation here
+         * Everything passed in should be a string and should be correct.
+         * This is for the buttons elsewhere in the app to call
+         * 
+         */
         public static void UpdateStudentTable(string ID,
             string Grade, string Modified, string Reg,
             string Gen, string Rac, string daysMi)
@@ -521,6 +521,82 @@ namespace WindowsFormsApplication1
                 return false;
             }
 
+        }
+
+        public static bool StudentExists(String ID)
+        {
+            string query = "SELECT * FROM Students WHERE ID = '" + ID + "';";
+
+            List<string> student = new List<string>();
+            if (OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
+                while (dataReader.Read())
+                {
+                    student.Add(dataReader["ID"] + "");
+                }
+
+
+
+                dataReader.Close();
+
+
+                CloseConnection();
+
+                return (student.Count > 0);
+            }
+
+            else
+            {
+                return false;
+            }
+
+        }
+
+        //INSERT INTO `referrals` (`ID`, `Referral_Date`, `Type`, `Description`) 
+        //VALUES('1', '2016-02-01', 'Fighting', 'Fight');
+
+        public static bool InsertReferral(string ID, string Date, string Type, string Desc)
+        {
+            string query = "INSERT INTO referrals ('ID', 'Referral_Date', 'Type', 'Description') "
+                + "VALUES(@ID, '" + Date + "' , @Type, @Desc)";
+
+
+            if (StudentExists(ID) && OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@ID", ID);
+                    cmd.Parameters.AddWithValue("@Type", Type);
+                    cmd.Parameters.AddWithValue("@Desc", Desc);
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                    return true;
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public static void InsertSchool(String SchoolName)

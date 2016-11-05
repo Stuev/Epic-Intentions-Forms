@@ -18,6 +18,10 @@ namespace WindowsFormsApplication1
             var dataSource = new List<string>();
             dataSource.Add("Drugs");
             dataSource.Add("Fighting");
+            dataSource.Add("Attendance");
+            dataSource.Add("Behavior");
+            dataSource.Add("Fighting");
+            dataSource.Add("Other");
 
             AddReferral_Category.DataSource = dataSource;
         }
@@ -25,6 +29,11 @@ namespace WindowsFormsApplication1
         private void AddReferral_Category_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
 
         }
     }
