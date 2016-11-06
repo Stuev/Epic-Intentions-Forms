@@ -219,6 +219,63 @@ namespace WindowsFormsApplication1
                 }
             }
         }
+        public static void InsertCumGPA(int studentID, float gpa, string date)
+        {
+            string query = "INSERT INTO cum_gpa SET ID = '" + studentID
+                + "', GPA = '" + gpa
+                + "', GPA_Entry_Date = '" + date
+                + "';";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        public static void InsertEmptyReferrals(int ID, string date, int numRefs)
+        {
+            for (int i = 0; i < numRefs; i++)
+            {
+                string query = "INSERT INTO referrals SET ID = '" + ID
+                + "', Referral_Date = '" + date
+                + "';";
+
+                if (OpenConnection() == true)
+                {
+                    try
+                    {
+                        MySqlCommand cmd = new MySqlCommand();
+
+                        cmd.CommandText = query;
+
+                        cmd.Connection = connection;
+
+                        cmd.ExecuteNonQuery();
+
+                        CloseConnection();
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
 
         public static void DeleteReferral()
         {
@@ -956,6 +1013,38 @@ namespace WindowsFormsApplication1
         public static List<string> getSchools()
         {
             return selectCol("school", "Name");
+        }
+
+        public static string getSchoolByID(int id)
+        {
+            string query = "SELECT School_Name FROM attends "
+            + "WHERE ID = '" + id
+            + "';";
+            string school = "";
+            if (OpenConnection() == true)
+            {
+
+
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
+                school = dataReader["School_Name"] + "";
+
+
+                dataReader.Close();
+
+
+                CloseConnection();
+
+
+                return school;
+            } else
+            {
+                return "";
+            }
+
         }
 
         public static List<string> getStudentIDs()
