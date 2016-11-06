@@ -77,6 +77,8 @@ namespace WindowsFormsApplication1
                 oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
                 oSheet = (Excel._Worksheet)oWB.ActiveSheet;
                 
+                //oSheet = (Excel.Worksheet)oWB.Worksheets.Add();
+                oSheet.Name = "Selected Students";
 
                 //Add table headers going cell by cell.
                 oSheet.Cells[1, 1] = "ID";
