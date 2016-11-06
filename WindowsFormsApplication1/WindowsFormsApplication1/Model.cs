@@ -627,6 +627,80 @@ namespace WindowsFormsApplication1
 
         }
 
+        public static bool InsertCumGPA(string ID, string GPA, string Date)
+        {
+            string query = "INSERT INTO cum_gpa SET ID = '" + ID + "',"
+                + " GPA_Entry_Date = '" + Date + "', "
+                + " GPA = '" + GPA + "';";
+
+            if (StudentExists(ID) && OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                    return true;
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public static bool InsertUnCumGPA(string ID, string GPA, string Date)
+        {
+            string query = "INSERT INTO un_cum_gpa SET ID = '" + ID + "',"
+                + " GPA_Entry_Date = '" + Date + "', "
+                + " GPA = '" + GPA + "';";
+
+            if (StudentExists(ID) && OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                    return true;
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+
+
         public static void InsertStudent(String firstName, String lastName, int studentID, Double gpa,
             String school, int grade, int numRefs, int daysMissed, String gender, String race, String curStudent, String RegDate, String GradeMod)
         {

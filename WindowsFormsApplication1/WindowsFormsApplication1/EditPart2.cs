@@ -246,11 +246,20 @@ namespace WindowsFormsApplication1
                     catch
                     {
                         oWB.Close(false);
-                        MessageBox.Show("Something went wrong in reading the Uncumulative GPAs. Please try again. Make sure there is a number in the cells.");
+                        MessageBox.Show("Something went wrong in reading the cumulative GPAs. Please try again. Make sure there is a number in the cells.");
                         this.Close();
                         return;
                     }
                 }
+
+                if (cumGPAs[cumGPAs.Count - 1] > 4.0 || cumGPAs[cumGPAs.Count - 1] < 0)
+                {
+                    oWB.Close(false);
+                    MessageBox.Show("Something went wrong in reading the Uncumulative GPAs. Please try again. Make sure there is a number between 0 and 4.0 in the cells.");
+                    this.Close();
+                    return;
+                }
+
             }
 
             oSheet = (Excel._Worksheet)oWB.Sheets[3];
@@ -267,8 +276,23 @@ namespace WindowsFormsApplication1
                 }
                 catch
                 {
+                    try
+                    {
+                        cumGPAs.Add(oRng.Cells[i + 2, 2].Value2);
+                    }
+                    catch
+                    {
+                        oWB.Close(false);
+                        MessageBox.Show("Something went wrong in reading the uncumulative GPAs. Please try again. Make sure there is a number in the cells.");
+                        this.Close();
+                        return;
+                    }
+                }
+
+                if (unCumGPAs[unCumGPAs.Count - 1] > 4.0 || unCumGPAs[unCumGPAs.Count - 1] < 0)
+                {
                     oWB.Close(false);
-                    MessageBox.Show("Something went wrong in reading the Uncumulative GPAs. Please try again. Make sure there is a number in the cells.");
+                    MessageBox.Show("Something went wrong in reading the Uncumulative GPAs. Please try again. Make sure there is a number between 0 and 4.0 in the cells.");
                     this.Close();
                     return;
                 }

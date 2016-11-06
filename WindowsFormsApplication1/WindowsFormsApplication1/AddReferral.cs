@@ -43,7 +43,7 @@ namespace WindowsFormsApplication1
             }
             catch
             {
-                MessageBox.Show("Please Make sure a number is in the ID field!");
+                MessageBox.Show("Please make sure a number is in the ID field!");
                 return;
             }
             string ID = studentID + "";
