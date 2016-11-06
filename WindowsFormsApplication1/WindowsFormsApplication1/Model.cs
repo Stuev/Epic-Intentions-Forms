@@ -1691,7 +1691,7 @@ namespace WindowsFormsApplication1
             string raceComp = genTextOrComp(races, "Race");
             string statusComp = genIntOrComp(statuses, "isCurrent");
 
-            string query = "SELECT * FROM student INNER JOIN cum_gpa ON student.ID = cum_gpa.ID INNER JOIN attends ON cum_gpa.ID = attends.student_ID INNER JOIN (SELECT id, COUNT(id)referral_count FROM referrals GROUP BY id) AS MyCounts ON cum_gpa.ID = MyCounts.id WHERE GPA> 0 AND GPA< 100 AND " + schoolComp + " AND Grade_Level> 0 AND Grade_Level< 100 AND referral_count> 0 AND referral_count< 100 AND Days_Missed> 0 AND Days_Missed< 100 AND" + genderComp + " AND " + raceComp + " AND " + statusComp + ";";
+            string query = "SELECT * FROM student INNER JOIN cum_gpa ON student.ID = cum_gpa.ID INNER JOIN attends ON cum_gpa.ID = attends.student_ID INNER JOIN (SELECT id, COUNT(id)referral_count FROM referrals GROUP BY id) AS MyCounts ON cum_gpa.ID = MyCounts.id WHERE (GPA between " + minGPA + " AND " + maxGPA + ") AND " + schoolComp + " AND (Grade_Level between " + minGrade + " AND " + maxGrade + ") AND (referral_count between " + minReferrals + " AND " + maxReferrals + ") AND (Days_Missed between " + minDaysMissed + " AND " + maxDaysMissed + ") AND " + genderComp + " AND " + raceComp + " AND " + statusComp + ";";
 
             if (OpenConnection() == true)
             {
@@ -1729,9 +1729,10 @@ namespace WindowsFormsApplication1
 
                 //close Data Reader
                 dataReader.Close();
-
+                
                 //close Connection
                 CloseConnection();
+                System.Diagnostics.Debug.WriteLine(query);
                 return returnval;
 
             }

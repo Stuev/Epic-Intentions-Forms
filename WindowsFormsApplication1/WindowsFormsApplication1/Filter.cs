@@ -105,12 +105,18 @@ namespace WindowsFormsApplication1
 
                 // Create an array to multiple values at once.
                 string[] toPrint = new string[selectedVals.Count()];
+                System.Diagnostics.Debug.WriteLine("ok2");
 
 
                 for (int i = 0; i < selectedVals.Count(); i = i + 1)
                 {
-                    toPrint[i] = selectedVals[i][0];
+                    for (int j = 0; j < selectedVals[i].Count(); j++)
+                    {
+                        toPrint[i] = selectedVals[i][j];
+                    }
                 }
+                System.Diagnostics.Debug.WriteLine("ok3");
+
 
                 //Fill A2:B6 with an array of values (First and Last Names).
                 oSheet.get_Range("A2", "P2").Value2 = toPrint;
