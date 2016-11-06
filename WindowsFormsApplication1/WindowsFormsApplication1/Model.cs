@@ -454,6 +454,33 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public static void SetStudentStatusPast(string ID)
+        {
+            string query = "UPDATE student SET isCurrent= '0' WHERE ID = '" + ID + "';";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
+
         public static void UpdateSchoolName(string oldSchool, string newSchool)
         {
             string query = "UPDATE school SET Name= '" + newSchool
@@ -599,6 +626,44 @@ namespace WindowsFormsApplication1
                 return false;
             }
         }
+
+        public static bool InsertPast(string ID, string Reason, string Date)
+        {
+            string query = "INSERT INTO past_student SET ID = '" + ID + "',"
+                + " Leave_Date = '" + Date + "', "
+                + " Reason = @Reason ;";
+
+            if (StudentExists(ID) && OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Parameters.AddWithValue("@Reason", Reason);
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                    return true;
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         public static void InsertSchool(String SchoolName)
         {

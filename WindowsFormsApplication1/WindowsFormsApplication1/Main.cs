@@ -350,5 +350,13 @@ namespace WindowsFormsApplication1
             nextForm.ShowDialog();
             this.Show();
         }
+
+        private void PastStudents_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            PastStudent nextForm = new PastStudent();
+            nextForm.ShowDialog();
+            this.Show();
+        }
     }
 }

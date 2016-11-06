@@ -64,5 +64,10 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Something went wrong in processing the GPA. Please try again.");
             }
         }
+
+        private void Submit_AddUnCummGPA_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
