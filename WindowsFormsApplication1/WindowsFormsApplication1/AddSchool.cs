@@ -26,11 +26,11 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("School Field is Empty!");
                 return;
             }
-            school.Replace("\'", "\\\'");
 
             if (!Model.SchoolExists(school))
             {
                 Model.InsertSchool(school);
+                this.Close();
             }
             else
             {

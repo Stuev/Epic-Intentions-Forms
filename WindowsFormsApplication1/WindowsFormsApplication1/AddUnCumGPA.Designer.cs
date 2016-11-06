@@ -40,9 +40,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(2, 44);
+            this.label1.Location = new System.Drawing.Point(3, 54);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(355, 15);
+            this.label1.Size = new System.Drawing.Size(420, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "Add Uncumulative Progress Report Grades (Unofficial)";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -50,55 +51,62 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(81, 85);
+            this.label2.Location = new System.Drawing.Point(108, 105);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.Size = new System.Drawing.Size(74, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Student ID";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(105, 129);
+            this.label3.Location = new System.Drawing.Point(140, 159);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.Size = new System.Drawing.Size(37, 17);
             this.label3.TabIndex = 2;
             this.label3.Text = "GPA";
             // 
             // ID_AddUnCummGPA
             // 
-            this.ID_AddUnCummGPA.Location = new System.Drawing.Point(163, 82);
+            this.ID_AddUnCummGPA.Location = new System.Drawing.Point(217, 101);
+            this.ID_AddUnCummGPA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ID_AddUnCummGPA.Name = "ID_AddUnCummGPA";
-            this.ID_AddUnCummGPA.Size = new System.Drawing.Size(79, 20);
+            this.ID_AddUnCummGPA.Size = new System.Drawing.Size(104, 22);
             this.ID_AddUnCummGPA.TabIndex = 3;
             // 
             // GPA_AddUnCummGPA
             // 
-            this.GPA_AddUnCummGPA.Location = new System.Drawing.Point(163, 126);
+            this.GPA_AddUnCummGPA.Location = new System.Drawing.Point(217, 155);
+            this.GPA_AddUnCummGPA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GPA_AddUnCummGPA.Name = "GPA_AddUnCummGPA";
-            this.GPA_AddUnCummGPA.Size = new System.Drawing.Size(79, 20);
+            this.GPA_AddUnCummGPA.Size = new System.Drawing.Size(104, 22);
             this.GPA_AddUnCummGPA.TabIndex = 4;
             // 
             // Submit_AddUnCummGPA
             // 
-            this.Submit_AddUnCummGPA.Location = new System.Drawing.Point(108, 170);
+            this.Submit_AddUnCummGPA.Location = new System.Drawing.Point(144, 209);
+            this.Submit_AddUnCummGPA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Submit_AddUnCummGPA.Name = "Submit_AddUnCummGPA";
-            this.Submit_AddUnCummGPA.Size = new System.Drawing.Size(104, 36);
+            this.Submit_AddUnCummGPA.Size = new System.Drawing.Size(139, 44);
             this.Submit_AddUnCummGPA.TabIndex = 5;
             this.Submit_AddUnCummGPA.Text = "Add GPA to Database";
             this.Submit_AddUnCummGPA.UseVisualStyleBackColor = true;
+            this.Submit_AddUnCummGPA.Click += new System.EventHandler(this.Submit_AddUnCummGPA_Click);
             // 
             // AddUnCumGPA
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 304);
+            this.ClientSize = new System.Drawing.Size(492, 374);
             this.Controls.Add(this.Submit_AddUnCummGPA);
             this.Controls.Add(this.GPA_AddUnCummGPA);
             this.Controls.Add(this.ID_AddUnCummGPA);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AddUnCumGPA";
             this.Text = "AddUnCummGPA";
             this.ResumeLayout(false);

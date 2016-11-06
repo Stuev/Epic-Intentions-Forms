@@ -46,17 +46,17 @@
             this.label1.Location = new System.Drawing.Point(150, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 16);
+            this.label1.Size = new System.Drawing.Size(123, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select Option";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // ViewStudent
             // 
-            this.ViewStudent.Location = new System.Drawing.Point(25, 104);
+            this.ViewStudent.Location = new System.Drawing.Point(25, 109);
             this.ViewStudent.Margin = new System.Windows.Forms.Padding(4);
             this.ViewStudent.Name = "ViewStudent";
-            this.ViewStudent.Size = new System.Drawing.Size(155, 45);
+            this.ViewStudent.Size = new System.Drawing.Size(155, 53);
             this.ViewStudent.TabIndex = 1;
             this.ViewStudent.Text = "View Student Profile ";
             this.ViewStudent.UseVisualStyleBackColor = true;
@@ -64,10 +64,10 @@
             // 
             // FilterStudent
             // 
-            this.FilterStudent.Location = new System.Drawing.Point(25, 157);
+            this.FilterStudent.Location = new System.Drawing.Point(25, 167);
             this.FilterStudent.Margin = new System.Windows.Forms.Padding(4);
             this.FilterStudent.Name = "FilterStudent";
-            this.FilterStudent.Size = new System.Drawing.Size(155, 45);
+            this.FilterStudent.Size = new System.Drawing.Size(155, 53);
             this.FilterStudent.TabIndex = 2;
             this.FilterStudent.Text = "Filter Data";
             this.FilterStudent.UseVisualStyleBackColor = true;
@@ -75,10 +75,10 @@
             // 
             // EditStudent
             // 
-            this.EditStudent.Location = new System.Drawing.Point(25, 210);
+            this.EditStudent.Location = new System.Drawing.Point(25, 225);
             this.EditStudent.Margin = new System.Windows.Forms.Padding(4);
             this.EditStudent.Name = "EditStudent";
-            this.EditStudent.Size = new System.Drawing.Size(155, 43);
+            this.EditStudent.Size = new System.Drawing.Size(155, 51);
             this.EditStudent.TabIndex = 3;
             this.EditStudent.Text = "Edit Student";
             this.EditStudent.UseVisualStyleBackColor = true;
@@ -86,10 +86,10 @@
             // 
             // AddStudent
             // 
-            this.AddStudent.Location = new System.Drawing.Point(219, 104);
+            this.AddStudent.Location = new System.Drawing.Point(219, 109);
             this.AddStudent.Margin = new System.Windows.Forms.Padding(4);
             this.AddStudent.Name = "AddStudent";
-            this.AddStudent.Size = new System.Drawing.Size(155, 43);
+            this.AddStudent.Size = new System.Drawing.Size(155, 51);
             this.AddStudent.TabIndex = 4;
             this.AddStudent.Text = "Add New Student";
             this.AddStudent.UseVisualStyleBackColor = true;
@@ -97,10 +97,10 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(219, 157);
+            this.button5.Location = new System.Drawing.Point(219, 167);
             this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(155, 45);
+            this.button5.Size = new System.Drawing.Size(155, 53);
             this.button5.TabIndex = 5;
             this.button5.Text = "Add Info to Existing Student";
             this.button5.UseVisualStyleBackColor = true;
@@ -108,10 +108,10 @@
             // 
             // ImportData
             // 
-            this.ImportData.Location = new System.Drawing.Point(219, 210);
+            this.ImportData.Location = new System.Drawing.Point(219, 225);
             this.ImportData.Margin = new System.Windows.Forms.Padding(4);
             this.ImportData.Name = "ImportData";
-            this.ImportData.Size = new System.Drawing.Size(155, 43);
+            this.ImportData.Size = new System.Drawing.Size(155, 51);
             this.ImportData.TabIndex = 6;
             this.ImportData.Text = "Import School Data to Insert Multiple Students";
             this.ImportData.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@
             this.ViewAll.Location = new System.Drawing.Point(25, 47);
             this.ViewAll.Margin = new System.Windows.Forms.Padding(4);
             this.ViewAll.Name = "ViewAll";
-            this.ViewAll.Size = new System.Drawing.Size(155, 49);
+            this.ViewAll.Size = new System.Drawing.Size(155, 57);
             this.ViewAll.TabIndex = 7;
             this.ViewAll.Text = "View All Students";
             this.ViewAll.UseVisualStyleBackColor = true;
@@ -133,14 +133,15 @@
             this.PastStudents.Location = new System.Drawing.Point(219, 47);
             this.PastStudents.Margin = new System.Windows.Forms.Padding(4);
             this.PastStudents.Name = "PastStudents";
-            this.PastStudents.Size = new System.Drawing.Size(155, 49);
+            this.PastStudents.Size = new System.Drawing.Size(155, 57);
             this.PastStudents.TabIndex = 8;
             this.PastStudents.Text = "Update Past Students";
             this.PastStudents.UseVisualStyleBackColor = true;
+            this.PastStudents.Click += new System.EventHandler(this.PastStudents_Click);
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 374);
             this.Controls.Add(this.PastStudents);
