@@ -82,8 +82,57 @@ namespace WindowsFormsApplication1
          * This is for the buttons elsewhere in the app to call
          * 
          */
-        public static void UpdateStudentTable(string ID, 
-            string Grade, string Modified, string Reg, 
+        public static void UpdateStudentTable(string ID, string first, string last,
+            string Grade, string Modified, string Reg,
+            string Gen, string Rac, string daysMi)
+        {
+            //Set up a SQL query, plugging in the passed in values into the strings
+            string query = "UPDATE student SET First_Name = \"" + first
+                + "\", Last_Name = \"" + last
+                + "\", Grade_Level =\"" + Grade
+                + "\", Grade_Modified_Date = \"" + Modified
+                + "\", Registration_Date = \"" + Reg
+                + "\", Gender = \"" + Gen
+                + "\", Race = \"" + Rac
+                + "\", Days_Missed = \"" + daysMi
+                + "\" WHERE ID = \"" + ID
+                + "\";";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
+        /* Establish a method for updating the student table
+         * 
+         * Everything passed in are the fields of the student table:
+         * ID, First, Last, Grade, Modified Date, Registration Date,
+         * Gender, Race, Whether they are Current, and the days Missed
+         * 
+         * Note that there is no data validation here
+         * Everything passed in should be a string and should be correct.
+         * This is for the buttons elsewhere in the app to call
+         * 
+         */
+        public static void UpdateStudentTable(string ID,
+            string Grade, string Modified, string Reg,
             string Gen, string Rac, string daysMi)
         {
             //Set up a SQL query, plugging in the passed in values into the strings
@@ -113,9 +162,269 @@ namespace WindowsFormsApplication1
                 catch (MySqlException ex)
                 {
                     MessageBox.Show(ex.Message);
+                    CloseConnection();
                 }
             }
         }
+
+        public static List<string> SelectCumGPAID(string ID)
+        {
+            string query = "SELECT * FROM cum_gpa "
+            + "WHERE ID = '" + ID
+            + "';";
+
+            List<string> list = new List<string>();
+
+
+            if (OpenConnection() == true)
+            {
+
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        list.Add(dataReader["GPA_Num"] + "");
+                    }
+
+
+                    dataReader.Close();
+
+
+                    CloseConnection();
+
+
+                    return list;
+
+                }
+                catch
+                {
+                    MessageBox.Show("Please update the database to the current one on the Google Drive. -Elie, 11/5/16");
+                    return list;
+                }
+            }
+            else
+            {
+                return list;
+            }
+        }
+
+        public static List<string> SelectUnCumGPAID(string ID)
+        {
+            string query = "SELECT * FROM un_cum_gpa "
+            + "WHERE ID = '" + ID
+            + "';";
+
+            List<string> list = new List<string>();
+
+
+            if (OpenConnection() == true)
+            {
+
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        list.Add(dataReader["GPA_Num"] + "");
+                    }
+
+
+                    dataReader.Close();
+
+
+                    CloseConnection();
+
+
+                    return list;
+
+                }
+                catch
+                {
+                    MessageBox.Show("Please update the database to the current one on the Google Drive. -Elie, 11/5/16");
+                    return list;
+                }
+
+
+            }
+            else
+            {
+                return list;
+            }
+        }
+
+
+
+        public static void UpdateCumGPA(string ID, string newGPA, string oldGPAID)
+        {
+            string query = "UPDATE cum_gpa SET GPA = '" + newGPA
+                + "' WHERE GPA_Num = '" + oldGPAID
+                + "';";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
+        public static void UpdateUnCumGPA(string ID, string newGPA, string oldGPAID)
+        {
+            string query = "UPDATE un_cum_gpa SET GPA = '" + newGPA
+                + "' WHERE GPA_Num = '" + oldGPAID
+                + "';";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
+
+        public static void UpdateAttends(string ID, string school, string staDate, string endDate)
+        {
+
+            string query; 
+            if (endDate == "")
+            {
+                query = "UPDATE attends SET Start_Date = \"" + staDate
+                + "\" WHERE Student_ID = \"" + ID
+                + "\" AND School_Name = \"" + school
+                + "\";";
+            }
+            else
+            {
+                 query = "UPDATE attends SET Start_Date = \"" + staDate
+                    + "\", End_Date = \"" + endDate
+                    + "\" WHERE Student_ID = \"" + ID
+                    + "\" AND School_Name = \"" + school
+                    + "\";";
+            }
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
+        public static void UpdateReferrals (string RefID, string RefDate, string Type, string Description)
+        {
+            string query = "UPDATE referrals SET Referral_Date = @RefDate, "
+                + " Type = @type, "
+                + " Description = @Descr "
+                + " WHERE Referral_Number = @RefID;";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@RefDate", RefDate);
+                    cmd.Parameters.AddWithValue("@type", Type);
+                    cmd.Parameters.AddWithValue("@Descr", Description);
+                    cmd.Parameters.AddWithValue("@RefID", RefID);
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
+        public static void UpdatePastStudent(string ID, string reason, string date)
+        {
+            string query = "UPDATE past_student SET Reason = @reason,"
+                + "Leave_Date = '" + date
+                + "' WHERE ID = '" + ID
+                + "';";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@reason", reason);
+
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
+
+
 
         public static void UpdateEndDate(string ID, string newDate)
         {
@@ -123,23 +432,54 @@ namespace WindowsFormsApplication1
                 + "'WHERE ID = '" + ID
                 + "';";
 
-            try
+            if (OpenConnection() == true)
             {
-                MySqlCommand cmd = new MySqlCommand();
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
 
-                cmd.CommandText = query;
+                    cmd.CommandText = query;
 
-                cmd.Connection = connection;
+                    cmd.Connection = connection;
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                CloseConnection();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
             }
         }
+
+        public static void SetStudentStatusPast(string ID)
+        {
+            string query = "UPDATE student SET isCurrent= '0' WHERE ID = '" + ID + "';";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
 
         public static void UpdateSchoolName(string oldSchool, string newSchool)
         {
@@ -147,21 +487,25 @@ namespace WindowsFormsApplication1
                 + "'WHERE Name= '" + oldSchool
                 + "';";
 
-            try
+            if (OpenConnection() == true)
             {
-                MySqlCommand cmd = new MySqlCommand();
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
 
-                cmd.CommandText = query;
+                    cmd.CommandText = query;
 
-                cmd.Connection = connection;
+                    cmd.Connection = connection;
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                CloseConnection();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
             }
         }
 
@@ -170,10 +514,257 @@ namespace WindowsFormsApplication1
 
         }
 
-        public static void Insert()
+        public static bool SchoolExists(String SchoolName)
         {
+            string query = "SELECT * FROM school WHERE Name = @SchoolName;";
+
+            List<string> school = new List<string>();
+            if (OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@SchoolName", SchoolName);
+
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
+                while (dataReader.Read())
+                {
+                    school.Add(dataReader["Name"] + "");
+                }
+
+
+
+                dataReader.Close();
+
+
+                CloseConnection();
+
+                return (school.Count > 0);
+            }
+
+            else
+            {
+                return false;
+            }
 
         }
+
+        public static bool StudentExists(String ID)
+        {
+            string query = "SELECT * FROM student WHERE ID = '" + ID + "';";
+
+            List<string> student = new List<string>();
+            if (OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
+                while (dataReader.Read())
+                {
+                    student.Add(dataReader["ID"] + "");
+                }
+
+
+
+                dataReader.Close();
+
+
+                CloseConnection();
+
+                return (student.Count > 0);
+            }
+
+            else
+            {
+                return false;
+            }
+
+        }
+
+        //INSERT INTO `referrals` (`ID`, `Referral_Date`, `Type`, `Description`) 
+        //VALUES('1', '2016-02-01', 'Fighting', 'Fight');
+
+        public static bool InsertReferral(string ID, string Date, string Type, string Desc)
+        {
+            string query = "INSERT INTO referrals SET ID = '" + ID + "',"
+                + " Referral_Date = '" + Date + "', "
+                + " Type = @Type, "
+                + " Description = @Desc ;";
+
+            if (StudentExists(ID) && OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+                    
+                    cmd.Parameters.AddWithValue("@Type", Type);
+                    cmd.Parameters.AddWithValue("@Desc", Desc);
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                    return true;
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool InsertPast(string ID, string Reason, string Date)
+        {
+            string query = "INSERT INTO past_student SET ID = '" + ID + "',"
+                + " Leave_Date = '" + Date + "', "
+                + " Reason = @Reason ;";
+
+            if (StudentExists(ID) && OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Parameters.AddWithValue("@Reason", Reason);
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                    return true;
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        public static void InsertSchool(String SchoolName)
+        {
+            string query = "INSERT INTO school SET Name = @SchoolName;";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@SchoolName", SchoolName);
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+        }
+
+        public static bool InsertCumGPA(string ID, string GPA, string Date)
+        {
+            string query = "INSERT INTO cum_gpa SET ID = '" + ID + "',"
+                + " GPA_Entry_Date = '" + Date + "', "
+                + " GPA = '" + GPA + "';";
+
+            if (StudentExists(ID) && OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                    return true;
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public static bool InsertUnCumGPA(string ID, string GPA, string Date)
+        {
+            string query = "INSERT INTO un_cum_gpa SET ID = '" + ID + "',"
+                + " GPA_Entry_Date = '" + Date + "', "
+                + " GPA = '" + GPA + "';";
+
+            if (StudentExists(ID) && OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                    return true;
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+
 
         public static void InsertStudent(String firstName, String lastName, int studentID, Double gpa,
             String school, int grade, int numRefs, int daysMissed, String gender, String race, String curStudent, String RegDate, String GradeMod)
@@ -277,6 +868,8 @@ namespace WindowsFormsApplication1
             }
         }
 
+
+
         public static void DeleteReferral()
         {
 
@@ -319,7 +912,8 @@ namespace WindowsFormsApplication1
 
 
                 return ID;
-            } else
+            }
+            else
             {
                 return ID;
             }
@@ -605,11 +1199,11 @@ namespace WindowsFormsApplication1
 
 
 
-        public static List <string>[] SelectStudent(string ID)
+        public static List<string>[] SelectStudent(string ID)
         {
             {
                 string query = "SELECT * FROM student "
-                +"WHERE ID = '" + ID
+                + "WHERE ID = '" + ID
                 + "';";
 
                 //Create a list to store the result
@@ -628,12 +1222,12 @@ namespace WindowsFormsApplication1
                 //Open connection
                 if (OpenConnection() == true)
                 {
-          
+
                     //Create Command
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     //Create a data reader and Execute the command
                     MySqlDataReader dataReader = cmd.ExecuteReader();
-                    
+
                     //Read the data and store them in the list
                     while (dataReader.Read())
                     {
@@ -922,7 +1516,7 @@ namespace WindowsFormsApplication1
                 CloseConnection();
 
                 return returnval;
-                
+
             }
             else
             {
@@ -1151,15 +1745,90 @@ namespace WindowsFormsApplication1
         public static List<string> getCurrentStudentOptions()
         {
             List<string> options = new List<string>();
-            options.Add("current");
-            options.Add("alumni");
+            options.Add("1");
+            options.Add("0");
 
             return options;
         }
 
+        public static string genTextOrComp(List<string> items, string colName)
+        {
+            string orComp = "(" + colName + " = '" + items[0] + "'";
+            for (int i = 1; i < items.Count(); i++ )
+            {
+                orComp += " OR " + colName + " = '" + items[i] + "'";
+            }
+            orComp += ")";
+            return orComp;
+        }
+
+        public static string genIntOrComp(List<string> items, string colName)
+        {
+            string orComp = "(" + colName + " = " + items[0];
+            for (int i = 1; i < items.Count(); i++)
+            {
+                orComp += " OR " + colName + " = " + items[i];
+            }
+            orComp += ")";
+            return orComp;
+        }
+
         public static List<string>[] filterSelectStudent(int minGPA, int maxGPA, List<string> schools, int minGrade, int maxGrade, int minReferrals, int maxReferrals, int minDaysMissed, int maxDaysMissed, List<string> genders, List<string> races, List<string> statuses)
         {
-            return new List<string>[1];
+            string schoolComp = genTextOrComp(schools, "School_Name");
+            string genderComp = genTextOrComp(genders, "Gender");
+            string raceComp = genTextOrComp(races, "Race");
+            string statusComp = genIntOrComp(statuses, "isCurrent");
+
+            string query = "SELECT * FROM student INNER JOIN cum_gpa ON student.ID = cum_gpa.ID INNER JOIN attends ON cum_gpa.ID = attends.student_ID INNER JOIN (SELECT id, COUNT(id)referral_count FROM referrals GROUP BY id) AS MyCounts ON cum_gpa.ID = MyCounts.id WHERE (GPA between " + minGPA + " AND " + maxGPA + ") AND " + schoolComp + " AND (Grade_Level between " + minGrade + " AND " + maxGrade + ") AND (referral_count between " + minReferrals + " AND " + maxReferrals + ") AND (Days_Missed between " + minDaysMissed + " AND " + maxDaysMissed + ") AND " + genderComp + " AND " + raceComp + " AND " + statusComp + ";";
+
+            if (OpenConnection() == true)
+            {
+
+                List<string>[] returnval = new List<string>[16];
+                for (int i = 0; i < 16; i++)
+                {
+                    returnval[i] = new List<string>();
+                }
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    returnval[0].Add(dataReader["ID"] + "");
+                    returnval[1].Add(dataReader["First_Name"] + "");
+                    returnval[2].Add(dataReader["Last_Name"] + "");
+                    returnval[3].Add(dataReader["Grade_Level"] + "");
+                    returnval[4].Add(dataReader["Grade_Modified_Date"] + "");
+                    returnval[5].Add(dataReader["Registration_Date"] + "");
+                    returnval[6].Add(dataReader["Gender"] + "");
+                    returnval[7].Add(dataReader["Race"] + "");
+                    returnval[8].Add(dataReader["isCurrent"] + "");
+                    returnval[9].Add(dataReader["Days_Missed"] + "");
+                    returnval[10].Add(dataReader["GPA"] + "");
+                    returnval[11].Add(dataReader["GPA_Entry_Date"] + "");
+                    returnval[12].Add(dataReader["Start_Date"] + "");
+                    returnval[13].Add(dataReader["End_Date"] + "");
+                    returnval[14].Add(dataReader["School_Name"] + "");
+                    returnval[15].Add(dataReader["referral_count"] + "");
+                }
+
+                //close Data Reader
+                dataReader.Close();
+                
+                //close Connection
+                CloseConnection();
+                System.Diagnostics.Debug.WriteLine(query);
+                return returnval;
+
+            }
+            else
+            {
+                return new List<string>[1];
+            }
         }
     }
 }

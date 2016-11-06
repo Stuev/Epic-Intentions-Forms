@@ -85,7 +85,7 @@
             // ImportFile
             // 
             this.ImportFile.Location = new System.Drawing.Point(183, 164);
-            this.ImportFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ImportFile.Margin = new System.Windows.Forms.Padding(4);
             this.ImportFile.Name = "ImportFile";
             this.ImportFile.Size = new System.Drawing.Size(129, 31);
             this.ImportFile.TabIndex = 5;
@@ -96,7 +96,7 @@
             // UploadFile
             // 
             this.UploadFile.Location = new System.Drawing.Point(183, 297);
-            this.UploadFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UploadFile.Margin = new System.Windows.Forms.Padding(4);
             this.UploadFile.Name = "UploadFile";
             this.UploadFile.Size = new System.Drawing.Size(129, 31);
             this.UploadFile.TabIndex = 7;
@@ -108,12 +108,12 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(85, 262);
+            this.label5.Location = new System.Drawing.Point(48, 258);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(323, 17);
+            this.label5.Size = new System.Drawing.Size(413, 17);
             this.label5.TabIndex = 8;
-            this.label5.Text = "*Please confirm the correct file is imported*";
+            this.label5.Text = "*Please confirm that the file was successfully imported.*";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
@@ -151,7 +151,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EditPart2";
             this.Text = "EditPart2";
             this.Load += new System.EventHandler(this.EditPart2_Load);

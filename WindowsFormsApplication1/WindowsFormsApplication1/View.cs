@@ -170,12 +170,17 @@ namespace WindowsFormsApplication1
 
                     if (cumGPAList[0].Count() > 0)
                     {
-                        for (int i = 0; i < cumGPAList.Count(); i = i + 1)
+                        for (int j = 0; j < cumGPAList[0].Count(); j = j + 1)
                         {
-                            toPrint[i] = cumGPAList[i][0];
+                            int k = j + 2;
+                            for (int i = 0; i < cumGPAList.Count(); i = i + 1)
+                            {
+                                toPrint[i] = cumGPAList[i][j];
+                            }
+                            //Fill with an array of values (First and Last Names).
+                            oSheet.get_Range("A" + k, "C" + k).Value2 = toPrint;
                         }
                     }
-
                     //Fill A2:B6 with an array of values (First and Last Names).
                     if (toPrint.Count() == 3)
                     {
