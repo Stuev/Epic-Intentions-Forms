@@ -61,7 +61,6 @@ namespace WindowsFormsApplication1
             {
                 Desc = "[Description Missing]";
             }
-            MessageBox.Show(Desc);
 
             if (Model.InsertReferral(ID, curDay, Type, Desc))
             {

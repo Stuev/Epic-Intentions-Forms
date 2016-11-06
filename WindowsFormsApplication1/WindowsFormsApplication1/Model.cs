@@ -568,7 +568,6 @@ namespace WindowsFormsApplication1
                 + " Type = @Type, "
                 + " Description = @Desc ;";
 
-            MessageBox.Show(query);
             if (StudentExists(ID) && OpenConnection() == true)
             {
                 try
@@ -580,7 +579,6 @@ namespace WindowsFormsApplication1
                     cmd.Parameters.AddWithValue("@Type", Type);
                     cmd.Parameters.AddWithValue("@Desc", Desc);
 
-                    MessageBox.Show(cmd.CommandText);
                     cmd.Connection = connection;
 
                     cmd.ExecuteNonQuery();
