@@ -30,11 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.AddReferral_ID = new System.Windows.Forms.TextBox();
-            this.AddReferral_Date = new System.Windows.Forms.TextBox();
             this.AddReferral_Category = new System.Windows.Forms.ComboBox();
             this.RefDesc = new System.Windows.Forms.TextBox();
             this.RefDescBox = new System.Windows.Forms.Button();
@@ -61,20 +59,10 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Student ID";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(76, 116);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Referral Date";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(49, 158);
+            this.label4.Location = new System.Drawing.Point(49, 114);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(118, 17);
@@ -84,7 +72,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(57, 196);
+            this.label5.Location = new System.Drawing.Point(57, 152);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(112, 17);
@@ -99,18 +87,10 @@
             this.AddReferral_ID.Size = new System.Drawing.Size(116, 22);
             this.AddReferral_ID.TabIndex = 7;
             // 
-            // AddReferral_Date
-            // 
-            this.AddReferral_Date.Location = new System.Drawing.Point(192, 116);
-            this.AddReferral_Date.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.AddReferral_Date.Name = "AddReferral_Date";
-            this.AddReferral_Date.Size = new System.Drawing.Size(116, 22);
-            this.AddReferral_Date.TabIndex = 8;
-            // 
             // AddReferral_Category
             // 
             this.AddReferral_Category.FormattingEnabled = true;
-            this.AddReferral_Category.Location = new System.Drawing.Point(192, 158);
+            this.AddReferral_Category.Location = new System.Drawing.Point(192, 114);
             this.AddReferral_Category.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddReferral_Category.Name = "AddReferral_Category";
             this.AddReferral_Category.Size = new System.Drawing.Size(116, 24);
@@ -119,7 +99,7 @@
             // 
             // RefDesc
             // 
-            this.RefDesc.Location = new System.Drawing.Point(192, 196);
+            this.RefDesc.Location = new System.Drawing.Point(192, 152);
             this.RefDesc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RefDesc.Name = "RefDesc";
             this.RefDesc.Size = new System.Drawing.Size(240, 22);
@@ -144,11 +124,9 @@
             this.Controls.Add(this.RefDescBox);
             this.Controls.Add(this.RefDesc);
             this.Controls.Add(this.AddReferral_Category);
-            this.Controls.Add(this.AddReferral_Date);
             this.Controls.Add(this.AddReferral_ID);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -163,11 +141,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox AddReferral_ID;
-        private System.Windows.Forms.TextBox AddReferral_Date;
         private System.Windows.Forms.ComboBox AddReferral_Category;
         private System.Windows.Forms.TextBox RefDesc;
         private System.Windows.Forms.Button RefDescBox;

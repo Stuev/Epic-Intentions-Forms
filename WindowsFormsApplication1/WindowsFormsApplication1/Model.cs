@@ -525,7 +525,7 @@ namespace WindowsFormsApplication1
 
         public static bool StudentExists(String ID)
         {
-            string query = "SELECT * FROM Students WHERE ID = '" + ID + "';";
+            string query = "SELECT * FROM student WHERE ID = '" + ID + "';";
 
             List<string> student = new List<string>();
             if (OpenConnection() == true)
@@ -563,10 +563,12 @@ namespace WindowsFormsApplication1
 
         public static bool InsertReferral(string ID, string Date, string Type, string Desc)
         {
-            string query = "INSERT INTO referrals ('ID', 'Referral_Date', 'Type', 'Description') "
-                + "VALUES(@ID, '" + Date + "' , @Type, @Desc)";
+            string query = "INSERT INTO referrals SET ID = '" + ID + "',"
+                + " Referral_Date = '" + Date + "', "
+                + " Type = @Type, "
+                + " Description = @Desc ;";
 
-
+            MessageBox.Show(query);
             if (StudentExists(ID) && OpenConnection() == true)
             {
                 try
@@ -574,10 +576,11 @@ namespace WindowsFormsApplication1
                     MySqlCommand cmd = new MySqlCommand();
 
                     cmd.CommandText = query;
-                    cmd.Parameters.AddWithValue("@ID", ID);
+                    
                     cmd.Parameters.AddWithValue("@Type", Type);
                     cmd.Parameters.AddWithValue("@Desc", Desc);
 
+                    MessageBox.Show(cmd.CommandText);
                     cmd.Connection = connection;
 
                     cmd.ExecuteNonQuery();
