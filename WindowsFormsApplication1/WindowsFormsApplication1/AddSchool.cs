@@ -20,7 +20,7 @@ namespace WindowsFormsApplication1
         private void AddSchool_Button_Click(object sender, EventArgs e)
         {
 
-            string school = AddSchool_ExistingSchool.Text;
+            string school = AddSchoolExistingSchool.Text;
             if (school == "")
             {
                 MessageBox.Show("School Field is Empty!");
