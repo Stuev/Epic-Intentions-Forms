@@ -128,6 +128,36 @@
     <Compile Include="AddUnCumGPA.Designer.cs">
       <DependentUpon>AddUnCumGPA.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeleteCum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteCum.Designer.cs">
+      <DependentUpon>DeleteCum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteMain.Designer.cs">
+      <DependentUpon>DeleteMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteReferrals.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteReferrals.Designer.cs">
+      <DependentUpon>DeleteReferrals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteStudent.Designer.cs">
+      <DependentUpon>DeleteStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteUncum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteUncum.Designer.cs">
+      <DependentUpon>DeleteUncum.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditPart2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +232,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddUnCumGPA.resx">
       <DependentUpon>AddUnCumGPA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteCum.resx">
+      <DependentUpon>DeleteCum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteMain.resx">
+      <DependentUpon>DeleteMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteReferrals.resx">
+      <DependentUpon>DeleteReferrals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteStudent.resx">
+      <DependentUpon>DeleteStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteUncum.resx">
+      <DependentUpon>DeleteUncum.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Edit.resx">
       <DependentUpon>Edit.cs</DependentUpon>

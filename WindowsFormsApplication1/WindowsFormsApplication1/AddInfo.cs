@@ -20,7 +20,7 @@ namespace WindowsFormsApplication1
         private void AddSchool_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AddSchool nextForm = new AddSchool();
+            AddSchool_ID nextForm = new AddSchool_ID();
             nextForm.ShowDialog();
             this.Show();
         }

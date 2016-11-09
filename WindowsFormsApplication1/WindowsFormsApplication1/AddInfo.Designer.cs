@@ -51,7 +51,7 @@
             this.AddUncumGPA.Name = "AddUncumGPA";
             this.AddUncumGPA.Size = new System.Drawing.Size(204, 36);
             this.AddUncumGPA.TabIndex = 1;
-            this.AddUncumGPA.Text = "Add UnCumulative GPA from Student Reports";
+            this.AddUncumGPA.Text = "Add UnCumulative Grades from Student Reports";
             this.AddUncumGPA.UseVisualStyleBackColor = true;
             this.AddUncumGPA.Click += new System.EventHandler(this.AddUncumGPA_Click);
             // 
@@ -71,7 +71,7 @@
             this.AddSchool.Name = "AddSchool";
             this.AddSchool.Size = new System.Drawing.Size(204, 36);
             this.AddSchool.TabIndex = 3;
-            this.AddSchool.Text = "Add School";
+            this.AddSchool.Text = "Change Attending School for Existing Student";
             this.AddSchool.UseVisualStyleBackColor = true;
             this.AddSchool.Click += new System.EventHandler(this.AddSchool_Click);
             // 

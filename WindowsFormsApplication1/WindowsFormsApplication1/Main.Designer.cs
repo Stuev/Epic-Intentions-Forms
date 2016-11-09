@@ -37,6 +37,7 @@
             this.ImportData = new System.Windows.Forms.Button();
             this.ViewAll = new System.Windows.Forms.Button();
             this.PastStudents = new System.Windows.Forms.Button();
+            this.Delete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -46,7 +47,7 @@
             this.label1.Location = new System.Drawing.Point(150, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 20);
+            this.label1.Size = new System.Drawing.Size(101, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select Option";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -135,15 +136,26 @@
             this.PastStudents.Name = "PastStudents";
             this.PastStudents.Size = new System.Drawing.Size(155, 57);
             this.PastStudents.TabIndex = 8;
-            this.PastStudents.Text = "Update Past Students";
+            this.PastStudents.Text = "Update Past Student Status";
             this.PastStudents.UseVisualStyleBackColor = true;
             this.PastStudents.Click += new System.EventHandler(this.PastStudents_Click);
             // 
+            // Delete
+            // 
+            this.Delete.Location = new System.Drawing.Point(122, 284);
+            this.Delete.Margin = new System.Windows.Forms.Padding(4);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(155, 51);
+            this.Delete.TabIndex = 9;
+            this.Delete.Text = "Admin Delete";
+            this.Delete.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 374);
+            this.Controls.Add(this.Delete);
             this.Controls.Add(this.PastStudents);
             this.Controls.Add(this.ViewAll);
             this.Controls.Add(this.ImportData);
@@ -174,5 +186,6 @@
         private System.Windows.Forms.Button ImportData;
         private System.Windows.Forms.Button ViewAll;
         private System.Windows.Forms.Button PastStudents;
+        private System.Windows.Forms.Button Delete;
     }
 }

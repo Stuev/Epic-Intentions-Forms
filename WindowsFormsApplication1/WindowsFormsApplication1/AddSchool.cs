@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class AddSchool : Form
+    public partial class AddSchool_ID : Form
     {
-        public AddSchool()
+        public AddSchool_ID()
         {
             InitializeComponent();
         }
@@ -20,7 +20,7 @@ namespace WindowsFormsApplication1
         private void AddSchool_Button_Click(object sender, EventArgs e)
         {
 
-            string school = AddSchool_Name.Text;
+            string school = AddSchool_ExistingSchool.Text;
             if (school == "")
             {
                 MessageBox.Show("School Field is Empty!");
@@ -37,6 +37,11 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("School already exists!");
                 return;
             }
+        }
+
+        private void AddSchool_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

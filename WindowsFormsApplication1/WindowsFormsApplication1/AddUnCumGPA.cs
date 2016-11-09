@@ -34,7 +34,7 @@ namespace WindowsFormsApplication1
             float GPA;
             try
             {
-                GPA = float.Parse(GPA_AddUnCummGPA.Text);
+                GPA = float.Parse(Grade_AddUnCummGPA.Text);
             }
             catch
             {
