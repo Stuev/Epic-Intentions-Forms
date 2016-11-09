@@ -99,20 +99,20 @@ namespace WindowsFormsApplication1
            }
            if (Current.GetItemText(Current.SelectedItem) == "All")
            {
-               statuses = Model.getCurrentStudentOptions();
+              statuses = Model.getCurrentStudentOptions();
            } else
            {
-               statuses.Add(Current.GetItemText(Current.SelectedItem));
+              statuses.Add(Current.GetItemText(Current.SelectedItem));
            }
-            if (UnCumClass.GetItemText(UnCumClass.SelectedItem) == "All")
-            {
-                courses = Model.getCourses();
-            }
-            else
-            {
-                courses.Add(UnCumClass.GetItemText(UnCumClass.SelectedItem));
-            }
-            List<string>[] selectedVals= Model.filterSelectStudent(minGPA, maxGPA, schools, minGrade, maxGrade, minBehavior, maxBehavior, minAttendance, maxAttendance, genders, races, statuses);
+           if (UnCumClass.GetItemText(UnCumClass.SelectedItem) == "All")
+           {
+               courses = Model.getCourses();
+           }
+           else
+           {
+               courses.Add(UnCumClass.GetItemText(UnCumClass.SelectedItem));
+           }
+           List<string>[] selectedVals= Model.filterSelectStudent(minGPA, maxGPA, schools, minGrade, maxGrade, minBehavior, maxBehavior, minAttendance, maxAttendance, genders, races, statuses);
 
            Excel.Application oXL;
            Excel._Workbook oWB;
