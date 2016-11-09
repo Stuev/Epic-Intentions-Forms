@@ -1598,17 +1598,27 @@ namespace WindowsFormsApplication1
         {
             return getMin("cum_GPA", "GPA");
         }
-
+        
         public static int getMaxGPA()
         {
             return getMax("cum_GPA", "GPA");
         }
-
+        public static int getMinUncumGPA()
+        {
+            return getMin("un_cum_gpa", "GRADE");
+        }
+        public static int getMaxUncumGPA()
+        {
+            return getMax("un_cum_gpa", "GRADE");
+        }
         public static List<string> getSchools()
         {
             return selectCol("school", "Name");
         }
-
+        public static List<string> getCourses()
+        {
+            return selectCol("un_cum_gpa", "Class");
+        }
         public static string getSchoolByID(int id)
         {
             string query = "SELECT School_Name FROM attends "

@@ -26,8 +26,11 @@ namespace WindowsFormsApplication1
             Behavior2.Text = Model.getMaxReferrals() + "";
             Attend1.Text = Model.getMinDaysMissed() + "";
             Attend2.Text = Model.getMaxDaysMissed() + "";
+            UnCumGrade1.Text = Model.getMinUncumGPA() + "";
+            UnCumGrade2.Text = Model.getMaxUncumGPA() + "";
 
-           
+
+
             List<String> schools = Model.getSchools();
             schools.Add("All");
             List<String> genders = Model.getGenders();
@@ -36,17 +39,20 @@ namespace WindowsFormsApplication1
             isCurrents.Add("All");
             List<String> races = Model.getRaces();
             races.Add("All");
+            List<String> courses = Model.getClasses();
+            courses.Add("All");
 
             School.DataSource = schools;
             Gender.DataSource = genders;
             Race.DataSource = races;
             Current.DataSource = isCurrents;
+            UnCumClass.DataSource = courses;
 
             Gender.DropDownStyle = ComboBoxStyle.DropDownList;
             School.DropDownStyle = ComboBoxStyle.DropDownList;
             Race.DropDownStyle = ComboBoxStyle.DropDownList;
             Current.DropDownStyle = ComboBoxStyle.DropDownList;
-
+            UnCumClass.DropDownStyle = ComboBoxStyle.DropDownList; 
         }
         private void Submit_Click(object sender, EventArgs e)
         {
@@ -58,11 +64,14 @@ namespace WindowsFormsApplication1
             int maxBehavior = Int32.Parse(Behavior2.Text);
             int minAttendance = Int32.Parse(Attend1.Text);
             int maxAttendance = Int32.Parse(Attend2.Text);
-
+            int minClassGrade = Int32.Parse(UnCumGrade1.Text);
+            int maxClassGrade = Int32.Parse(UnCumGrade2.Text);
             List<string> genders = new List<string>();
             List<string> schools = new List<string>();
             List<string> races = new List<string>();
             List<string> statuses = new List<string>();
+            List<string> courses = new List<string>();
+
             
            if (Gender.GetItemText(Gender.SelectedItem) == "All")
            {
@@ -95,12 +104,20 @@ namespace WindowsFormsApplication1
            {
                statuses.Add(Current.GetItemText(Current.SelectedItem));
            }
-           List<string>[] selectedVals= Model.filterSelectStudent(minGPA, maxGPA, schools, minGrade, maxGrade, minBehavior, maxBehavior, minAttendance, maxAttendance, genders, races, statuses);
+            if (UnCumClass.GetItemText(UnCumClass.SelectedItem) == "All")
+            {
+                courses = Model.getCourses();
+            }
+            else
+            {
+                courses.Add(UnCumClass.GetItemText(UnCumClass.SelectedItem));
+            }
+            List<string>[] selectedVals= Model.filterSelectStudent(minGPA, maxGPA, schools, minGrade, maxGrade, minBehavior, maxBehavior, minAttendance, maxAttendance, genders, races, statuses);
 
-            Excel.Application oXL;
-            Excel._Workbook oWB;
-            Excel._Worksheet oSheet;
-            Excel.Range oRng;
+           Excel.Application oXL;
+           Excel._Workbook oWB;
+           Excel._Worksheet oSheet;
+           Excel.Range oRng;
 
             
             try
@@ -133,10 +150,12 @@ namespace WindowsFormsApplication1
                 oSheet.Cells[1,14] = "End Date";
                 oSheet.Cells[1,15] = "School Name";
                 oSheet.Cells[1,16] = "Referral Count";
+                oSheet.Cells[1, 17] = "Class";
+                oSheet.Cells[1, 18] = "Class grade";
 
                 //Format A1:P1 as bold, vertical alignment = center.
-                oSheet.get_Range("A1", "P1").Font.Bold = true;
-                oSheet.get_Range("A1", "P1").VerticalAlignment =
+                oSheet.get_Range("A1", "R1").Font.Bold = true;
+                oSheet.get_Range("A1", "R1").VerticalAlignment =
                     Excel.XlVAlign.xlVAlignCenter;
 
                 // Create an array to multiple values at once.
@@ -155,10 +174,10 @@ namespace WindowsFormsApplication1
 
 
                 //Fill A2:B6 with an array of values (First and Last Names).
-                oSheet.get_Range("A2", "P2").Value2 = toPrint;
+                oSheet.get_Range("A2", "R2").Value2 = toPrint;
 
                 //AutoFit columns A:P.
-                oRng = oSheet.get_Range("A1", "P1");
+                oRng = oSheet.get_Range("A1", "R1");
                 oRng.EntireColumn.AutoFit();
 
 
