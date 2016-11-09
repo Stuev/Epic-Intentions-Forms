@@ -27,12 +27,21 @@ namespace WindowsFormsApplication1
             Attend1.Text = Model.getMinDaysMissed() + "";
             Attend2.Text = Model.getMaxDaysMissed() + "";
 
-            Gender.DataSource = Model.getGenders();
-            School.DataSource = Model.getSchools();
-            Race.DataSource = Model.getRaces();
-            Current.DataSource = Model.getCurrentStudentOptions();
+           
+            List<String> schools = Model.getSchools();
+            schools.Add("All");
+            List<String> genders = Model.getGenders();
+            genders.Add("All");
+            List<String> isCurrents = Model.getCurrentStudentOptions();
+            isCurrents.Add("All");
+            List<String> races = Model.getRaces();
+            races.Add("All");
 
-               
+            School.DataSource = schools;
+            Gender.DataSource = genders;
+            Race.DataSource = races;
+            Current.DataSource = isCurrents;
+
             Gender.DropDownStyle = ComboBoxStyle.DropDownList;
             School.DropDownStyle = ComboBoxStyle.DropDownList;
             Race.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -51,15 +60,42 @@ namespace WindowsFormsApplication1
             int maxAttendance = Int32.Parse(Attend2.Text);
 
             List<string> genders = new List<string>();
-            genders.Add(Gender.GetItemText(Gender.SelectedItem));
             List<string> schools = new List<string>();
-            schools.Add(School.GetItemText(School.SelectedItem));
             List<string> races = new List<string>();
-            races.Add(Gender.GetItemText(Race.SelectedItem));
             List<string> statuses = new List<string>();
-            statuses.Add(Current.GetItemText(Current.SelectedItem));
             
-            List<string>[] selectedVals= Model.filterSelectStudent(minGPA, maxGPA, schools, minGrade, maxGrade, minBehavior, maxBehavior, minAttendance, maxAttendance, genders, races, statuses);
+           if (Gender.GetItemText(Gender.SelectedItem) == "All")
+           {
+               genders = Model.getGenders();
+           } else
+           {
+               genders.Add(Gender.GetItemText(Gender.SelectedItem));
+           }
+
+           if (School.GetItemText(School.SelectedItem) == "All")
+           {
+               schools = Model.getSchools();
+           } else
+           {
+               schools.Add(School.GetItemText(School.SelectedItem));
+           }
+
+           if (Race.GetItemText(Race.SelectedItem) == "All")
+           {
+               races = Model.getRaces();
+           }
+           else
+           {
+               races.Add(Race.GetItemText(Race.SelectedItem));
+           }
+           if (Current.GetItemText(Current.SelectedItem) == "All")
+           {
+               statuses = Model.getCurrentStudentOptions();
+           } else
+           {
+               statuses.Add(Current.GetItemText(Current.SelectedItem));
+           }
+           List<string>[] selectedVals= Model.filterSelectStudent(minGPA, maxGPA, schools, minGrade, maxGrade, minBehavior, maxBehavior, minAttendance, maxAttendance, genders, races, statuses);
 
             Excel.Application oXL;
             Excel._Workbook oWB;
