@@ -16,5 +16,37 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DeleteCum nextForm = new DeleteCum();
+            nextForm.ShowDialog();
+            this.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DeleteUncum nextForm = new DeleteUncum();
+            nextForm.ShowDialog();
+            this.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DeleteReferrals nextForm = new DeleteReferrals();
+            nextForm.ShowDialog();
+            this.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DeleteStudent nextForm = new DeleteStudent();
+            nextForm.ShowDialog();
+            this.Show();
+        }
     }
 }

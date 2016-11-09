@@ -358,5 +358,13 @@ namespace WindowsFormsApplication1
             nextForm.ShowDialog();
             this.Show();
         }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DeleteMain nextForm = new DeleteMain();
+            nextForm.ShowDialog();
+            this.Show();
+        }
     }
 }

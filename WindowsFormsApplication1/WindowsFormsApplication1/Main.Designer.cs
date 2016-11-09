@@ -149,6 +149,7 @@
             this.Delete.TabIndex = 9;
             this.Delete.Text = "Admin Delete";
             this.Delete.UseVisualStyleBackColor = true;
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // Main
             // 
