@@ -20,46 +20,114 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             GPA1.Text = Model.getMinGPA() + "";
             GPA2.Text = Model.getMaxGPA() + "";
+            UnCumGrade1.Text = Model.getMinClassGrade() + "";
+            UnCumGrade2.Text = Model.getMaxClassGrade() + "";
             Grade1.Text = Model.getMinGrade() + "";
-            Grade2.Text = Model.getMaxGrade() + ""; ;
+            Grade2.Text = Model.getMaxGrade() + "";
             Behavior1.Text = Model.getMinReferrals() + "";
             Behavior2.Text = Model.getMaxReferrals() + "";
             Attend1.Text = Model.getMinDaysMissed() + "";
             Attend2.Text = Model.getMaxDaysMissed() + "";
 
-            Gender.DataSource = Model.getGenders();
-            School.DataSource = Model.getSchools();
-            Race.DataSource = Model.getRaces();
-            Current.DataSource = Model.getCurrentStudentOptions();
+            List<string> classes = Model.getClasses();
+            classes.Insert(0, "all");
+
+            List<string> genders = Model.getGenders();
+            genders.Insert(0, "all");
+
+            List<string> schools = Model.getSchools();
+            schools.Insert(0, "all");
+
+            List<string> races = Model.getRaces();
+            races.Insert(0, "all");
+
+            List<string> isCurrents = Model.getCurrentStudentOptions();
+            isCurrents.Insert(0, "all");
+
+            UnCumClass.DataSource = classes;
+            Gender.DataSource = genders;
+            School.DataSource = schools;
+            Race.DataSource = races;
+            Current.DataSource = isCurrents;
 
                
             Gender.DropDownStyle = ComboBoxStyle.DropDownList;
             School.DropDownStyle = ComboBoxStyle.DropDownList;
             Race.DropDownStyle = ComboBoxStyle.DropDownList;
             Current.DropDownStyle = ComboBoxStyle.DropDownList;
+            UnCumClass.DropDownStyle = ComboBoxStyle.DropDownList;
 
         }
         private void Submit_Click(object sender, EventArgs e)
         {
-            int minGPA = Int32.Parse(GPA1.Text);
-            int maxGPA = Int32.Parse(GPA2.Text);
-            int minGrade = Int32.Parse(Grade1.Text);
-            int maxGrade = Int32.Parse(Grade2.Text);
+            float minGPA = float.Parse(GPA1.Text);
+            float maxGPA = float.Parse(GPA2.Text);
+            int minGrade = Int32.Parse(UnCumGrade1.Text);
+            int maxGrade = Int32.Parse(UnCumGrade2.Text);
+            int minGradeLevel = Int32.Parse(Grade1.Text);
+            int maxGradeLevel = Int32.Parse(Grade2.Text);
             int minBehavior = Int32.Parse(Behavior1.Text);
             int maxBehavior = Int32.Parse(Behavior2.Text);
             int minAttendance = Int32.Parse(Attend1.Text);
             int maxAttendance = Int32.Parse(Attend2.Text);
 
             List<string> genders = new List<string>();
-            genders.Add(Gender.GetItemText(Gender.SelectedItem));
+            if (Gender.GetItemText(Gender.SelectedItem).Equals("all"))
+            {
+                genders =  (List<string>) Gender.DataSource;
+                genders.RemoveAt(0);
+            } else {
+                genders.Add(Gender.GetItemText(Gender.SelectedItem));
+            }
+
+            List<string> classes = new List<string>();
+            if (UnCumClass.GetItemText(UnCumClass.SelectedItem).Equals("all"))
+            {
+                classes = (List<string>)UnCumClass.DataSource;
+                classes.RemoveAt(0);
+
+            }
+            else
+            {
+                classes.Add(UnCumClass.GetItemText(UnCumClass.SelectedItem));
+            }
+
             List<string> schools = new List<string>();
-            schools.Add(School.GetItemText(School.SelectedItem));
+            if (School.GetItemText(School.SelectedItem).Equals("all"))
+            {
+                schools = (List<string>)School.DataSource;
+                schools.RemoveAt(0);
+
+            }
+            else
+            {
+                schools.Add(School.GetItemText(School.SelectedItem));
+            }
+
             List<string> races = new List<string>();
-            races.Add(Gender.GetItemText(Race.SelectedItem));
+            if (Race.GetItemText(Race.SelectedItem).Equals("all"))
+            {
+                races = (List<string>)Race.DataSource;
+                races.RemoveAt(0);
+
+            }
+            else
+            {
+                races.Add(Race.GetItemText(Race.SelectedItem));
+            }
             List<string> statuses = new List<string>();
-            statuses.Add(Current.GetItemText(Current.SelectedItem));
-            
-            List<string>[] selectedVals= Model.filterSelectStudent(minGPA, maxGPA, schools, minGrade, maxGrade, minBehavior, maxBehavior, minAttendance, maxAttendance, genders, races, statuses);
+            if (Current.GetItemText(Current.SelectedItem).Equals("all"))
+            {
+                statuses = (List<string>)Current.DataSource;
+                statuses.RemoveAt(0);
+
+            }
+            else
+            {
+                statuses.Add(Current.GetItemText(Current.SelectedItem));
+            }
+
+            List<string>[] selectedVals= Model.filterSelectStudent(minGPA, maxGPA, schools, minGradeLevel, maxGradeLevel, minBehavior, maxBehavior, minAttendance, maxAttendance, genders, races, statuses, minGrade, maxGrade, classes);
 
             Excel.Application oXL;
             Excel._Workbook oWB;
@@ -105,7 +173,6 @@ namespace WindowsFormsApplication1
 
                 // Create an array to multiple values at once.
                 string[] toPrint = new string[selectedVals.Count()];
-                System.Diagnostics.Debug.WriteLine("ok2");
 
 
                 for (int i = 0; i < selectedVals.Count(); i = i + 1)
@@ -115,7 +182,6 @@ namespace WindowsFormsApplication1
                         toPrint[i] = selectedVals[i][j];
                     }
                 }
-                System.Diagnostics.Debug.WriteLine("ok3");
 
 
                 //Fill A2:B6 with an array of values (First and Last Names).
@@ -162,6 +228,11 @@ namespace WindowsFormsApplication1
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UnCumClass_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

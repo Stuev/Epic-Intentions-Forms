@@ -1742,6 +1742,21 @@ namespace WindowsFormsApplication1
             return selectCol("student", "race");
         }
 
+        public static List<string> getClasses()
+        {
+            return selectCol("un_cum_gpa", "Class");
+        }
+
+        public static int getMinClassGrade()
+        {
+            return getMin("un_cum_gpa", "Grade");
+        }
+
+        public static int getMaxClassGrade()
+        {
+            return getMax("un_cum_gpa", "Grade");
+        }
+
         public static List<string> getCurrentStudentOptions()
         {
             List<string> options = new List<string>();
@@ -1773,14 +1788,16 @@ namespace WindowsFormsApplication1
             return orComp;
         }
 
-        public static List<string>[] filterSelectStudent(int minGPA, int maxGPA, List<string> schools, int minGrade, int maxGrade, int minReferrals, int maxReferrals, int minDaysMissed, int maxDaysMissed, List<string> genders, List<string> races, List<string> statuses)
+        public static List<string>[] filterSelectStudent(float minGPA, float maxGPA, List<string> schools, int minGrade, int maxGrade, int minReferrals, int maxReferrals, int minDaysMissed, int maxDaysMissed, List<string> genders, List<string> races, List<string> statuses, int minClassGrade, int maxClassGrade, List<string> classes)
         {
             string schoolComp = genTextOrComp(schools, "School_Name");
             string genderComp = genTextOrComp(genders, "Gender");
             string raceComp = genTextOrComp(races, "Race");
             string statusComp = genIntOrComp(statuses, "isCurrent");
+            string classComp = genTextOrComp(classes, "Class");
 
-            string query = "SELECT * FROM student INNER JOIN cum_gpa ON student.ID = cum_gpa.ID INNER JOIN attends ON cum_gpa.ID = attends.student_ID INNER JOIN (SELECT id, COUNT(id)referral_count FROM referrals GROUP BY id) AS MyCounts ON cum_gpa.ID = MyCounts.id WHERE (GPA between " + minGPA + " AND " + maxGPA + ") AND " + schoolComp + " AND (Grade_Level between " + minGrade + " AND " + maxGrade + ") AND (referral_count between " + minReferrals + " AND " + maxReferrals + ") AND (Days_Missed between " + minDaysMissed + " AND " + maxDaysMissed + ") AND " + genderComp + " AND " + raceComp + " AND " + statusComp + ";";
+            string query = "SELECT * FROM student INNER JOIN cum_gpa ON student.ID = cum_gpa.ID INNER JOIN attends ON cum_gpa.ID = attends.student_ID INNER JOIN un_cum_gpa ON cum_gpa.ID = un_cum_gpa.ID INNER JOIN (SELECT id, COUNT(id)referral_count FROM referrals GROUP BY id) AS MyCounts ON cum_gpa.ID = MyCounts.id WHERE (GPA between " + minGPA + " AND " + maxGPA + ") AND " + schoolComp + " AND (Grade_Level between " + minGrade + " AND " + maxGrade + ") AND (referral_count between " + minReferrals + " AND " + maxReferrals + ") AND (Days_Missed between " + minDaysMissed + " AND " + maxDaysMissed + ") AND " + genderComp + " AND " + raceComp + " AND " + statusComp + " AND " + classComp + " AND (Grade between " + minClassGrade + " AND " + maxClassGrade + ");";
+            System.Diagnostics.Debug.WriteLine(query);
 
             if (OpenConnection() == true)
             {
