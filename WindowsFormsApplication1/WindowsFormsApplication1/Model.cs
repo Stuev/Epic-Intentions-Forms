@@ -764,7 +764,33 @@ namespace WindowsFormsApplication1
 
         }
 
+        public static void InsertAttends(string schoolStart, int id, string school)
+        {
+            string query = "INSERT INTO attends SET Start_Date = '" + schoolStart
+                + "', Student_ID = '" + id
+                + "', School_Name = '" + school
+                + "';";
 
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
 
         public static void InsertStudent(String firstName, String lastName, int studentID, Double gpa,
             String school, int grade, int numRefs, int daysMissed, String gender, String race, String curStudent, String RegDate, String GradeMod)

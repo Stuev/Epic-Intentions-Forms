@@ -206,6 +206,7 @@ namespace WindowsFormsApplication1
                         try
                         {
                             Model.UpdateStudentTable(studentID.ToString(), grade.ToString(), gradeMod, regDate, gender, race, daysAbsent.ToString());
+                            Model.InsertCumGPA(studentID, gpa, gradeMod);
                         }
                         catch
                         {
@@ -218,6 +219,18 @@ namespace WindowsFormsApplication1
                         {
                             Model.InsertStudent(firstName, lastName, studentID, gpa, school, grade, numRefs,
                                 daysAbsent, gender, race, "yes", regDate, gradeMod);
+                            DateTime date = DateTime.Now;
+                            String year = date.Year.ToString();
+                            String month = date.Month.ToString();
+                            String day = date.Day.ToString();
+                            string curDate = year + '-' + month + '-' + day;
+                            List<String> schools = Model.getSchools();
+                            if (!schools.Contains(school))
+                            {
+                                Model.InsertSchool(school);
+                            }
+                            Model.InsertAttends(curDate, studentID, school);
+                            Model.InsertCumGPA(studentID, gpa, gradeMod);
                         }
                         catch
                         {
