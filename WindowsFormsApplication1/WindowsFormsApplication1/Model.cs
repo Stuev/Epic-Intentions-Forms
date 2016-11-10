@@ -1802,8 +1802,8 @@ namespace WindowsFormsApplication1
             if (OpenConnection() == true)
             {
 
-                List<string>[] returnval = new List<string>[16];
-                for (int i = 0; i < 16; i++)
+                List<string>[] returnval = new List<string>[20];
+                for (int i = 0; i < 20; i++)
                 {
                     returnval[i] = new List<string>();
                 }
@@ -1831,6 +1831,10 @@ namespace WindowsFormsApplication1
                     returnval[13].Add(dataReader["End_Date"] + "");
                     returnval[14].Add(dataReader["School_Name"] + "");
                     returnval[15].Add(dataReader["referral_count"] + "");
+                    returnval[16].Add(dataReader["Grade_Num"] + "");
+                    returnval[17].Add(dataReader["Class"] + "");
+                    returnval[18].Add(dataReader["Grade"] + "");
+                    returnval[19].Add(dataReader["Grade_Entry_Date"] + "");
                 }
 
                 //close Data Reader

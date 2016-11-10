@@ -354,5 +354,10 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Information Provided is Not Correct!");
             }
         }
+
+        private void ViewID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

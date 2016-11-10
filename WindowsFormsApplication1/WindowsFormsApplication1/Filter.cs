@@ -159,36 +159,63 @@ namespace WindowsFormsApplication1
                 oSheet.Cells[1, 8] = "Race";
                 oSheet.Cells[1, 9] = "Current?";
                 oSheet.Cells[1, 10] = "Days Missed";
-                oSheet.Cells[1, 11] = "GPA";
+                oSheet.Cells[1, 11] = "Cumulative GPA";
                 oSheet.Cells[1,12] = "GPA Entry Date";
                 oSheet.Cells[1,13] = "Start Date";
                 oSheet.Cells[1,14] = "End Date";
                 oSheet.Cells[1,15] = "School Name";
                 oSheet.Cells[1,16] = "Referral Count";
+                oSheet.Cells[1,17] = "Grade Level";
+                oSheet.Cells[1,18] = "Class";
+                oSheet.Cells[1, 19] = "Grade in Class";
+                oSheet.Cells[1, 20] = "Grade Entry Date";
 
                 //Format A1:P1 as bold, vertical alignment = center.
-                oSheet.get_Range("A1", "P1").Font.Bold = true;
-                oSheet.get_Range("A1", "P1").VerticalAlignment =
+                oSheet.get_Range("A1", "T1").Font.Bold = true;
+                oSheet.get_Range("A1", "T1").VerticalAlignment =
                     Excel.XlVAlign.xlVAlignCenter;
 
-                // Create an array to multiple values at once.
+
                 string[] toPrint = new string[selectedVals.Count()];
+
+
+                for (int j = 0; j < selectedVals[0].Count(); j++)
+                {
+                    int k = j + 2;
+                    for (int i = 0; i < selectedVals.Count(); i = i + 1)
+                    {
+                        toPrint[i] = selectedVals[i][j];
+                    }
+                    //Fill with an array of values (First and Last Names).
+                    oSheet.get_Range("A" + k, "T" + k).Value2 = toPrint;
+                }
+
+                /*
+                // Create an array to multiple values at once.
+                string[][] toPrint = new string[selectedVals.Count()][];
 
 
                 for (int i = 0; i < selectedVals.Count(); i = i + 1)
                 {
+                    toPrint[0] = new string[selectedVals[i].Count()]; 
+
                     for (int j = 0; j < selectedVals[i].Count(); j++)
                     {
-                        toPrint[i] = selectedVals[i][j];
+                        toPrint[i][j] = selectedVals[i][j];
                     }
                 }
+                
 
 
                 //Fill A2:B6 with an array of values (First and Last Names).
-                oSheet.get_Range("A2", "P2").Value2 = toPrint;
+                for (int i = 0; i < toPrint[0].Count(); i++)
+                {
+                    oSheet.get_Range("A" + (i + 2), "T" + (i + 2)).Value2 = toPrint[i];
 
+                }
+                */
                 //AutoFit columns A:P.
-                oRng = oSheet.get_Range("A1", "P1");
+                oRng = oSheet.get_Range("A1", "T1");
                 oRng.EntireColumn.AutoFit();
 
 
