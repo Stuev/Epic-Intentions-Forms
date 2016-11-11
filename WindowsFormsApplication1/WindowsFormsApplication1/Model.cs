@@ -358,7 +358,26 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-
+        public static int convertGPA(double gpa)
+        {
+            if (gpa >= 90)
+            {
+                return 4;
+            }
+            else if (gpa >= 80)
+            {
+                return 3;
+            }
+            else if (gpa >= 70)
+            {
+                return 2;
+            }
+            else if (gpa >= 60)
+            {
+                return 1;
+            }
+            else return 0;
+        }
         public static void UpdateReferrals (string RefID, string RefDate, string Type, string Description)
         {
             string query = "UPDATE referrals SET Referral_Date = @RefDate, "
