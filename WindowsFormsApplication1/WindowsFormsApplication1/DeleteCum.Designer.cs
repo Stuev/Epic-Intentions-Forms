@@ -30,14 +30,14 @@
         {
             this.label7 = new System.Windows.Forms.Label();
             this.DeleteCumSubmit = new System.Windows.Forms.Button();
-            this.DeleteCumDate = new System.Windows.Forms.TextBox();
-            this.DeleteCumGrade = new System.Windows.Forms.TextBox();
-            this.DeleteCumID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.DeleteCumID = new System.Windows.Forms.ComboBox();
+            this.DeleteCumGPA = new System.Windows.Forms.ComboBox();
+            this.DeleteCumDate = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label7
@@ -53,37 +53,13 @@
             // DeleteCumSubmit
             // 
             this.DeleteCumSubmit.Location = new System.Drawing.Point(250, 438);
-            this.DeleteCumSubmit.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.DeleteCumSubmit.Margin = new System.Windows.Forms.Padding(6);
             this.DeleteCumSubmit.Name = "DeleteCumSubmit";
             this.DeleteCumSubmit.Size = new System.Drawing.Size(246, 77);
             this.DeleteCumSubmit.TabIndex = 22;
             this.DeleteCumSubmit.Text = "Delete Grade";
             this.DeleteCumSubmit.UseVisualStyleBackColor = true;
-            // 
-            // DeleteCumDate
-            // 
-            this.DeleteCumDate.Location = new System.Drawing.Point(354, 329);
-            this.DeleteCumDate.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.DeleteCumDate.Name = "DeleteCumDate";
-            this.DeleteCumDate.Size = new System.Drawing.Size(194, 31);
-            this.DeleteCumDate.TabIndex = 21;
-            // 
-            // DeleteCumGrade
-            // 
-            this.DeleteCumGrade.Location = new System.Drawing.Point(354, 250);
-            this.DeleteCumGrade.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.DeleteCumGrade.Name = "DeleteCumGrade";
-            this.DeleteCumGrade.Size = new System.Drawing.Size(194, 31);
-            this.DeleteCumGrade.TabIndex = 20;
-            // 
-            // DeleteCumID
-            // 
-            this.DeleteCumID.Location = new System.Drawing.Point(354, 171);
-            this.DeleteCumID.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.DeleteCumID.Name = "DeleteCumID";
-            this.DeleteCumID.Size = new System.Drawing.Size(194, 31);
-            this.DeleteCumID.TabIndex = 18;
-            this.DeleteCumID.TextChanged += new System.EventHandler(this.DeleteCumID_TextChanged);
+            this.DeleteCumSubmit.Click += new System.EventHandler(this.DeleteCumSubmit_Click_1);
             // 
             // label6
             // 
@@ -136,22 +112,50 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Delete Cumulative GPA ";
             // 
+            // DeleteCumID
+            // 
+            this.DeleteCumID.FormattingEnabled = true;
+            this.DeleteCumID.Location = new System.Drawing.Point(354, 185);
+            this.DeleteCumID.Margin = new System.Windows.Forms.Padding(6);
+            this.DeleteCumID.Name = "DeleteCumID";
+            this.DeleteCumID.Size = new System.Drawing.Size(238, 33);
+            this.DeleteCumID.TabIndex = 43;
+            this.DeleteCumID.SelectedIndexChanged += new System.EventHandler(this.UnCumClass_SelectedIndexChanged);
+            // 
+            // DeleteCumGPA
+            // 
+            this.DeleteCumGPA.FormattingEnabled = true;
+            this.DeleteCumGPA.Location = new System.Drawing.Point(354, 250);
+            this.DeleteCumGPA.Margin = new System.Windows.Forms.Padding(6);
+            this.DeleteCumGPA.Name = "DeleteCumGPA";
+            this.DeleteCumGPA.Size = new System.Drawing.Size(238, 33);
+            this.DeleteCumGPA.TabIndex = 44;
+            // 
+            // DeleteCumDate
+            // 
+            this.DeleteCumDate.FormattingEnabled = true;
+            this.DeleteCumDate.Location = new System.Drawing.Point(354, 329);
+            this.DeleteCumDate.Margin = new System.Windows.Forms.Padding(6);
+            this.DeleteCumDate.Name = "DeleteCumDate";
+            this.DeleteCumDate.Size = new System.Drawing.Size(238, 33);
+            this.DeleteCumDate.TabIndex = 45;
+            // 
             // DeleteCum
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 690);
+            this.Controls.Add(this.DeleteCumDate);
+            this.Controls.Add(this.DeleteCumGPA);
+            this.Controls.Add(this.DeleteCumID);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.DeleteCumSubmit);
-            this.Controls.Add(this.DeleteCumDate);
-            this.Controls.Add(this.DeleteCumGrade);
-            this.Controls.Add(this.DeleteCumID);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "DeleteCum";
             this.Text = "DeleteCum";
             this.ResumeLayout(false);
@@ -163,13 +167,13 @@
 
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button DeleteCumSubmit;
-        private System.Windows.Forms.TextBox DeleteCumDate;
-        private System.Windows.Forms.TextBox DeleteCumGrade;
-        private System.Windows.Forms.TextBox DeleteCumID;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox DeleteCumID;
+        private System.Windows.Forms.ComboBox DeleteCumGPA;
+        private System.Windows.Forms.ComboBox DeleteCumDate;
     }
 }

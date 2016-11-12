@@ -15,11 +15,69 @@ namespace WindowsFormsApplication1
         public DeleteReferrals()
         {
             InitializeComponent();
+
+            List<string> ids = Model.getRefIds();
+            ids.Insert(0, "all");
+
+            List<string> types = Model.getRefTypes();
+            types.Insert(0, "all");
+
+            List<string> dates = Model.getRefDates();
+            dates.Insert(0, "all");
+
+            DeleteReferralID.DataSource = ids;
+            DeleteReferralType.DataSource = types;
+            DeleteReferralDate.DataSource = dates;
         }
 
         private void label7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void DeleteReferralID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteRefSubmit_Click(object sender, EventArgs e)
+        {
+            List<string> ids = new List<string>();
+            if (DeleteReferralID.GetItemText(DeleteReferralID.SelectedItem).Equals("all"))
+            {
+                ids = (List<string>)DeleteReferralID.DataSource;
+                ids.RemoveAt(0);
+            }
+            else
+            {
+                ids.Add(DeleteReferralID.GetItemText(DeleteReferralID.SelectedItem));
+            }
+
+            List<string> types = new List<string>();
+            if (DeleteReferralType.GetItemText(DeleteReferralType.SelectedItem).Equals("all"))
+            {
+                types = (List<string>)DeleteReferralType.DataSource;
+                types.RemoveAt(0);
+
+            }
+            else
+            {
+                types.Add(DeleteReferralType.GetItemText(DeleteReferralType.SelectedItem));
+            }
+
+            List<string> dates = new List<string>();
+            if (DeleteReferralDate.GetItemText(DeleteReferralDate.SelectedItem).Equals("all"))
+            {
+                dates = (List<string>)DeleteReferralDate.DataSource;
+                dates.RemoveAt(0);
+
+            }
+            else
+            {
+                dates.Add(DeleteReferralDate.GetItemText(DeleteReferralDate.SelectedItem));
+            }
+
+            Model.deleteRef(ids, types, dates);
         }
     }
 }

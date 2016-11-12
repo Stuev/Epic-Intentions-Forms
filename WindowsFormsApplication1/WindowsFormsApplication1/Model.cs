@@ -1890,6 +1890,192 @@ namespace WindowsFormsApplication1
             return options;
         }
 
+        public static List<string> getUnCumIds()
+        {
+            return selectCol("un_cum_gpa", "ID");
+        }
+
+        public static List<string> getUnCumClasses()
+        {
+            return selectCol("un_cum_gpa", "Class");
+        }
+
+        public static List<string> getUnCumGrades()
+        {
+            return selectCol("un_cum_gpa", "Grade");
+        }
+
+        public static List<string> getUnCumDates()
+        {
+            return selectCol("un_cum_gpa", "Grade_Entry_Date");
+        }
+
+        public static void deleteUnCum(List<string> id, List<string> classes,  List<string> grade, List<string> date)
+        {
+            string idComp = genTextOrComp(id, "ID");
+            string classComp = genTextOrComp(classes, "Class");
+            string gradeComp = genTextOrComp(grade, "Grade");
+            string dateComp = genTextOrComp(date, "Grade_Entry_Date");
+            string query = "DELETE FROM un_cum_gpa WHERE " + idComp + " AND " + gradeComp + " AND " + dateComp + " AND " + classComp + ";";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                    MessageBox.Show("Delete succesful");
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
+        public static List<string> getRefIds()
+        {
+            return selectCol("referrals", "ID");
+        }
+
+        public static List<string> getRefTypes()
+        {
+            return selectCol("referrals", "Type");
+        }
+
+        public static List<string> getRefDates()
+        {
+            return selectCol("referrals", "Referral_Date");
+        }
+
+        public static void deleteRef(List<string> id, List<string> type, List<string> date)
+        {
+            string idComp = genTextOrComp(id, "ID");
+            string typeComp = genTextOrComp(type, "Type");
+            string dateComp = genTextOrComp(date, "Referral_Date");
+            string query = "DELETE FROM referrals WHERE " + idComp + " AND " + typeComp + " AND " + dateComp + ";";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                    MessageBox.Show("Delete succesful");
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
+        public static List<string> getStudentIds()
+        {
+            return selectCol("student", "ID");
+        }
+
+        public static List<string> getStudentFnames()
+        {
+            return selectCol("student", "First_Name");
+        }
+
+        public static List<string> getStudentLnames()
+        {
+            return selectCol("student", "Last_Name");
+        }
+
+        public static void deleteStudent(List<string> id, List<string> fnames, List<string> lnames)
+        {
+            string idComp = genTextOrComp(id, "ID");
+            string fnameComp = genTextOrComp(fnames, "First_Name");
+            string lnameComp = genTextOrComp(lnames, "Last_name");
+            string query = "DELETE FROM student WHERE " + idComp + " AND " + fnameComp + " AND " + fnameComp + ";";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                    MessageBox.Show("Delete succesful");
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
+        public static List<string> getCumIds()
+        {
+            return selectCol("cum_gpa", "ID");
+        }
+
+        public static List<string> getCumGPAs()
+        {
+            return selectCol("cum_gpa", "GPA");
+        }
+
+        public static List<string> getCumDates()
+        {
+            return selectCol("cum_gpa", "GPA_Entry_Date");
+        }
+
+        public static void deleteCum(List<string> id, List<string> grade, List<string> date)
+        {
+            string idComp = genTextOrComp(id, "ID");
+            string gradeComp = genTextOrComp(grade, "GPA");
+            string dateComp = genTextOrComp(date, "GPA_Entry_Date");
+            string query = "DELETE FROM cum_gpa WHERE " + idComp + " AND " + gradeComp + " AND " + dateComp + ";";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                    MessageBox.Show("Delete succesful");
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
         public static string genTextOrComp(List<string> items, string colName)
         {
             string orComp = "(" + colName + " = '" + items[0] + "'";
@@ -1910,12 +2096,6 @@ namespace WindowsFormsApplication1
             }
             orComp += ")";
             return orComp;
-        }
-
-        public static bool deleteCum(string id, string grade, string date)
-        {
-            string query = "DELETE FROM cum_gpa WHERE ";
-            return true;
         }
 
         public static List<string>[] filterSelectStudent(float minGPA, float maxGPA, List<string> schools, int minGrade, int maxGrade, int minReferrals, int maxReferrals, int minDaysMissed, int maxDaysMissed, List<string> genders, List<string> races, List<string> statuses, int minClassGrade, int maxClassGrade, List<string> classes)
