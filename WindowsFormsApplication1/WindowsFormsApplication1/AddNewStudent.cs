@@ -107,6 +107,9 @@ namespace WindowsFormsApplication1
             String curDay = year + '-' + month + '-' + day;
 
             Model.InsertStudent(firstName, lastName, studentID, gpa, school, grade, numRefs, daysMissed, gender, race, curStudent, curDay, curDay);
+            Model.InsertAttends(curDay, studentID, school);
+            Model.InsertCumGPA(studentID, (float)gpa, curDay);
+            Model.InsertEmptyReferrals(studentID, curDay, numRefs);
             this.Close();
         }
 
@@ -116,6 +119,16 @@ namespace WindowsFormsApplication1
         }
 
         private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addSchool_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddCurrent_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

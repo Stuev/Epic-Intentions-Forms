@@ -43,7 +43,7 @@ namespace WindowsFormsApplication1
         private List<string> oldUnCumGPAIDs;
         private List<string>[] oldAttends;
         private bool clicked = false;
-        //private List<string> unCumGPAEntries;
+        private List<string> unCumGPAClass;
 
         public EditPart2(string ID)
         {
@@ -278,25 +278,29 @@ namespace WindowsFormsApplication1
                 {
                     try
                     {
-                        cumGPAs.Add(oRng.Cells[i + 2, 2].Value2);
+                        unCumGPAs.Add(oRng.Cells[i + 2, 2].Value2);
                     }
                     catch
                     {
                         oWB.Close(false);
-                        MessageBox.Show("Something went wrong in reading the uncumulative GPAs. Please try again. Make sure there is a number in the cells.");
+                        MessageBox.Show("Something went wrong in reading the uncumulative Grades. Please try again. Make sure there is a number in the cells.");
                         this.Close();
                         return;
                     }
                 }
 
-                if (unCumGPAs[unCumGPAs.Count - 1] > 4.0 || unCumGPAs[unCumGPAs.Count - 1] < 0)
+                if (unCumGPAs[unCumGPAs.Count - 1] > 100 || unCumGPAs[unCumGPAs.Count - 1] < 0)
                 {
                     oWB.Close(false);
                     MessageBox.Show("Something went wrong in reading the Uncumulative GPAs. Please try again. Make sure there is a number between 0 and 4.0 in the cells.");
                     this.Close();
                     return;
                 }
+
+                unCumGPAClass.Add(oRng.Cells[i + 2, 4].Value2 + "");
+
             }
+
 
             oSheet = (Excel._Worksheet)oWB.Sheets[4];
             oRng = oSheet.UsedRange;
@@ -492,7 +496,7 @@ namespace WindowsFormsApplication1
 
             for (int i = 0; i < oldUnCumGPAs[0].Count; i = i + 1)
             {
-                Model.UpdateUnCumGPA(thisID, unCumGPAs[i].ToString(), oldUnCumGPAIDs[i]);
+                Model.UpdateUnCumGPA(thisID, unCumGPAs[i].ToString(), unCumGPAClass[i], oldUnCumGPAIDs[i]);
             }
 
             for (int i = 0; i < oldAttends[0].Count; i = i + 1)

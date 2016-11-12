@@ -15,31 +15,101 @@ namespace WindowsFormsApplication1
         public AddSchool_ID()
         {
             InitializeComponent();
+            List<string> data = Model.getSchools();
+            data.Add("Other");
+
+            AddSchoolExistingSchool.DataSource = data;
+            AddSchoolExistingSchool.DropDownStyle = ComboBoxStyle.DropDownList;
+
         }
 
         private void AddSchool_Button_Click(object sender, EventArgs e)
         {
-
-            string school = AddSchoolExistingSchool.Text;
-            if (school == "")
+            int studentID;
+            try
             {
-                MessageBox.Show("School Field is Empty!");
+                studentID = int.Parse(stID.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Please make sure a number is in the ID field!");
                 return;
             }
 
-            if (!Model.SchoolExists(school))
+            string gradeDate;
+
+            if (AddSchool_StartDate.Text == "")
             {
-                Model.InsertSchool(school);
-                this.Close();
+                MessageBox.Show("Date Field is Empty!");
+                return;
+            }
+
+            try
+            {
+                DateTime date = DateTime.Parse(AddSchool_StartDate.Text);
+                string year = date.Year.ToString();
+                string month = date.Month.ToString();
+                string day = date.Day.ToString();
+                gradeDate = year + "-" + month + "-" + day;
+            } catch
+            {
+                MessageBox.Show("Date Field is Incorrectly Formatted!");
+                return;
+            }
+
+            if (AddSchoolNewSchool.Text == "" && AddSchoolExistingSchool.Text == "Other")
+            {
+                MessageBox.Show("New school field is Empty!");
+                return;
+
+            }
+            string school;
+
+
+
+            if (AddSchoolExistingSchool.Text == "Other")
+            {
+                school = AddSchoolNewSchool.Text;
+
+                if (!Model.SchoolExists(school))
+                {
+                    Model.InsertSchool(school);
+                }
+                else
+                {
+                    MessageBox.Show("School already exists!");
+                    return;
+                }
             }
             else
             {
-                MessageBox.Show("School already exists!");
-                return;
+                school = AddSchoolExistingSchool.Text;
             }
+
+
+
+            Model.InsertAttends(gradeDate, studentID, school);
+
+            this.Close();
+
         }
 
         private void AddSchool_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddSchool_StartDate_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddSchoolNewSchool_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddSchoolExistingSchool_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

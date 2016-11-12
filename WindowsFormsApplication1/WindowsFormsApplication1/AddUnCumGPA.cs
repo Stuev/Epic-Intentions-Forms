@@ -15,9 +15,25 @@ namespace WindowsFormsApplication1
         public AddUnCumGPA()
         {
             InitializeComponent();
+
+            var dataSource = new List<string>();
+            dataSource.Add("Math");
+            dataSource.Add("Science");
+            dataSource.Add("Social Studies");
+            dataSource.Add("Language Arts");
+            dataSource.Add("Elective");
+            dataSource.Add("Other");
+
+            classNameDrop.DataSource = dataSource;
+            classNameDrop.DropDownStyle = ComboBoxStyle.DropDownList;
+
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void Submit_AddUnCummGPA_Click(object sender, EventArgs e)
         {
             int studentID;
             try
@@ -41,11 +57,11 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Please make sure a number is in the GPA field!");
                 return;
             }
-            string CumGPA = GPA + "";
+            string unCumGPA = GPA + "";
 
-            if (GPA > 4.0 || GPA < 0)
+            if (GPA > 100 || GPA < 0)
             {
-                MessageBox.Show("Please make sure GPA is between 0 and 4.0!");
+                MessageBox.Show("Please make sure GPA is between 0 and 100!");
                 return;
             }
 
@@ -55,7 +71,9 @@ namespace WindowsFormsApplication1
             string day = date.Day.ToString();
             string curDay = year + '-' + month + '-' + day;
 
-            if (Model.InsertUnCumGPA(ID, CumGPA, curDay))
+            string className = classNameDrop.Text;
+
+            if (Model.InsertUnCumGPA(ID, unCumGPA, curDay, className))
             {
                 this.Close();
             }
@@ -63,9 +81,15 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show("Something went wrong in processing the GPA. Please try again.");
             }
+
         }
 
-        private void Submit_AddUnCummGPA_Click(object sender, EventArgs e)
+        private void AddUnCumGPA_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void classNameDrop_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

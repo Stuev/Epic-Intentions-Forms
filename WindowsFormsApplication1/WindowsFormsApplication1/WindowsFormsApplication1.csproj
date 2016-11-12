@@ -167,6 +167,12 @@
     <Compile Include="EditPart2.Designer.cs">
       <DependentUpon>EditPart2.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddNewSchool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewSchool.Designer.cs">
+      <DependentUpon>AddNewSchool.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImportSchoolData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddInfo.resx">
       <DependentUpon>AddInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddNewSchool.resx">
+      <DependentUpon>AddNewSchool.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddNewStudent.resx">
       <DependentUpon>AddNewStudent.cs</DependentUpon>

@@ -184,17 +184,18 @@ namespace WindowsFormsApplication1
 
                     //Add table headers going cell by cell.
                     //oSheet.Cells[1, 1] = "ID";
-                    oSheet.Cells[1, 2] = "GPA";
+                    oSheet.Cells[1, 2] = "Grade";
                     oSheet.Cells[1, 3] = "Entry Date";
+                    oSheet.Cells[1, 4] = "Class";
 
 
                     //Format A1:D1 as bold, vertical alignment = center.
-                    oSheet.get_Range("A1", "C1").Font.Bold = true;
-                    oSheet.get_Range("A1", "C1").VerticalAlignment =
+                    oSheet.get_Range("A1", "D1").Font.Bold = true;
+                    oSheet.get_Range("A1", "D1").VerticalAlignment =
                         Excel.XlVAlign.xlVAlignCenter;
 
                     // Create an array to multiple values at once.
-                    toPrint = new string[3];
+                    toPrint = new string[4];
 
                     if (unCumGPAList[0].Count() > 0)
                     {
@@ -206,7 +207,7 @@ namespace WindowsFormsApplication1
                                 toPrint[i] = unCumGPAList[i][j];
                             }
                             //Fill with an array of values (First and Last Names).
-                            oSheet.get_Range("A" + k, "C" + k).Value2 = toPrint;
+                            oSheet.get_Range("A" + k, "D" + k).Value2 = toPrint;
                         }
                     }
 

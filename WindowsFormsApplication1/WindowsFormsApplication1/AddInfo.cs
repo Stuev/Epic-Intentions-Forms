@@ -48,5 +48,13 @@ namespace WindowsFormsApplication1
             nextForm.ShowDialog();
             this.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AddNewSchool nextForm = new AddNewSchool();
+            nextForm.ShowDialog();
+            this.Show();
+        }
     }
 }

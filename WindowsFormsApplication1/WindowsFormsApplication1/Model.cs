@@ -232,7 +232,7 @@ namespace WindowsFormsApplication1
 
                     while (dataReader.Read())
                     {
-                        list.Add(dataReader["GPA_Num"] + "");
+                        list.Add(dataReader["Grade_Num"] + "");
                     }
 
 
@@ -289,10 +289,11 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public static void UpdateUnCumGPA(string ID, string newGPA, string oldGPAID)
+        public static void UpdateUnCumGPA(string ID, string newGPA, string className, string oldGPAID)
         {
-            string query = "UPDATE un_cum_gpa SET GPA = '" + newGPA
-                + "' WHERE GPA_Num = '" + oldGPAID
+            string query = "UPDATE un_cum_gpa SET Grade = '" + newGPA
+                + "', Class = @className "
+                + " WHERE Grade_Num = '" + oldGPAID
                 + "';";
 
             if (OpenConnection() == true)
@@ -302,6 +303,7 @@ namespace WindowsFormsApplication1
                     MySqlCommand cmd = new MySqlCommand();
 
                     cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@className", className);
 
                     cmd.Connection = connection;
 
@@ -358,6 +360,46 @@ namespace WindowsFormsApplication1
                 }
             }
         }
+
+        public static void UpdateCurSchoolToPast(string ID)
+        {
+
+            string query;
+
+            DateTime date = DateTime.Now;
+            String year = date.Year.ToString();
+            String month = date.Month.ToString();
+            String day = date.Day.ToString();
+            String endDate = year + '-' + month + '-' + day;
+
+
+            query = "UPDATE attends SET End_Date = \"" + endDate
+            + "\" WHERE Student_ID = \"" + ID
+            + "\" AND End_Date > '';";
+            
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
+
         public static int convertGPA(double gpa)
         {
             if (gpa >= 90)
@@ -747,11 +789,12 @@ namespace WindowsFormsApplication1
 
         }
 
-        public static bool InsertUnCumGPA(string ID, string GPA, string Date)
+        public static bool InsertUnCumGPA(string ID, string GPA, string Date, string className)
         {
             string query = "INSERT INTO un_cum_gpa SET ID = '" + ID + "',"
-                + " GPA_Entry_Date = '" + Date + "', "
-                + " GPA = '" + GPA + "';";
+                + " Grade_Entry_Date = '" + Date + "', "
+                + " Grade = '" + GPA + "', "
+                + " Class = @className;";
 
             if (StudentExists(ID) && OpenConnection() == true)
             {
@@ -760,6 +803,7 @@ namespace WindowsFormsApplication1
                     MySqlCommand cmd = new MySqlCommand();
 
                     cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@className", className);
 
                     cmd.Connection = connection;
 
@@ -787,8 +831,7 @@ namespace WindowsFormsApplication1
         {
             string query = "INSERT INTO attends SET Start_Date = '" + schoolStart
                 + "', Student_ID = '" + id
-                + "', School_Name = '" + school
-                + "';";
+                + "', School_Name = @school;";
 
             if (OpenConnection() == true)
             {
@@ -797,6 +840,8 @@ namespace WindowsFormsApplication1
                     MySqlCommand cmd = new MySqlCommand();
 
                     cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@school", school);
+
 
                     cmd.Connection = connection;
 
@@ -1067,10 +1112,11 @@ namespace WindowsFormsApplication1
                 string query = "SELECT * FROM un_cum_gpa;";
 
 
-                List<string>[] list = new List<string>[3];
+                List<string>[] list = new List<string>[4];
                 list[0] = new List<string>();
                 list[1] = new List<string>();
                 list[2] = new List<string>();
+                list[3] = new List<string>();
 
 
                 if (OpenConnection() == true)
@@ -1085,8 +1131,10 @@ namespace WindowsFormsApplication1
                     while (dataReader.Read())
                     {
                         list[0].Add(dataReader["ID"] + "");
-                        list[1].Add(dataReader["GPA"] + "");
-                        list[2].Add(dataReader["GPA_Entry_Date"] + "");
+                        list[1].Add(dataReader["Grade"] + "");
+                        list[2].Add(dataReader["Grade_Entry_Date"] + "");
+                        list[3].Add(dataReader["Class"] + "");
+
                     }
 
 
@@ -1356,10 +1404,11 @@ namespace WindowsFormsApplication1
                 + "';";
 
 
-                List<string>[] list = new List<string>[3];
+                List<string>[] list = new List<string>[4];
                 list[0] = new List<string>();
                 list[1] = new List<string>();
                 list[2] = new List<string>();
+                list[3] = new List<string>();
 
 
                 if (OpenConnection() == true)
@@ -1374,8 +1423,10 @@ namespace WindowsFormsApplication1
                     while (dataReader.Read())
                     {
                         list[0].Add(dataReader["ID"] + "");
-                        list[1].Add(dataReader["GPA"] + "");
-                        list[2].Add(dataReader["GPA_Entry_Date"] + "");
+                        list[1].Add(dataReader["Grade"] + "");
+                        list[2].Add(dataReader["Grade_Entry_Date"] + "");
+                        list[3].Add(dataReader["Class"] + "");
+
                     }
 
 
@@ -1806,8 +1857,8 @@ namespace WindowsFormsApplication1
         public static List<string> getCurrentStudentOptions()
         {
             List<string> options = new List<string>();
-            options.Add("1");
-            options.Add("0");
+            options.Add("Yes");
+            options.Add("No");
 
             return options;
         }
