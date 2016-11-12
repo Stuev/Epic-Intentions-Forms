@@ -14,7 +14,20 @@ namespace WindowsFormsApplication1
     {
         public DeleteCum()
         {
-            InitializeComponent();
+            InitializeComponent();            
+        }
+
+        private void Submit_Click(object sender, EventArgs e)
+        {
+            string id = DeleteCumID.Text;
+            string grade = DeleteCumGrade.Text;
+            string date = DeleteCumDate.Text;
+            
+        }
+
+        private void DeleteCumID_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

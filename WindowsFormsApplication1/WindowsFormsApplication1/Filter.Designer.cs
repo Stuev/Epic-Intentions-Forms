@@ -116,10 +116,11 @@
             // GPA1
             // 
             this.GPA1.Location = new System.Drawing.Point(382, 110);
-            this.GPA1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.GPA1.Margin = new System.Windows.Forms.Padding(6);
             this.GPA1.Name = "GPA1";
             this.GPA1.Size = new System.Drawing.Size(80, 31);
             this.GPA1.TabIndex = 5;
+            this.GPA1.TextChanged += new System.EventHandler(this.GPA1_TextChanged);
             // 
             // label6
             // 
@@ -134,7 +135,7 @@
             // GPA2
             // 
             this.GPA2.Location = new System.Drawing.Point(570, 110);
-            this.GPA2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.GPA2.Margin = new System.Windows.Forms.Padding(6);
             this.GPA2.Name = "GPA2";
             this.GPA2.Size = new System.Drawing.Size(80, 31);
             this.GPA2.TabIndex = 7;
@@ -154,7 +155,7 @@
             // 
             this.School.FormattingEnabled = true;
             this.School.Location = new System.Drawing.Point(362, 312);
-            this.School.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.School.Margin = new System.Windows.Forms.Padding(6);
             this.School.Name = "School";
             this.School.Size = new System.Drawing.Size(238, 33);
             this.School.TabIndex = 9;
@@ -183,7 +184,7 @@
             // Grade2
             // 
             this.Grade2.Location = new System.Drawing.Point(570, 375);
-            this.Grade2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Grade2.Margin = new System.Windows.Forms.Padding(6);
             this.Grade2.Name = "Grade2";
             this.Grade2.Size = new System.Drawing.Size(80, 31);
             this.Grade2.TabIndex = 14;
@@ -201,7 +202,7 @@
             // Grade1
             // 
             this.Grade1.Location = new System.Drawing.Point(382, 375);
-            this.Grade1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Grade1.Margin = new System.Windows.Forms.Padding(6);
             this.Grade1.Name = "Grade1";
             this.Grade1.Size = new System.Drawing.Size(80, 31);
             this.Grade1.TabIndex = 12;
@@ -222,7 +223,7 @@
             // 
             this.Gender.FormattingEnabled = true;
             this.Gender.Location = new System.Drawing.Point(362, 558);
-            this.Gender.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Gender.Margin = new System.Windows.Forms.Padding(6);
             this.Gender.Name = "Gender";
             this.Gender.Size = new System.Drawing.Size(238, 33);
             this.Gender.TabIndex = 16;
@@ -230,7 +231,7 @@
             // Behavior2
             // 
             this.Behavior2.Location = new System.Drawing.Point(570, 433);
-            this.Behavior2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Behavior2.Margin = new System.Windows.Forms.Padding(6);
             this.Behavior2.Name = "Behavior2";
             this.Behavior2.Size = new System.Drawing.Size(80, 31);
             this.Behavior2.TabIndex = 21;
@@ -248,7 +249,7 @@
             // Behavior1
             // 
             this.Behavior1.Location = new System.Drawing.Point(382, 433);
-            this.Behavior1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Behavior1.Margin = new System.Windows.Forms.Padding(6);
             this.Behavior1.Name = "Behavior1";
             this.Behavior1.Size = new System.Drawing.Size(80, 31);
             this.Behavior1.TabIndex = 19;
@@ -277,7 +278,7 @@
             // Attend2
             // 
             this.Attend2.Location = new System.Drawing.Point(570, 490);
-            this.Attend2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Attend2.Margin = new System.Windows.Forms.Padding(6);
             this.Attend2.Name = "Attend2";
             this.Attend2.Size = new System.Drawing.Size(80, 31);
             this.Attend2.TabIndex = 26;
@@ -295,7 +296,7 @@
             // Attend1
             // 
             this.Attend1.Location = new System.Drawing.Point(382, 490);
-            this.Attend1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Attend1.Margin = new System.Windows.Forms.Padding(6);
             this.Attend1.Name = "Attend1";
             this.Attend1.Size = new System.Drawing.Size(80, 31);
             this.Attend1.TabIndex = 24;
@@ -325,7 +326,7 @@
             // 
             this.Race.FormattingEnabled = true;
             this.Race.Location = new System.Drawing.Point(358, 625);
-            this.Race.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Race.Margin = new System.Windows.Forms.Padding(6);
             this.Race.Name = "Race";
             this.Race.Size = new System.Drawing.Size(238, 33);
             this.Race.TabIndex = 28;
@@ -345,7 +346,7 @@
             // 
             this.Current.FormattingEnabled = true;
             this.Current.Location = new System.Drawing.Point(358, 687);
-            this.Current.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Current.Margin = new System.Windows.Forms.Padding(6);
             this.Current.Name = "Current";
             this.Current.Size = new System.Drawing.Size(238, 33);
             this.Current.TabIndex = 30;
@@ -365,7 +366,7 @@
             // 
             this.FilterSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FilterSubmit.Location = new System.Drawing.Point(282, 765);
-            this.FilterSubmit.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.FilterSubmit.Margin = new System.Windows.Forms.Padding(6);
             this.FilterSubmit.Name = "FilterSubmit";
             this.FilterSubmit.Size = new System.Drawing.Size(184, 54);
             this.FilterSubmit.TabIndex = 31;
@@ -432,7 +433,7 @@
             // UnCumGrade2
             // 
             this.UnCumGrade2.Location = new System.Drawing.Point(570, 238);
-            this.UnCumGrade2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.UnCumGrade2.Margin = new System.Windows.Forms.Padding(6);
             this.UnCumGrade2.Name = "UnCumGrade2";
             this.UnCumGrade2.Size = new System.Drawing.Size(80, 31);
             this.UnCumGrade2.TabIndex = 41;
@@ -450,7 +451,7 @@
             // UnCumGrade1
             // 
             this.UnCumGrade1.Location = new System.Drawing.Point(382, 238);
-            this.UnCumGrade1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.UnCumGrade1.Margin = new System.Windows.Forms.Padding(6);
             this.UnCumGrade1.Name = "UnCumGrade1";
             this.UnCumGrade1.Size = new System.Drawing.Size(80, 31);
             this.UnCumGrade1.TabIndex = 39;
@@ -487,7 +488,7 @@
             // 
             this.UnCumClass.FormattingEnabled = true;
             this.UnCumClass.Location = new System.Drawing.Point(382, 173);
-            this.UnCumClass.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.UnCumClass.Margin = new System.Windows.Forms.Padding(6);
             this.UnCumClass.Name = "UnCumClass";
             this.UnCumClass.Size = new System.Drawing.Size(238, 33);
             this.UnCumClass.TabIndex = 42;
@@ -541,7 +542,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Filter";
             this.Text = "Filter";
             this.Load += new System.EventHandler(this.Filter_Load);

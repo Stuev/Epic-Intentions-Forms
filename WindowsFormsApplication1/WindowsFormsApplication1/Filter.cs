@@ -41,8 +41,11 @@ namespace WindowsFormsApplication1
             List<string> races = Model.getRaces();
             races.Insert(0, "all");
 
-            List<string> isCurrents = Model.getCurrentStudentOptions();
-            isCurrents.Insert(0, "all");
+            List<string> isCurrents = new List<string>();
+            isCurrents.Add("all");
+            isCurrents.Add("yes");
+            isCurrents.Add("no");
+
 
             UnCumClass.DataSource = classes;
             Gender.DataSource = genders;
@@ -118,13 +121,20 @@ namespace WindowsFormsApplication1
             List<string> statuses = new List<string>();
             if (Current.GetItemText(Current.SelectedItem).Equals("all"))
             {
-                statuses = (List<string>)Current.DataSource;
-                statuses.RemoveAt(0);
+                statuses = new List<string>();
+                statuses.Add("1");
+                statuses.Add("0");
 
+            }
+            else if (Current.GetItemText(Current.SelectedItem).Equals("yes"))
+            {
+                statuses = new List<string>();
+                statuses.Add("1");
             }
             else
             {
-                statuses.Add(Current.GetItemText(Current.SelectedItem));
+                statuses = new List<string>();
+                statuses.Add("0");
             }
 
             List<string>[] selectedVals= Model.filterSelectStudent(minGPA, maxGPA, schools, minGradeLevel, maxGradeLevel, minBehavior, maxBehavior, minAttendance, maxAttendance, genders, races, statuses, minGrade, maxGrade, classes);
@@ -260,6 +270,11 @@ namespace WindowsFormsApplication1
         }
 
         private void UnCumClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GPA1_TextChanged(object sender, EventArgs e)
         {
 
         }
