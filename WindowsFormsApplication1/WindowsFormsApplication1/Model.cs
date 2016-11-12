@@ -541,6 +541,33 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public static void SetStudentStatusCurrent(string ID)
+        {
+            string query = "UPDATE student SET isCurrent= '1' WHERE ID = '" + ID + "';";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
+
 
         public static void UpdateSchoolName(string oldSchool, string newSchool)
         {

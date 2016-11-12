@@ -101,5 +101,67 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Information Provided is Not Correct!");
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string ID = "";
+            int n;
+            if (PastStudentID.Text == "")
+            {
+                if (PastStudentLastName.Text == "" || PastStudentFirstName.Text == "")
+                {
+                    MessageBox.Show("Please type in a Student ID or a First and Last Name!");
+                    return;
+                }
+                else
+                {
+                    if (PastStudentLastName.Text.Contains(";") || PastStudentFirstName.Text.Contains(";"))
+                    {
+                        MessageBox.Show("Invalid character in student name!");
+                        return;
+                    }
+                    else if (PastStudentLastName.Text.Contains('"') || PastStudentFirstName.Text.Contains('"'))
+                    {
+                        MessageBox.Show("Invalid character in student name!");
+                        return;
+                    }
+                    ID = Model.FindIDFromName(PastStudentFirstName.Text, PastStudentLastName.Text);
+                }
+            }
+            else
+            {
+                ID = PastStudentID.Text;
+            }
+
+            if (ID != "" && int.TryParse(ID, out n))
+            {
+                List<string>[] studentList = Model.SelectStudent(ID);
+                if (studentList[0].Count() < 1)
+                {
+                    MessageBox.Show("Student ID not Found!");
+                    return;
+                }
+
+                bool cur;
+
+                if (studentList[8][0] == "True") { cur = true; }
+                else { cur = false; }
+
+                if (!cur)
+                {
+                    Model.SetStudentStatusCurrent(ID);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Student is already current!");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Information Provided is Not Correct!");
+            }
+        }
     }
 }
