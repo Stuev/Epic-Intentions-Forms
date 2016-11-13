@@ -65,8 +65,13 @@ namespace WindowsFormsApplication1
         {
             float minGPA = float.Parse(GPA1.Text);
             float maxGPA = float.Parse(GPA2.Text);
-            int minGrade = Int32.Parse(UnCumGrade1.Text);
-            int maxGrade = Int32.Parse(UnCumGrade2.Text);
+            float minGrade = -1;
+            if (Math.Abs(float.Parse(UnCumGrade1.Text) - Model.getMinClassGrade()) > .001)
+            {
+                minGrade = float.Parse(UnCumGrade1.Text);
+
+            }
+            float maxGrade = float.Parse(UnCumGrade2.Text);
             int minGradeLevel = Int32.Parse(Grade1.Text);
             int maxGradeLevel = Int32.Parse(Grade2.Text);
             int minBehavior = Int32.Parse(Behavior1.Text);
@@ -77,8 +82,7 @@ namespace WindowsFormsApplication1
             List<string> genders = new List<string>();
             if (Gender.GetItemText(Gender.SelectedItem).Equals("all"))
             {
-                genders =  (List<string>) Gender.DataSource;
-                genders.RemoveAt(0);
+                genders = Model.getGenders();
             } else {
                 genders.Add(Gender.GetItemText(Gender.SelectedItem));
             }
@@ -86,8 +90,7 @@ namespace WindowsFormsApplication1
             List<string> classes = new List<string>();
             if (UnCumClass.GetItemText(UnCumClass.SelectedItem).Equals("all"))
             {
-                classes = (List<string>)UnCumClass.DataSource;
-                classes.RemoveAt(0);
+                classes = Model.getClasses();
 
             }
             else
@@ -98,8 +101,7 @@ namespace WindowsFormsApplication1
             List<string> schools = new List<string>();
             if (School.GetItemText(School.SelectedItem).Equals("all"))
             {
-                schools = (List<string>)School.DataSource;
-                schools.RemoveAt(0);
+                schools = Model.getSchools();
 
             }
             else
@@ -194,7 +196,15 @@ namespace WindowsFormsApplication1
                     int k = j + 2;
                     for (int i = 0; i < selectedVals.Count(); i = i + 1)
                     {
-                        toPrint[i] = selectedVals[i][j];
+                        if (i == 20 && float.Parse(selectedVals[i][j]) < 0)
+                        {
+                            toPrint[i] = "DNE";
+                        }
+                        else
+                        {
+                            toPrint[i] = selectedVals[i][j];
+
+                        }
                     }
                     //Fill with an array of values (First and Last Names).
                     oSheet.get_Range("A" + k, "T" + k).Value2 = toPrint;

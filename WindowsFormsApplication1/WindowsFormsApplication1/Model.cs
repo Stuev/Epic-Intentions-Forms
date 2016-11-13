@@ -1613,14 +1613,15 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public static int getMin(string table, string col)
+        public static float getMin(string table, string col)
         {
             string query = "SELECT MIN(" + col + ") AS min FROM " + table + ";";
+            System.Diagnostics.Debug.WriteLine(query);
 
             if (OpenConnection() == true)
             {
 
-                int returnval = 0;
+                float returnval = 0;
                 //Create Command
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 //Create a data reader and Execute the command
@@ -1629,7 +1630,7 @@ namespace WindowsFormsApplication1
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    returnval = Int32.Parse(dataReader["min"] + "");
+                    returnval = float.Parse(dataReader["min"] + "");
                 }
 
                 //close Data Reader
@@ -1647,14 +1648,14 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public static int getMax(string table, string col)
+        public static float getMax(string table, string col)
         {
             string query = "SELECT MAX(" + col + ") AS max FROM " + table + ";";
 
             if (OpenConnection() == true)
             {
 
-                int returnval = 0;
+                float returnval = 0;
                 //Create Command
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 //Create a data reader and Execute the command
@@ -1663,7 +1664,7 @@ namespace WindowsFormsApplication1
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    returnval = Int32.Parse(dataReader["max"] + "");
+                    returnval = float.Parse(dataReader["max"] + "");
                 }
 
                 //close Data Reader
@@ -1717,12 +1718,12 @@ namespace WindowsFormsApplication1
 
 
 
-        public static int getMinGPA()
+        public static float getMinGPA()
         {
             return getMin("cum_GPA", "GPA");
         }
 
-        public static int getMaxGPA()
+        public static float getMaxGPA()
         {
             return getMax("cum_GPA", "GPA");
         }
@@ -1770,12 +1771,12 @@ namespace WindowsFormsApplication1
         }
         public static int getMinGrade()
         {
-            return getMin("Student", "Grade_Level");
+            return (int) getMin("Student", "Grade_Level");
         }
 
         public static int getMaxGrade()
         {
-            return getMax("Student", "Grade_Level");
+            return (int) getMax("Student", "Grade_Level");
         }
 
         public static int getMinReferrals()
@@ -1848,12 +1849,12 @@ namespace WindowsFormsApplication1
 
         public static int getMinDaysMissed()
         {
-            return getMin("Student", "Days_Missed");
+            return (int) getMin("Student", "Days_Missed");
         }
 
         public static int getMaxDaysMissed()
         {
-            return getMax("Student", "Days_Missed");
+            return (int) getMax("Student", "Days_Missed");
         }
 
         public static List<string> getGenders()
@@ -1873,12 +1874,12 @@ namespace WindowsFormsApplication1
 
         public static int getMinClassGrade()
         {
-            return getMin("un_cum_gpa", "Grade");
+            return (int) getMin("un_cum_gpa", "Grade");
         }
 
         public static int getMaxClassGrade()
         {
-            return getMax("un_cum_gpa", "Grade");
+            return (int) getMax("un_cum_gpa", "Grade");
         }
 
         public static List<string> getCurrentStudentOptions()
@@ -2098,14 +2099,33 @@ namespace WindowsFormsApplication1
             return orComp;
         }
 
-        public static List<string>[] filterSelectStudent(float minGPA, float maxGPA, List<string> schools, int minGrade, int maxGrade, int minReferrals, int maxReferrals, int minDaysMissed, int maxDaysMissed, List<string> genders, List<string> races, List<string> statuses, int minClassGrade, int maxClassGrade, List<string> classes)
+        public static List<string>[] filterSelectStudent(float minGPA, float maxGPA, List<string> schools, int minGrade, int maxGrade, int minReferrals, int maxReferrals, int minDaysMissed, int maxDaysMissed, List<string> genders, List<string> races, List<string> statuses, float minClassGrade, float maxClassGrade, List<string> classes)
         {
-            string schoolComp = genTextOrComp(schools, "School_Name");
-            string genderComp = genTextOrComp(genders, "Gender");
-            string raceComp = genTextOrComp(races, "Race");
-            string statusComp = genIntOrComp(statuses, "isCurrent");
-            string classComp = genTextOrComp(classes, "Class");
-            string query = "SELECT student.ID, attends.Start_Date, attends.End_Date, attends.School_Name, cum_gpa.GPA, cum_gpa.GPA_Entry_Date, MyCounts.Referral_Date, coalesce(MyCounts.referral_count, 0) as referral_count, MyCounts.Type, MyCounts.Description, student.First_Name, student.Last_Name, student.Grade_Level, student.Grade_Modified_Date, student.Registration_Date, student.Gender, student.Race, student.isCurrent, student.Days_Missed, un_cum_gpa.Grade_Num, un_cum_gpa.Class, un_cum_gpa.Grade, un_cum_gpa.Grade_Entry_Date FROM student INNER JOIN cum_gpa ON student.ID = cum_gpa.ID INNER JOIN attends ON cum_gpa.ID = attends.student_ID INNER JOIN un_cum_gpa ON cum_gpa.ID = un_cum_gpa.ID left JOIN (SELECT id, count(id)referral_count, Referral_Date, Type, Description FROM referrals GROUP BY id) AS MyCounts ON cum_gpa.ID = MyCounts.id WHERE (GPA between " + minGPA + " AND " + maxGPA + ") AND " + schoolComp + " AND (Grade_Level between " + minGrade + " AND " + maxGrade + ") AND (coalesce(referral_count, 0) between " + minReferrals + " AND " + maxReferrals + ") AND (Days_Missed between " + minDaysMissed + " AND " + maxDaysMissed + ") AND " + genderComp + " AND " + raceComp + " AND " + statusComp + " AND " + classComp + " AND (Grade between " + minClassGrade + " AND " + maxClassGrade + ");";
+            string conditions = "";
+            if (schools.Count() < getSchools().Count())
+            {
+                conditions += " AND " + genTextOrComp(schools, "School_Name");
+            }
+            if (genders.Count() < getGenders().Count())
+            {
+                conditions += " AND " + genTextOrComp(genders, "Gender");
+            }
+            if (races.Count() < getRaces().Count())
+            {
+                conditions += " AND " + genTextOrComp(races, "Race");
+            }
+            string[] status = { "1", "0"};
+            if (statuses.Count() < 2)
+            {
+                conditions += " AND " + genIntOrComp(statuses, "isCurrent");
+
+            }
+            if (classes.Count() < getClasses().Count())
+            {
+                conditions += " AND " + genTextOrComp(classes, "Class");
+
+            }
+            string query = "SELECT student.ID, attends.Start_Date, attends.End_Date, attends.School_Name, cum_gpa.GPA, cum_gpa.GPA_Entry_Date, MyCounts.Referral_Date, coalesce(MyCounts.referral_count, 0) as referral_count, MyCounts.Type, MyCounts.Description, student.First_Name, student.Last_Name, student.Grade_Level, student.Grade_Modified_Date, student.Registration_Date, student.Gender, student.Race, student.isCurrent, student.Days_Missed, un_cum_gpa.Grade_Num, un_cum_gpa.Class, un_cum_gpa.Grade, un_cum_gpa.Grade_Entry_Date FROM student LEFT JOIN cum_gpa ON student.ID = cum_gpa.ID LEFT JOIN attends ON cum_gpa.ID = attends.student_ID LEFT JOIN un_cum_gpa ON cum_gpa.ID = un_cum_gpa.ID left JOIN (SELECT id, count(id)referral_count, Referral_Date, Type, Description FROM referrals GROUP BY id) AS MyCounts ON cum_gpa.ID = MyCounts.id WHERE (GPA between " + (minGPA - .00001) + " AND " + (maxGPA + .00001) + ") AND (Grade_Level between " + minGrade + " AND " + maxGrade + ") AND (coalesce(referral_count, 0) between " + minReferrals + " AND " + maxReferrals + ") AND (Days_Missed between " + minDaysMissed + " AND " + maxDaysMissed + ") " + conditions + " AND (coalesce(GRADE, -1) between " + (minClassGrade - .00001) + " AND " + (maxClassGrade + .00001) + ");";
             System.Diagnostics.Debug.WriteLine(query);
 
             if (OpenConnection() == true)
