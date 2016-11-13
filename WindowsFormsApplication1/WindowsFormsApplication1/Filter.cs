@@ -17,6 +17,7 @@ namespace WindowsFormsApplication1
     {
         public Filter()
         {
+
             InitializeComponent();
             GPA1.Text = Model.getMinGPA() + "";
             GPA2.Text = Model.getMaxGPA() + "";
@@ -64,12 +65,12 @@ namespace WindowsFormsApplication1
         private void Submit_Click(object sender, EventArgs e)
         {
             float minGPA = -1;
-            if (Math.Abs(float.Parse(GPA1.Text) - Model.getMinGPA()) > .001) {
+            if (checkBox1.Checked) {
                 minGPA = float.Parse(GPA1.Text);
             }
             float maxGPA = float.Parse(GPA2.Text);
             float minGrade = -1;
-            if (Math.Abs(float.Parse(UnCumGrade1.Text) - Model.getMinClassGrade()) > .001)
+            if (checkBox2.Checked)
             {
                 minGrade = float.Parse(UnCumGrade1.Text);
 
@@ -288,6 +289,69 @@ namespace WindowsFormsApplication1
         }
 
         private void GPA1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!checkBox2.Checked)
+            {
+                UnCumClass.Visible = false;
+                UnCumGrade1.Visible = false;
+                UnCumGrade2.Visible = false;
+                label24.Visible = false;
+                label25.Visible = false;
+                checkBox2.Text = "Filter by class?";
+            }
+            else
+            {
+                UnCumClass.Visible = true;
+                UnCumGrade1.Visible = true;
+                UnCumGrade2.Visible = true;
+                label24.Visible = true;
+                label25.Visible = true;
+                checkBox2.Text = "";
+
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!checkBox1.Checked)
+            {
+                label5.Visible = false;
+                label6.Visible = false;
+                GPA1.Visible = false;
+                GPA2.Visible = false;
+                checkBox1.Text = "Filter by GPA?";
+            }
+            else
+            {
+                label5.Visible = true;
+                label6.Visible = true;
+                GPA1.Visible = true;
+                GPA2.Visible = true;
+                checkBox1.Text = "";
+            }
+        }
+
+        private void UnCumGrade2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UnCumGrade1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label25_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label24_Click(object sender, EventArgs e)
         {
 
         }

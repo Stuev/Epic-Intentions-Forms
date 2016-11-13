@@ -56,7 +56,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.Race = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.Current = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.FilterSubmit = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
@@ -71,6 +70,9 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.UnCumClass = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.Current = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -105,40 +107,44 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(302, 123);
+            this.label5.Location = new System.Drawing.Point(315, 124);
             this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 25);
             this.label5.TabIndex = 4;
             this.label5.Text = "from";
+            this.label5.Visible = false;
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // GPA1
             // 
-            this.GPA1.Location = new System.Drawing.Point(382, 110);
+            this.GPA1.Location = new System.Drawing.Point(395, 111);
             this.GPA1.Margin = new System.Windows.Forms.Padding(6);
             this.GPA1.Name = "GPA1";
             this.GPA1.Size = new System.Drawing.Size(80, 31);
-            this.GPA1.TabIndex = 5;
+            this.GPA1.TabIndex = 10;
+            this.GPA1.Visible = false;
             this.GPA1.TextChanged += new System.EventHandler(this.GPA1_TextChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(504, 123);
+            this.label6.Location = new System.Drawing.Point(517, 124);
             this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(30, 25);
             this.label6.TabIndex = 6;
             this.label6.Text = "to";
+            this.label6.Visible = false;
             // 
             // GPA2
             // 
-            this.GPA2.Location = new System.Drawing.Point(570, 110);
+            this.GPA2.Location = new System.Drawing.Point(583, 111);
             this.GPA2.Margin = new System.Windows.Forms.Padding(6);
             this.GPA2.Name = "GPA2";
             this.GPA2.Size = new System.Drawing.Size(80, 31);
-            this.GPA2.TabIndex = 7;
+            this.GPA2.TabIndex = 20;
+            this.GPA2.Visible = false;
             // 
             // label7
             // 
@@ -154,11 +160,11 @@
             // School
             // 
             this.School.FormattingEnabled = true;
-            this.School.Location = new System.Drawing.Point(362, 312);
+            this.School.Location = new System.Drawing.Point(395, 310);
             this.School.Margin = new System.Windows.Forms.Padding(6);
             this.School.Name = "School";
             this.School.Size = new System.Drawing.Size(238, 33);
-            this.School.TabIndex = 9;
+            this.School.TabIndex = 70;
             // 
             // label8
             // 
@@ -174,7 +180,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(302, 388);
+            this.label9.Location = new System.Drawing.Point(315, 389);
             this.label9.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(54, 25);
@@ -183,16 +189,16 @@
             // 
             // Grade2
             // 
-            this.Grade2.Location = new System.Drawing.Point(570, 375);
+            this.Grade2.Location = new System.Drawing.Point(583, 376);
             this.Grade2.Margin = new System.Windows.Forms.Padding(6);
             this.Grade2.Name = "Grade2";
             this.Grade2.Size = new System.Drawing.Size(80, 31);
-            this.Grade2.TabIndex = 14;
+            this.Grade2.TabIndex = 90;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(504, 388);
+            this.label10.Location = new System.Drawing.Point(517, 389);
             this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(30, 25);
@@ -201,11 +207,11 @@
             // 
             // Grade1
             // 
-            this.Grade1.Location = new System.Drawing.Point(382, 375);
+            this.Grade1.Location = new System.Drawing.Point(395, 376);
             this.Grade1.Margin = new System.Windows.Forms.Padding(6);
             this.Grade1.Name = "Grade1";
             this.Grade1.Size = new System.Drawing.Size(80, 31);
-            this.Grade1.TabIndex = 12;
+            this.Grade1.TabIndex = 80;
             // 
             // label11
             // 
@@ -222,24 +228,24 @@
             // Gender
             // 
             this.Gender.FormattingEnabled = true;
-            this.Gender.Location = new System.Drawing.Point(362, 558);
+            this.Gender.Location = new System.Drawing.Point(395, 556);
             this.Gender.Margin = new System.Windows.Forms.Padding(6);
             this.Gender.Name = "Gender";
             this.Gender.Size = new System.Drawing.Size(238, 33);
-            this.Gender.TabIndex = 16;
+            this.Gender.TabIndex = 150;
             // 
             // Behavior2
             // 
-            this.Behavior2.Location = new System.Drawing.Point(570, 433);
+            this.Behavior2.Location = new System.Drawing.Point(583, 434);
             this.Behavior2.Margin = new System.Windows.Forms.Padding(6);
             this.Behavior2.Name = "Behavior2";
             this.Behavior2.Size = new System.Drawing.Size(80, 31);
-            this.Behavior2.TabIndex = 21;
+            this.Behavior2.TabIndex = 110;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(504, 446);
+            this.label12.Location = new System.Drawing.Point(517, 447);
             this.label12.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(30, 25);
@@ -248,16 +254,16 @@
             // 
             // Behavior1
             // 
-            this.Behavior1.Location = new System.Drawing.Point(382, 433);
+            this.Behavior1.Location = new System.Drawing.Point(395, 434);
             this.Behavior1.Margin = new System.Windows.Forms.Padding(6);
             this.Behavior1.Name = "Behavior1";
             this.Behavior1.Size = new System.Drawing.Size(80, 31);
-            this.Behavior1.TabIndex = 19;
+            this.Behavior1.TabIndex = 100;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(302, 446);
+            this.label13.Location = new System.Drawing.Point(315, 447);
             this.label13.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(54, 25);
@@ -277,16 +283,16 @@
             // 
             // Attend2
             // 
-            this.Attend2.Location = new System.Drawing.Point(570, 490);
+            this.Attend2.Location = new System.Drawing.Point(583, 491);
             this.Attend2.Margin = new System.Windows.Forms.Padding(6);
             this.Attend2.Name = "Attend2";
             this.Attend2.Size = new System.Drawing.Size(80, 31);
-            this.Attend2.TabIndex = 26;
+            this.Attend2.TabIndex = 130;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(504, 504);
+            this.label15.Location = new System.Drawing.Point(517, 505);
             this.label15.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(30, 25);
@@ -295,16 +301,16 @@
             // 
             // Attend1
             // 
-            this.Attend1.Location = new System.Drawing.Point(382, 490);
+            this.Attend1.Location = new System.Drawing.Point(395, 491);
             this.Attend1.Margin = new System.Windows.Forms.Padding(6);
             this.Attend1.Name = "Attend1";
             this.Attend1.Size = new System.Drawing.Size(80, 31);
-            this.Attend1.TabIndex = 24;
+            this.Attend1.TabIndex = 120;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(302, 504);
+            this.label16.Location = new System.Drawing.Point(315, 505);
             this.label16.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(54, 25);
@@ -325,11 +331,11 @@
             // Race
             // 
             this.Race.FormattingEnabled = true;
-            this.Race.Location = new System.Drawing.Point(358, 625);
+            this.Race.Location = new System.Drawing.Point(395, 618);
             this.Race.Margin = new System.Windows.Forms.Padding(6);
             this.Race.Name = "Race";
             this.Race.Size = new System.Drawing.Size(238, 33);
-            this.Race.TabIndex = 28;
+            this.Race.TabIndex = 160;
             // 
             // label18
             // 
@@ -341,15 +347,6 @@
             this.label18.Size = new System.Drawing.Size(67, 26);
             this.label18.TabIndex = 27;
             this.label18.Text = "Race";
-            // 
-            // Current
-            // 
-            this.Current.FormattingEnabled = true;
-            this.Current.Location = new System.Drawing.Point(358, 687);
-            this.Current.Margin = new System.Windows.Forms.Padding(6);
-            this.Current.Name = "Current";
-            this.Current.Size = new System.Drawing.Size(238, 33);
-            this.Current.TabIndex = 30;
             // 
             // label19
             // 
@@ -369,7 +366,7 @@
             this.FilterSubmit.Margin = new System.Windows.Forms.Padding(6);
             this.FilterSubmit.Name = "FilterSubmit";
             this.FilterSubmit.Size = new System.Drawing.Size(184, 54);
-            this.FilterSubmit.TabIndex = 31;
+            this.FilterSubmit.TabIndex = 170;
             this.FilterSubmit.Text = "Submit";
             this.FilterSubmit.UseVisualStyleBackColor = true;
             this.FilterSubmit.Click += new System.EventHandler(this.Submit_Click);
@@ -432,39 +429,47 @@
             // 
             // UnCumGrade2
             // 
-            this.UnCumGrade2.Location = new System.Drawing.Point(570, 238);
+            this.UnCumGrade2.Location = new System.Drawing.Point(583, 239);
             this.UnCumGrade2.Margin = new System.Windows.Forms.Padding(6);
             this.UnCumGrade2.Name = "UnCumGrade2";
             this.UnCumGrade2.Size = new System.Drawing.Size(80, 31);
-            this.UnCumGrade2.TabIndex = 41;
+            this.UnCumGrade2.TabIndex = 60;
+            this.UnCumGrade2.Visible = false;
+            this.UnCumGrade2.TextChanged += new System.EventHandler(this.UnCumGrade2_TextChanged);
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(504, 252);
+            this.label24.Location = new System.Drawing.Point(517, 253);
             this.label24.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(30, 25);
             this.label24.TabIndex = 40;
             this.label24.Text = "to";
+            this.label24.Visible = false;
+            this.label24.Click += new System.EventHandler(this.label24_Click);
             // 
             // UnCumGrade1
             // 
-            this.UnCumGrade1.Location = new System.Drawing.Point(382, 238);
+            this.UnCumGrade1.Location = new System.Drawing.Point(395, 239);
             this.UnCumGrade1.Margin = new System.Windows.Forms.Padding(6);
             this.UnCumGrade1.Name = "UnCumGrade1";
             this.UnCumGrade1.Size = new System.Drawing.Size(80, 31);
-            this.UnCumGrade1.TabIndex = 39;
+            this.UnCumGrade1.TabIndex = 50;
+            this.UnCumGrade1.Visible = false;
+            this.UnCumGrade1.TextChanged += new System.EventHandler(this.UnCumGrade1_TextChanged);
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(302, 252);
+            this.label25.Location = new System.Drawing.Point(315, 253);
             this.label25.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(54, 25);
             this.label25.TabIndex = 38;
             this.label25.Text = "from";
+            this.label25.Visible = false;
+            this.label25.Click += new System.EventHandler(this.label25_Click);
             // 
             // label26
             // 
@@ -487,18 +492,53 @@
             // UnCumClass
             // 
             this.UnCumClass.FormattingEnabled = true;
-            this.UnCumClass.Location = new System.Drawing.Point(382, 173);
+            this.UnCumClass.Location = new System.Drawing.Point(395, 181);
             this.UnCumClass.Margin = new System.Windows.Forms.Padding(6);
             this.UnCumClass.Name = "UnCumClass";
             this.UnCumClass.Size = new System.Drawing.Size(238, 33);
-            this.UnCumClass.TabIndex = 42;
+            this.UnCumClass.TabIndex = 40;
+            this.UnCumClass.Visible = false;
             this.UnCumClass.SelectedIndexChanged += new System.EventHandler(this.UnCumClass_SelectedIndexChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(265, 107);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(183, 29);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Filter by GPA?";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(265, 185);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(189, 29);
+            this.checkBox2.TabIndex = 30;
+            this.checkBox2.Text = "Filter by class?";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // Current
+            // 
+            this.Current.FormattingEnabled = true;
+            this.Current.Location = new System.Drawing.Point(395, 685);
+            this.Current.Margin = new System.Windows.Forms.Padding(6);
+            this.Current.Name = "Current";
+            this.Current.Size = new System.Drawing.Size(238, 33);
+            this.Current.TabIndex = 171;
             // 
             // Filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(762, 873);
+            this.Controls.Add(this.Current);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.UnCumClass);
             this.Controls.Add(this.UnCumGrade2);
             this.Controls.Add(this.label24);
@@ -511,7 +551,6 @@
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.FilterSubmit);
-            this.Controls.Add(this.Current);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.Race);
             this.Controls.Add(this.label18);
@@ -581,7 +620,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox Race;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox Current;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button FilterSubmit;
         private System.Windows.Forms.Label label20;
@@ -596,5 +634,8 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ComboBox UnCumClass;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.ComboBox Current;
     }
 }
