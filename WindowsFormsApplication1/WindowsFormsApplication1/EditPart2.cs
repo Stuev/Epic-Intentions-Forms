@@ -500,7 +500,7 @@ namespace WindowsFormsApplication1
 
             for (int i = 0; i < oldAttends[0].Count; i = i + 1)
             {
-                Model.UpdateAttends(thisID, oldAttends[1][i], attendsStartDate[i], attendsEndDate[i]);
+                Model.UpdateAttends(thisID, oldAttends[1][i], attendsStartDate[i], attendsEndDate[i], oldAttends[3][i]);
             }
 
             for (int i = 0; i < oldReferralList[0].Count; i = i + 1)
