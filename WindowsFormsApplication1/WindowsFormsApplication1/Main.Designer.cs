@@ -59,7 +59,7 @@
             this.ViewStudent.Margin = new System.Windows.Forms.Padding(4);
             this.ViewStudent.Name = "ViewStudent";
             this.ViewStudent.Size = new System.Drawing.Size(155, 53);
-            this.ViewStudent.TabIndex = 1;
+            this.ViewStudent.TabIndex = 3;
             this.ViewStudent.Text = "View Student Profile ";
             this.ViewStudent.UseVisualStyleBackColor = true;
             this.ViewStudent.Click += new System.EventHandler(this.ViewStudent_Click);
@@ -70,7 +70,7 @@
             this.FilterStudent.Margin = new System.Windows.Forms.Padding(4);
             this.FilterStudent.Name = "FilterStudent";
             this.FilterStudent.Size = new System.Drawing.Size(155, 53);
-            this.FilterStudent.TabIndex = 2;
+            this.FilterStudent.TabIndex = 5;
             this.FilterStudent.Text = "Filter Data";
             this.FilterStudent.UseVisualStyleBackColor = true;
             this.FilterStudent.Click += new System.EventHandler(this.FilterStudent_Click);
@@ -81,7 +81,7 @@
             this.EditStudent.Margin = new System.Windows.Forms.Padding(4);
             this.EditStudent.Name = "EditStudent";
             this.EditStudent.Size = new System.Drawing.Size(155, 51);
-            this.EditStudent.TabIndex = 3;
+            this.EditStudent.TabIndex = 7;
             this.EditStudent.Text = "Edit Student";
             this.EditStudent.UseVisualStyleBackColor = true;
             this.EditStudent.Click += new System.EventHandler(this.EditStudent_Click);
@@ -103,7 +103,7 @@
             this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(155, 53);
-            this.button5.TabIndex = 5;
+            this.button5.TabIndex = 6;
             this.button5.Text = "Add Info to Existing Student";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -114,7 +114,7 @@
             this.ImportData.Margin = new System.Windows.Forms.Padding(4);
             this.ImportData.Name = "ImportData";
             this.ImportData.Size = new System.Drawing.Size(155, 51);
-            this.ImportData.TabIndex = 6;
+            this.ImportData.TabIndex = 8;
             this.ImportData.Text = "Import School Data to Insert Multiple Students";
             this.ImportData.UseVisualStyleBackColor = true;
             this.ImportData.Click += new System.EventHandler(this.ImportData_Click);
@@ -125,7 +125,7 @@
             this.ViewAll.Margin = new System.Windows.Forms.Padding(4);
             this.ViewAll.Name = "ViewAll";
             this.ViewAll.Size = new System.Drawing.Size(155, 57);
-            this.ViewAll.TabIndex = 7;
+            this.ViewAll.TabIndex = 1;
             this.ViewAll.Text = "View All Students";
             this.ViewAll.UseVisualStyleBackColor = true;
             this.ViewAll.Click += new System.EventHandler(this.ViewAll_Click);
@@ -136,7 +136,7 @@
             this.PastStudents.Margin = new System.Windows.Forms.Padding(4);
             this.PastStudents.Name = "PastStudents";
             this.PastStudents.Size = new System.Drawing.Size(155, 57);
-            this.PastStudents.TabIndex = 8;
+            this.PastStudents.TabIndex = 2;
             this.PastStudents.Text = "Update Past Student Status";
             this.PastStudents.UseVisualStyleBackColor = true;
             this.PastStudents.Click += new System.EventHandler(this.PastStudents_Click);
@@ -147,7 +147,7 @@
             this.Delete.Margin = new System.Windows.Forms.Padding(4);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(155, 51);
-            this.Delete.TabIndex = 9;
+            this.Delete.TabIndex = 10;
             this.Delete.Text = "Admin Delete";
             this.Delete.UseVisualStyleBackColor = true;
             this.Delete.Click += new System.EventHandler(this.Delete_Click);
@@ -158,7 +158,7 @@
             this.EditSchool.Margin = new System.Windows.Forms.Padding(4);
             this.EditSchool.Name = "EditSchool";
             this.EditSchool.Size = new System.Drawing.Size(155, 51);
-            this.EditSchool.TabIndex = 10;
+            this.EditSchool.TabIndex = 9;
             this.EditSchool.Text = "Edit School Name";
             this.EditSchool.UseVisualStyleBackColor = true;
             this.EditSchool.Click += new System.EventHandler(this.EditSchool_Click);
