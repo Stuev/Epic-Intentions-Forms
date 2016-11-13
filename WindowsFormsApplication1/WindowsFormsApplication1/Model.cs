@@ -365,7 +365,8 @@ namespace WindowsFormsApplication1
         }
 
 
-        public static void UpdateAttends(string ID, string school, string staDate, string endDate)
+        public static void UpdateAttends(string ID, string school, 
+            string staDate, string endDate, string oldDate)
         {
 
             string query; 
@@ -373,7 +374,8 @@ namespace WindowsFormsApplication1
             {
                 query = "UPDATE attends SET Start_Date = \"" + staDate
                 + "\" WHERE Student_ID = \"" + ID
-                + "\" AND School_Name = \"" + school
+                + "\" AND (School_Name = \"" + school
+                + "\", Start_Date = \"" + oldDate
                 + "\";";
             }
             else
@@ -381,7 +383,8 @@ namespace WindowsFormsApplication1
                  query = "UPDATE attends SET Start_Date = \"" + staDate
                     + "\", End_Date = \"" + endDate
                     + "\" WHERE Student_ID = \"" + ID
-                    + "\" AND School_Name = \"" + school
+                    + "\" AND (School_Name = \"" + school
+                    + "\", Start_Date = \"" + oldDate
                     + "\";";
             }
             if (OpenConnection() == true)
