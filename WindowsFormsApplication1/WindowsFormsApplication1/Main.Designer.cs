@@ -38,6 +38,7 @@
             this.ViewAll = new System.Windows.Forms.Button();
             this.PastStudents = new System.Windows.Forms.Button();
             this.Delete = new System.Windows.Forms.Button();
+            this.EditSchool = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -142,7 +143,7 @@
             // 
             // Delete
             // 
-            this.Delete.Location = new System.Drawing.Point(122, 284);
+            this.Delete.Location = new System.Drawing.Point(219, 284);
             this.Delete.Margin = new System.Windows.Forms.Padding(4);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(155, 51);
@@ -151,11 +152,23 @@
             this.Delete.UseVisualStyleBackColor = true;
             this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
+            // EditSchool
+            // 
+            this.EditSchool.Location = new System.Drawing.Point(25, 284);
+            this.EditSchool.Margin = new System.Windows.Forms.Padding(4);
+            this.EditSchool.Name = "EditSchool";
+            this.EditSchool.Size = new System.Drawing.Size(155, 51);
+            this.EditSchool.TabIndex = 10;
+            this.EditSchool.Text = "Edit School Name";
+            this.EditSchool.UseVisualStyleBackColor = true;
+            this.EditSchool.Click += new System.EventHandler(this.EditSchool_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 374);
+            this.Controls.Add(this.EditSchool);
             this.Controls.Add(this.Delete);
             this.Controls.Add(this.PastStudents);
             this.Controls.Add(this.ViewAll);
@@ -188,5 +201,6 @@
         private System.Windows.Forms.Button ViewAll;
         private System.Windows.Forms.Button PastStudents;
         private System.Windows.Forms.Button Delete;
+        private System.Windows.Forms.Button EditSchool;
     }
 }

@@ -372,5 +372,13 @@ namespace WindowsFormsApplication1
             nextForm.ShowDialog();
             this.Show();
         }
+
+        private void EditSchool_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            EditSchool nextForm = new EditSchool();
+            nextForm.ShowDialog();
+            this.Show();
+        }
     }
 }
