@@ -207,6 +207,12 @@ namespace WindowsFormsApplication1
                         {
                             Model.UpdateStudentTable(studentID.ToString(), grade.ToString(), gradeMod, regDate, gender, race, daysAbsent.ToString());
                             Model.InsertCumGPA(studentID, gpa, gradeMod);
+                            DateTime date = DateTime.Now;
+                            String year = date.Year.ToString();
+                            String month = date.Month.ToString();
+                            String day = date.Day.ToString();
+                            string curDate = year + '-' + month + '-' + day;
+                            Model.InsertEmptyReferrals(studentID, curDate, numRefs);
                         }
                         catch
                         {
@@ -231,6 +237,7 @@ namespace WindowsFormsApplication1
                             }
                             Model.InsertAttends(curDate, studentID, school);
                             Model.InsertCumGPA(studentID, gpa, gradeMod);
+                            Model.InsertEmptyReferrals(studentID, curDate, numRefs);
                         }
                         catch
                         {
