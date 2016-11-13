@@ -932,13 +932,13 @@ namespace WindowsFormsApplication1
             }
             string query = "INSERT INTO student SET Grade_Level = '" + grade
                 + "', ID = '" + studentID
-                + "', First_Name = '" + firstName
-                + "', Last_Name = '" + lastName
-                + "', Grade_Modified_Date = '" + GradeMod
+                + "', First_Name = @firstName"
+                + ", Last_Name = @lastName"
+                + ", Grade_Modified_Date = '" + GradeMod
                 + "', Registration_Date = '" + RegDate
                 + "', Gender = '" + gender
-                + "', Race = '" + race
-                + "', isCurrent = '" + curStudentInt
+                + "', Race = @race"
+                + ", isCurrent = '" + curStudentInt
                 + "', Days_Missed = '" + daysMissed
                 + "';";
 
@@ -949,6 +949,10 @@ namespace WindowsFormsApplication1
                     MySqlCommand cmd = new MySqlCommand();
 
                     cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+                    cmd.Parameters.AddWithValue("@race", race);
+
 
                     cmd.Connection = connection;
 
