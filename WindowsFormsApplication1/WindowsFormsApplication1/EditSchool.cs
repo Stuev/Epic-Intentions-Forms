@@ -29,5 +29,10 @@ namespace WindowsFormsApplication1
                 Model.UpdateSchoolName(School.Text, NewSchool.Text);
             }
         }
+
+        private void NewSchool_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
