@@ -37,6 +37,7 @@ namespace WindowsFormsApplication1
             }
 
             string gradeDate;
+            string endDate;
 
             if (AddSchool_StartDate.Text == "")
             {
@@ -51,6 +52,11 @@ namespace WindowsFormsApplication1
                 string month = date.Month.ToString();
                 string day = date.Day.ToString();
                 gradeDate = year + "-" + month + "-" + day;
+                date = date.AddDays(-1);
+                year = date.Year.ToString();
+                month = date.Month.ToString();
+                day = date.Day.ToString();
+                endDate = year + "-" + month + "-" + day;
             } catch
             {
                 MessageBox.Show("Date Field is Incorrectly Formatted!");
@@ -86,7 +92,7 @@ namespace WindowsFormsApplication1
                 school = AddSchoolExistingSchool.Text;
             }
 
-
+            Model.UpdateCurSchoolToPast(studentID.ToString(), endDate);
 
             Model.InsertAttends(gradeDate, studentID, school);
 

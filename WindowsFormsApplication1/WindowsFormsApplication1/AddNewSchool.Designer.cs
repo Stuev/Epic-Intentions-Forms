@@ -81,9 +81,10 @@
             this.label1.Location = new System.Drawing.Point(102, 24);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(216, 20);
+            this.label1.Size = new System.Drawing.Size(217, 20);
             this.label1.TabIndex = 12;
-            this.label1.Text = "Update Attending School";
+            this.label1.Text = "Add School To Database";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // AddNewSchool
             // 

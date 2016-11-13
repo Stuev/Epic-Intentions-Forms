@@ -27,6 +27,7 @@ namespace WindowsFormsApplication1
             if (NewSchool.Text != "")
             {
                 Model.UpdateSchoolName(School.Text, NewSchool.Text);
+                this.Close();
             }
         }
 
