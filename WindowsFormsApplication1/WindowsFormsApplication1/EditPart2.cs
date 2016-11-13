@@ -30,9 +30,8 @@ namespace WindowsFormsApplication1
         private List<string> refType;
         private List<string> refDescr;
         private List<string>[] oldReferralList;
-        private string pastReason;
-        private string pastDate;
-        private bool pastUpdate = false;
+        private List<string> pastReason = new List<string>();
+        private List<string> pastDate = new List<string>();
         private List<string> attendsStartDate;
         private List<string> attendsEndDate;
         private List<string> attendsSchoolName;
@@ -43,7 +42,8 @@ namespace WindowsFormsApplication1
         private List<string> oldUnCumGPAIDs;
         private List<string>[] oldAttends;
         private bool clicked = false;
-        private List<string> unCumGPAClass;
+        private List<string> unCumGPAClass = new List<string>();
+        private List<string> oldPastID;
 
         public EditPart2(string ID)
         {
@@ -55,6 +55,7 @@ namespace WindowsFormsApplication1
             oldAttends = Model.SelectAllAttend(ID);
             oldCumGPAIDs = Model.SelectCumGPAID(ID);
             oldUnCumGPAIDs = Model.SelectUnCumGPAID(ID);
+            oldPastID = Model.SelectAllPastID(ID);
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -163,7 +164,7 @@ namespace WindowsFormsApplication1
                     this.Close();
                     return;
                 }
-                
+
             }
 
             try
@@ -180,7 +181,7 @@ namespace WindowsFormsApplication1
                 try
                 {
                     DateTime date = DateTime.Parse(oRng.Cells[2, 5].Value2 + "");
-                    
+
                     String year = date.Year.ToString();
                     String month = date.Month.ToString();
                     String day = date.Day.ToString();
@@ -308,13 +309,13 @@ namespace WindowsFormsApplication1
             attendsSchoolName = new List<string>();
             attendsStartDate = new List<string>();
             attendsEndDate = new List<string>();
-            
+
             for (int i = 0; i < oldAttends[0].Count(); i = i + 1)
             {
                 attendsSchoolName.Add(oRng.Cells[i + 2, 2].Value2 + "");
 
 
-                if (attendsSchoolName[attendsSchoolName.Count - 1].Contains('"') 
+                if (attendsSchoolName[attendsSchoolName.Count - 1].Contains('"')
                     || attendsSchoolName[attendsSchoolName.Count - 1].Contains(';'))
                 {
                     oWB.Close(false);
@@ -377,7 +378,7 @@ namespace WindowsFormsApplication1
                             attendsEndDate.Add("");
                         }
                         else
-                        { 
+                        {
                             oWB.Close(false);
                             MessageBox.Show("Something went wrong in reading the input dates. Please try again. Make sure they are in MM/DD/YYYY format.");
                             this.Close();
@@ -386,7 +387,7 @@ namespace WindowsFormsApplication1
                     }
                 }
 
-                
+
             }
 
             oSheet = (Excel._Worksheet)oWB.Sheets[5];
@@ -432,34 +433,31 @@ namespace WindowsFormsApplication1
 
                 refDescr.Add(oRng.Cells[i + 2, 5].Value2 + "");
 
-                
+
             }
 
             oSheet = (Excel._Worksheet)oWB.Sheets[6];
             oRng = oSheet.UsedRange;
-
-            if(oSheet.Name == "Past Student Information")
-            {
-                pastUpdate = true;
-
+            for (int i = 0; i < oldPastID.Count(); i = i + 1)
+            { 
                 try
                 {
-                    double d = double.Parse(oRng.Cells[2, 3].Value2 + "");
+                    double d = double.Parse(oRng.Cells[i + 2, 3].Value2 + "");
                     DateTime date = DateTime.FromOADate(d);
                     String year = date.Year.ToString();
                     String month = date.Month.ToString();
                     String day = date.Day.ToString();
-                    pastDate = year + '-' + month + '-' + day;
+                    pastDate.Add(year + '-' + month + '-' + day);
                 }
                 catch
                 {
                     try
                     {
-                        DateTime date = DateTime.Parse(oRng.Cells[2, 3].Value2 + "");
+                        DateTime date = DateTime.Parse(oRng.Cells[i + 2, 3].Value2 + "");
                         String year = date.Year.ToString();
                         String month = date.Month.ToString();
                         String day = date.Day.ToString();
-                        pastDate = year + '-' + month + '-' + day;
+                        pastDate.Add(year + '-' + month + '-' + day);
                     }
                     catch
                     {
@@ -470,8 +468,9 @@ namespace WindowsFormsApplication1
                     }
                 }
 
-                pastReason = oRng.Cells[2, 2].Value2 + "";
-            }
+            pastReason.Add(oRng.Cells[i + 2, 2].Value2 + "");
+        }
+          
 
             oWB.Close(false);
             MessageBox.Show("File has been successfully imported! Press \"Complete Edit\" Button to save changes!");
@@ -508,9 +507,9 @@ namespace WindowsFormsApplication1
             {
                 Model.UpdateReferrals(oldReferralList[1][i], refDate[i], refType[i], refDescr[i]);
             }
-            if (pastUpdate)
+            for (int i = 0; i < oldPastID.Count; i = i +1)
             {
-                Model.UpdatePastStudent(thisID, pastReason, pastDate);
+                Model.UpdatePastStudent(oldPastID[i], pastReason[i], pastDate[i]);
             }
 
             this.Close();

@@ -212,6 +212,51 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public static List<string> SelectAllPastID(string ID)
+        {
+            string query = "SELECT * FROM past_student "
+            + "WHERE ID = '" + ID
+            + "';";
+
+            List<string> list = new List<string>();
+
+
+            if (OpenConnection() == true)
+            {
+
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        list.Add(dataReader["Past_ID"] + "");
+                    }
+
+
+                    dataReader.Close();
+
+
+                    CloseConnection();
+
+
+                    return list;
+
+                }
+                catch
+                {
+                    MessageBox.Show("Please update the database to the current one on the Google Drive. -Elie, 11/13/16");
+                    return list;
+                }
+            }
+            else
+            {
+                return list;
+            }
+        }
+
         public static List<string> SelectUnCumGPAID(string ID)
         {
             string query = "SELECT * FROM un_cum_gpa "
@@ -361,21 +406,15 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public static void UpdateCurSchoolToPast(string ID)
+        public static void UpdateCurSchoolToPast(string ID, string endDate)
         {
 
             string query;
 
-            DateTime date = DateTime.Now;
-            String year = date.Year.ToString();
-            String month = date.Month.ToString();
-            String day = date.Day.ToString();
-            String endDate = year + '-' + month + '-' + day;
-
 
             query = "UPDATE attends SET End_Date = \"" + endDate
             + "\" WHERE Student_ID = \"" + ID
-            + "\" AND End_Date > '';";
+            + "\" AND End_Date IS NULL;";
             
             if (OpenConnection() == true)
             {
@@ -453,11 +492,11 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public static void UpdatePastStudent(string ID, string reason, string date)
+        public static void UpdatePastStudent(string pastID, string reason, string date)
         {
             string query = "UPDATE past_student SET Reason = @reason,"
                 + "Leave_Date = '" + date
-                + "' WHERE ID = '" + ID
+                + "' WHERE Past_ID = '" + pastID
                 + "';";
 
             if (OpenConnection() == true)
@@ -468,6 +507,7 @@ namespace WindowsFormsApplication1
 
                     cmd.CommandText = query;
                     cmd.Parameters.AddWithValue("@reason", reason);
+
 
 
                     cmd.Connection = connection;
@@ -571,8 +611,7 @@ namespace WindowsFormsApplication1
 
         public static void UpdateSchoolName(string oldSchool, string newSchool)
         {
-            string query = "UPDATE school SET Name= '" + newSchool
-                + "'WHERE Name= '" + oldSchool
+            string query = "UPDATE school SET Name= @newSchool WHERE Name= '" + oldSchool
                 + "';";
 
             if (OpenConnection() == true)
@@ -582,6 +621,7 @@ namespace WindowsFormsApplication1
                     MySqlCommand cmd = new MySqlCommand();
 
                     cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@newSchool", newSchool);
 
                     cmd.Connection = connection;
 
@@ -595,11 +635,6 @@ namespace WindowsFormsApplication1
                     CloseConnection();
                 }
             }
-        }
-
-        public static void InsertToPastStudent()
-        {
-
         }
 
         public static bool SchoolExists(String SchoolName)

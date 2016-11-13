@@ -70,13 +70,6 @@ namespace WindowsFormsApplication1
                 List<string>[] pastStudent = Model.SelectAllPast(ID);
                 List<string>[] referralsList = Model.SelectAllReferral(ID);
 
-                bool cur;
-                if (studentList[8].Count() > 0)
-                {
-                    if (studentList[8][0] == "True") { cur = true; }
-                    else { cur = false; }
-                }
-                else { cur = true; }
 
                 Excel.Application oXL;
                 Excel._Workbook oWB;
@@ -286,40 +279,39 @@ namespace WindowsFormsApplication1
                     oRng = oSheet.get_Range("A1", "J1");
                     oRng.EntireColumn.AutoFit();
 
-                    if (!cur)
+
+                    oSheet = (Excel.Worksheet)oWB.Sheets[6];
+                    oSheet.Name = "Past Student Information";
+
+
+                    //Add table headers going cell by cell.
+                    //oSheet.Cells[1, 1] = "ID";
+                    oSheet.Cells[1, 2] = "Reason";
+                    oSheet.Cells[1, 3] = "Leaving Date";
+
+                    //Format A1:D1 as bold, vertical alignment = center.
+                    oSheet.get_Range("A1", "C1").Font.Bold = true;
+                    oSheet.get_Range("A1", "C1").VerticalAlignment =
+                        Excel.XlVAlign.xlVAlignCenter;
+
+                    // Create an array to multiple values at once.
+                    toPrint = new string[3];
+
+                    for (int j = 0; j < pastStudent[0].Count(); j = j + 1)
                     {
-                        oSheet = (Excel.Worksheet)oWB.Sheets[6];
-                        oSheet.Name = "Past Student Information";
-
-
-                        //Add table headers going cell by cell.
-                        //oSheet.Cells[1, 1] = "ID";
-                        oSheet.Cells[1, 2] = "Reason";
-                        oSheet.Cells[1, 3] = "Leaving Date";
-
-                        //Format A1:D1 as bold, vertical alignment = center.
-                        oSheet.get_Range("A1", "C1").Font.Bold = true;
-                        oSheet.get_Range("A1", "C1").VerticalAlignment =
-                            Excel.XlVAlign.xlVAlignCenter;
-
-                        // Create an array to multiple values at once.
-                        toPrint = new string[3];
-
-                        for (int j = 0; j < pastStudent[0].Count(); j = j + 1)
+                        int k = j + 2;
+                        for (int i = 1; i < pastStudent.Count(); i = i + 1)
                         {
-                            int k = j + 2;
-                            for (int i = 1; i < pastStudent.Count(); i = i + 1)
-                            {
-                                toPrint[i] = pastStudent[i][j];
-                            }
-                            //Fill with an array of values (First and Last Names).
-                            oSheet.get_Range("A" + k, "C" + k).Value2 = toPrint;
+                            toPrint[i] = pastStudent[i][j];
                         }
-
-                        //Fill A2:B6 with an array of values (First and Last Names).
-                        oRng = oSheet.get_Range("A1", "J1");
-                        oRng.EntireColumn.AutoFit();
+                        //Fill with an array of values (First and Last Names).
+                        oSheet.get_Range("A" + k, "C" + k).Value2 = toPrint;
                     }
+
+                    //Fill A2:B6 with an array of values (First and Last Names).
+                    oRng = oSheet.get_Range("A1", "J1");
+                    oRng.EntireColumn.AutoFit();
+
 
 
                     oXL.DisplayAlerts = false;
