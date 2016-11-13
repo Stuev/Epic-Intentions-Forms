@@ -1309,6 +1309,36 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public static int numRefsByID(int id)
+        {
+            string query = "select count(*) from referrals where ID = ";
+
+            query += id;
+            int count = 0;
+
+            if (OpenConnection() == true)
+            {
+
+
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                count = ((int) dataReader["count(*)"]);
+
+                dataReader.Close();
+
+
+                CloseConnection();
+                return count;
+
+            }
+            else
+            {
+                return count;
+            }
+        }
+
         public static List<string>[] SelectAllReferrals()
         {
             string query = "SELECT * FROM referrals;";
