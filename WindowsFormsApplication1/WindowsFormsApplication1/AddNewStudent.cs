@@ -133,22 +133,9 @@ namespace WindowsFormsApplication1
                         "\nPlease make sure that there is a number in the GPA field.");
                     return;
                 }
-            } else if (CumGradeAdd.Text != "")
-            {
-                Double cumGPA;
-                try
-                {
-                    cumGPA = Double.Parse(CumGradeAdd.Text);
-                } catch
-                {
-                    MessageBox.Show("Something went wrong in reading the GPA of the student." +
-                        "\nPlease make sure that there is a number in the GPA field.");
-                    return;
-                }
-                gpa = cumGPA / 25;
             } else
             {
-                MessageBox.Show("Please enter a GPA on a 4.0 scale or a grade on a 100 point scale!");
+                MessageBox.Show("Please enter a GPA on a 4.0 scale!");
                 return;
             }
             String school = addSchool.Text;
