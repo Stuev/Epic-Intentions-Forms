@@ -571,8 +571,7 @@ namespace WindowsFormsApplication1
 
         public static void UpdateSchoolName(string oldSchool, string newSchool)
         {
-            string query = "UPDATE school SET Name= '" + newSchool
-                + "'WHERE Name= '" + oldSchool
+            string query = "UPDATE school SET Name= @newSchool WHERE Name= '" + oldSchool
                 + "';";
 
             if (OpenConnection() == true)
@@ -582,6 +581,7 @@ namespace WindowsFormsApplication1
                     MySqlCommand cmd = new MySqlCommand();
 
                     cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@newSchool", newSchool);
 
                     cmd.Connection = connection;
 

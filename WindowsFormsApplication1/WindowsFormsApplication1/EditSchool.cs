@@ -15,6 +15,19 @@ namespace WindowsFormsApplication1
         public EditSchool()
         {
             InitializeComponent();
+            List<string> data = Model.getSchools();
+
+            School.DataSource = data;
+            School.DropDownStyle = ComboBoxStyle.DropDownList;
+
+        }
+
+        private void UploadFile_Click(object sender, EventArgs e)
+        {
+            if (NewSchool.Text != "")
+            {
+                Model.UpdateSchoolName(School.Text, NewSchool.Text);
+            }
         }
     }
 }

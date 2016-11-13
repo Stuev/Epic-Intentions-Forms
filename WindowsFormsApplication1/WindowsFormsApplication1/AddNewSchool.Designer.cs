@@ -96,7 +96,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "AddNewSchool";
-            this.Text = "Form2";
+            this.Text = "Add New School";
             this.ResumeLayout(false);
             this.PerformLayout();
 
