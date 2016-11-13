@@ -65,10 +65,10 @@
             // 
             this.AddCurrent.FormattingEnabled = true;
             this.AddCurrent.Location = new System.Drawing.Point(220, 441);
-            this.AddCurrent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddCurrent.Margin = new System.Windows.Forms.Padding(4);
             this.AddCurrent.Name = "AddCurrent";
             this.AddCurrent.Size = new System.Drawing.Size(121, 24);
-            this.AddCurrent.TabIndex = 60;
+            this.AddCurrent.TabIndex = 12;
             this.AddCurrent.SelectedIndexChanged += new System.EventHandler(this.AddCurrent_SelectedIndexChanged);
             // 
             // label19
@@ -98,10 +98,10 @@
             // AddAttend
             // 
             this.AddAttend.Location = new System.Drawing.Point(220, 315);
-            this.AddAttend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddAttend.Margin = new System.Windows.Forms.Padding(4);
             this.AddAttend.Name = "AddAttend";
             this.AddAttend.Size = new System.Drawing.Size(55, 22);
-            this.AddAttend.TabIndex = 54;
+            this.AddAttend.TabIndex = 9;
             // 
             // label17
             // 
@@ -118,10 +118,10 @@
             // AddBehavior
             // 
             this.AddBehavior.Location = new System.Drawing.Point(220, 278);
-            this.AddBehavior.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddBehavior.Margin = new System.Windows.Forms.Padding(4);
             this.AddBehavior.Name = "AddBehavior";
             this.AddBehavior.Size = new System.Drawing.Size(55, 22);
-            this.AddBehavior.TabIndex = 49;
+            this.AddBehavior.TabIndex = 8;
             // 
             // label14
             // 
@@ -139,10 +139,10 @@
             // 
             this.AddGender.FormattingEnabled = true;
             this.AddGender.Location = new System.Drawing.Point(220, 358);
-            this.AddGender.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddGender.Margin = new System.Windows.Forms.Padding(4);
             this.AddGender.Name = "AddGender";
             this.AddGender.Size = new System.Drawing.Size(119, 24);
-            this.AddGender.TabIndex = 46;
+            this.AddGender.TabIndex = 10;
             // 
             // label11
             // 
@@ -159,10 +159,10 @@
             // AddGrade
             // 
             this.AddGrade.Location = new System.Drawing.Point(220, 241);
-            this.AddGrade.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddGrade.Margin = new System.Windows.Forms.Padding(4);
             this.AddGrade.Name = "AddGrade";
             this.AddGrade.Size = new System.Drawing.Size(55, 22);
-            this.AddGrade.TabIndex = 42;
+            this.AddGrade.TabIndex = 7;
             // 
             // label8
             // 
@@ -191,10 +191,11 @@
             // AddGPA
             // 
             this.AddGPA.Location = new System.Drawing.Point(220, 133);
-            this.AddGPA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddGPA.Margin = new System.Windows.Forms.Padding(4);
             this.AddGPA.Name = "AddGPA";
             this.AddGPA.Size = new System.Drawing.Size(55, 22);
-            this.AddGPA.TabIndex = 35;
+            this.AddGPA.TabIndex = 4;
+            this.AddGPA.TextChanged += new System.EventHandler(this.AddGPA_TextChanged);
             // 
             // label5
             // 
@@ -250,7 +251,7 @@
             // 
             this.AddStudentSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddStudentSubmit.Location = new System.Drawing.Point(161, 476);
-            this.AddStudentSubmit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddStudentSubmit.Margin = new System.Windows.Forms.Padding(4);
             this.AddStudentSubmit.Name = "AddStudentSubmit";
             this.AddStudentSubmit.Size = new System.Drawing.Size(93, 33);
             this.AddStudentSubmit.TabIndex = 62;
@@ -261,10 +262,10 @@
             // CumGradeAdd
             // 
             this.CumGradeAdd.Location = new System.Drawing.Point(220, 166);
-            this.CumGradeAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CumGradeAdd.Margin = new System.Windows.Forms.Padding(4);
             this.CumGradeAdd.Name = "CumGradeAdd";
             this.CumGradeAdd.Size = new System.Drawing.Size(55, 22);
-            this.CumGradeAdd.TabIndex = 63;
+            this.CumGradeAdd.TabIndex = 5;
             // 
             // label6
             // 
@@ -301,28 +302,28 @@
             // raceBox
             // 
             this.raceBox.Location = new System.Drawing.Point(220, 401);
-            this.raceBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.raceBox.Margin = new System.Windows.Forms.Padding(4);
             this.raceBox.Name = "raceBox";
             this.raceBox.Size = new System.Drawing.Size(132, 22);
-            this.raceBox.TabIndex = 68;
+            this.raceBox.TabIndex = 11;
             // 
             // addSchool
             // 
             this.addSchool.FormattingEnabled = true;
             this.addSchool.Location = new System.Drawing.Point(220, 201);
-            this.addSchool.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addSchool.Margin = new System.Windows.Forms.Padding(4);
             this.addSchool.Name = "addSchool";
             this.addSchool.Size = new System.Drawing.Size(160, 24);
-            this.addSchool.TabIndex = 69;
+            this.addSchool.TabIndex = 6;
             this.addSchool.SelectedIndexChanged += new System.EventHandler(this.addSchool_SelectedIndexChanged);
             // 
             // addStudentID
             // 
             this.addStudentID.Location = new System.Drawing.Point(220, 101);
-            this.addStudentID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addStudentID.Margin = new System.Windows.Forms.Padding(4);
             this.addStudentID.Name = "addStudentID";
             this.addStudentID.Size = new System.Drawing.Size(72, 22);
-            this.addStudentID.TabIndex = 70;
+            this.addStudentID.TabIndex = 3;
             this.addStudentID.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label12
@@ -349,10 +350,10 @@
             // addLastName
             // 
             this.addLastName.Location = new System.Drawing.Point(220, 66);
-            this.addLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addLastName.Margin = new System.Windows.Forms.Padding(4);
             this.addLastName.Name = "addLastName";
             this.addLastName.Size = new System.Drawing.Size(132, 22);
-            this.addLastName.TabIndex = 73;
+            this.addLastName.TabIndex = 2;
             // 
             // label15
             // 
@@ -367,10 +368,10 @@
             // addFirstName
             // 
             this.addFirstName.Location = new System.Drawing.Point(220, 33);
-            this.addFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addFirstName.Margin = new System.Windows.Forms.Padding(4);
             this.addFirstName.Name = "addFirstName";
             this.addFirstName.Size = new System.Drawing.Size(121, 22);
-            this.addFirstName.TabIndex = 75;
+            this.addFirstName.TabIndex = 1;
             // 
             // AddNewStudent
             // 
@@ -408,7 +409,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddNewStudent";
             this.Text = "AddNewStudent";
             this.Load += new System.EventHandler(this.AddNewStudent_Load);

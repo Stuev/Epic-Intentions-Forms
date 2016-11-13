@@ -81,22 +81,115 @@ namespace WindowsFormsApplication1
 
         private void AddStudentSubmit_Click_1(object sender, EventArgs e)
         {
-            String firstName = addFirstName.Text;
-            String lastName = addLastName.Text;
-            int studentID = int.Parse(addStudentID.Text);
-            Double gpa;
-            if (AddGPA.Text != "")
+
+            String firstName;
+            String lastName;
+            if (addFirstName.Text != "" && addLastName.Text != "")
             {
-                gpa = Double.Parse(AddGPA.Text);
+                firstName = addFirstName.Text;
+                lastName = addLastName.Text;
             } else
             {
-                Double cumGPA = Double.Parse(CumGradeAdd.Text);
+                MessageBox.Show("Please enter a name for the student!");
+                return;
+            }
+
+            int studentID;
+
+            if (addStudentID.Text != "")
+            {
+                try
+                {
+                    studentID = int.Parse(addStudentID.Text);
+                } catch
+                {
+                    MessageBox.Show("Something went wrong in reading the ID of the student." +
+                        "\nPlease make sure that there is a number in the ID field.");
+                    return;
+                }
+            } else
+            {
+                MessageBox.Show("Please enter an ID for the student!");
+                return;
+            }
+
+            if (Model.StudentExists(studentID.ToString()))
+            {
+                MessageBox.Show("A student with this ID already exists in the database!");
+                return;
+            }
+
+
+            Double gpa;
+            
+            if (AddGPA.Text != "")
+            {
+                try
+                {
+                    gpa = Double.Parse(AddGPA.Text);
+                } catch
+                {
+                    MessageBox.Show("Something went wrong in reading the GPA of the student." +
+                        "\nPlease make sure that there is a number in the GPA field.");
+                    return;
+                }
+            } else if (CumGradeAdd.Text != "")
+            {
+                Double cumGPA;
+                try
+                {
+                    cumGPA = Double.Parse(CumGradeAdd.Text);
+                } catch
+                {
+                    MessageBox.Show("Something went wrong in reading the GPA of the student." +
+                        "\nPlease make sure that there is a number in the GPA field.");
+                    return;
+                }
                 gpa = cumGPA / 25;
+            } else
+            {
+                MessageBox.Show("Please enter a GPA on a 4.0 scale or a grade on a 100 point scale!");
+                return;
             }
             String school = addSchool.Text;
-            int grade = int.Parse(AddGrade.Text);
-            int numRefs = int.Parse(AddBehavior.Text);
-            int daysMissed = int.Parse(AddAttend.Text);
+            int grade;
+
+            if (AddGrade.Text != "")
+            {
+                try
+                {
+                    grade = int.Parse(AddGrade.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Something went wrong in reading the grade level of the student." +
+                        "\nPlease make sure that there is a number in the grade level.");
+                    return;
+                }
+            } else
+            {
+                MessageBox.Show("There is nothing in the Grade Level blank!");
+                return;
+            }
+
+            int numRefs;
+
+            if (AddBehavior.Text != "")
+            {
+                numRefs = int.Parse(AddBehavior.Text);
+            } else
+            {
+                numRefs = 0;
+            }
+
+            int daysMissed;
+            if (AddAttend.Text != "")
+            {
+                daysMissed = int.Parse(AddAttend.Text);
+            } else
+            {
+                daysMissed = 0;
+            }
             String gender = AddGender.Text;
             String race = raceBox.Text;
             String curStudent = AddCurrent.Text;
@@ -129,6 +222,11 @@ namespace WindowsFormsApplication1
         }
 
         private void AddCurrent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddGPA_TextChanged(object sender, EventArgs e)
         {
 
         }
