@@ -1684,7 +1684,7 @@ namespace WindowsFormsApplication1
 
         public static List<string> selectCol(string table, string col)
         {
-            string query = "SELECT DISTINCT " + col + " FROM " + table + ";";
+            string query = "SELECT DISTINCT CONCAT(" + col + ") as col FROM " + table + ";";
 
             if (OpenConnection() == true)
             {
@@ -1698,7 +1698,7 @@ namespace WindowsFormsApplication1
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    returnval.Add(dataReader[col] + "");
+                    returnval.Add(dataReader["col"] + "");
                 }
 
                 //close Data Reader
@@ -2125,7 +2125,7 @@ namespace WindowsFormsApplication1
                 conditions += " AND " + genTextOrComp(classes, "Class");
 
             }
-            string query = "SELECT student.ID, attends.Start_Date, attends.End_Date, attends.School_Name, cum_gpa.GPA, cum_gpa.GPA_Entry_Date, MyCounts.Referral_Date, coalesce(MyCounts.referral_count, 0) as referral_count, MyCounts.Type, MyCounts.Description, student.First_Name, student.Last_Name, student.Grade_Level, student.Grade_Modified_Date, student.Registration_Date, student.Gender, student.Race, student.isCurrent, student.Days_Missed, un_cum_gpa.Grade_Num, un_cum_gpa.Class, un_cum_gpa.Grade, un_cum_gpa.Grade_Entry_Date FROM student LEFT JOIN cum_gpa ON student.ID = cum_gpa.ID LEFT JOIN attends ON cum_gpa.ID = attends.student_ID LEFT JOIN un_cum_gpa ON cum_gpa.ID = un_cum_gpa.ID left JOIN (SELECT id, count(id)referral_count, Referral_Date, Type, Description FROM referrals GROUP BY id) AS MyCounts ON cum_gpa.ID = MyCounts.id WHERE (GPA between " + (minGPA - .00001) + " AND " + (maxGPA + .00001) + ") AND (Grade_Level between " + minGrade + " AND " + maxGrade + ") AND (coalesce(referral_count, 0) between " + minReferrals + " AND " + maxReferrals + ") AND (Days_Missed between " + minDaysMissed + " AND " + maxDaysMissed + ") " + conditions + " AND (coalesce(GRADE, -1) between " + (minClassGrade - .00001) + " AND " + (maxClassGrade + .00001) + ");";
+            string query = "SELECT student.ID, CONCAT(attends.Start_Date) as Start_Date, CONCAT(attends.End_Date) as End_Date, attends.School_Name, cum_gpa.GPA, CONCAT(cum_gpa.GPA_Entry_Date) as GPA_Entry_Date, CONCAT(MyCounts.Referral_Date), coalesce(MyCounts.referral_count, 0) as referral_count, MyCounts.Type, MyCounts.Description, student.First_Name, student.Last_Name, student.Grade_Level, CONCAT(student.Grade_Modified_Date) as Grade_Modified_Date, CONCAT(student.Registration_Date) as Registration_Date, student.Gender, student.Race, student.isCurrent, student.Days_Missed, un_cum_gpa.Grade_Num, un_cum_gpa.Class, un_cum_gpa.Grade, CONCAT(un_cum_gpa.Grade_Entry_Date) as Grade_Entry_Date FROM student LEFT JOIN cum_gpa ON student.ID = cum_gpa.ID LEFT JOIN attends ON cum_gpa.ID = attends.student_ID LEFT JOIN un_cum_gpa ON cum_gpa.ID = un_cum_gpa.ID left JOIN (SELECT id, count(id)referral_count, Referral_Date, Type, Description FROM referrals GROUP BY id) AS MyCounts ON cum_gpa.ID = MyCounts.id WHERE (coalesce(GPA, -1) between " + (minGPA - .00001) + " AND " + (maxGPA + .00001) + ") AND (Grade_Level between " + minGrade + " AND " + maxGrade + ") AND (coalesce(referral_count, 0) between " + minReferrals + " AND " + maxReferrals + ") AND (Days_Missed between " + minDaysMissed + " AND " + maxDaysMissed + ") " + conditions + " AND (coalesce(GRADE, -1) between " + (minClassGrade - .00001) + " AND " + (maxClassGrade + .00001) + ");";
             System.Diagnostics.Debug.WriteLine(query);
 
             if (OpenConnection() == true)

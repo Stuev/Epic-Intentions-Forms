@@ -63,7 +63,10 @@ namespace WindowsFormsApplication1
         }
         private void Submit_Click(object sender, EventArgs e)
         {
-            float minGPA = float.Parse(GPA1.Text);
+            float minGPA = -1;
+            if (Math.Abs(float.Parse(GPA1.Text) - Model.getMinGPA()) > .001) {
+                minGPA = float.Parse(GPA1.Text);
+            }
             float maxGPA = float.Parse(GPA2.Text);
             float minGrade = -1;
             if (Math.Abs(float.Parse(UnCumGrade1.Text) - Model.getMinClassGrade()) > .001)
@@ -196,7 +199,7 @@ namespace WindowsFormsApplication1
                     int k = j + 2;
                     for (int i = 0; i < selectedVals.Count(); i = i + 1)
                     {
-                        if (i == 20 && float.Parse(selectedVals[i][j]) < 0)
+                        if ((i == 20 || i == 10) && selectedVals[i][j] == null)
                         {
                             toPrint[i] = "DNE";
                         }
