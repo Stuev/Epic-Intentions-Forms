@@ -36,9 +36,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(124, 49);
+            this.button1.Location = new System.Drawing.Point(248, 94);
+            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 43);
+            this.button1.Size = new System.Drawing.Size(338, 83);
             this.button1.TabIndex = 0;
             this.button1.Text = "Delete Cumulative GPA";
             this.button1.UseVisualStyleBackColor = true;
@@ -46,9 +47,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(124, 107);
+            this.button2.Location = new System.Drawing.Point(248, 206);
+            this.button2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(169, 43);
+            this.button2.Size = new System.Drawing.Size(338, 83);
             this.button2.TabIndex = 1;
             this.button2.Text = "Delete Uncumulative Grades";
             this.button2.UseVisualStyleBackColor = true;
@@ -56,9 +58,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(124, 166);
+            this.button3.Location = new System.Drawing.Point(248, 319);
+            this.button3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(169, 43);
+            this.button3.Size = new System.Drawing.Size(338, 83);
             this.button3.TabIndex = 2;
             this.button3.Text = "Delete Referrals";
             this.button3.UseVisualStyleBackColor = true;
@@ -66,9 +69,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(124, 225);
+            this.button4.Location = new System.Drawing.Point(248, 433);
+            this.button4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(169, 43);
+            this.button4.Size = new System.Drawing.Size(338, 83);
             this.button4.TabIndex = 3;
             this.button4.Text = "Delete Student";
             this.button4.UseVisualStyleBackColor = true;
@@ -76,13 +80,14 @@
             // 
             // DeleteMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 338);
+            this.ClientSize = new System.Drawing.Size(838, 650);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "DeleteMain";
             this.Text = "DeleteMain";
             this.ResumeLayout(false);

@@ -39,6 +39,7 @@
             this.PastStudents = new System.Windows.Forms.Button();
             this.Delete = new System.Windows.Forms.Button();
             this.EditSchool = new System.Windows.Forms.Button();
+            this.EditAdminPW = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -48,7 +49,7 @@
             this.label1.Location = new System.Drawing.Point(150, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 20);
+            this.label1.Size = new System.Drawing.Size(179, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select Option";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -163,11 +164,23 @@
             this.EditSchool.UseVisualStyleBackColor = true;
             this.EditSchool.Click += new System.EventHandler(this.EditSchool_Click);
             // 
+            // EditAdminPW
+            // 
+            this.EditAdminPW.Location = new System.Drawing.Point(122, 343);
+            this.EditAdminPW.Margin = new System.Windows.Forms.Padding(4);
+            this.EditAdminPW.Name = "EditAdminPW";
+            this.EditAdminPW.Size = new System.Drawing.Size(155, 51);
+            this.EditAdminPW.TabIndex = 11;
+            this.EditAdminPW.Text = "Edit Admin Password";
+            this.EditAdminPW.UseVisualStyleBackColor = true;
+            this.EditAdminPW.Click += new System.EventHandler(this.EditAdminPW_Click);
+            // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 372);
+            this.ClientSize = new System.Drawing.Size(413, 417);
+            this.Controls.Add(this.EditAdminPW);
             this.Controls.Add(this.EditSchool);
             this.Controls.Add(this.Delete);
             this.Controls.Add(this.PastStudents);
@@ -202,5 +215,6 @@
         private System.Windows.Forms.Button PastStudents;
         private System.Windows.Forms.Button Delete;
         private System.Windows.Forms.Button EditSchool;
+        private System.Windows.Forms.Button EditAdminPW;
     }
 }

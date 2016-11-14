@@ -42,6 +42,15 @@ namespace WindowsFormsApplication1
 
         private void DeleteRefSubmit_Click(object sender, EventArgs e)
         {
+            adminPW authentication = new adminPW();
+            authentication.ShowDialog();
+
+            if (!(authentication.DialogResult == DialogResult.OK))
+            {
+                MessageBox.Show("Password authentication failed.");
+                return;
+            }
+
             List<string> ids = new List<string>();
             if (DeleteReferralID.GetItemText(DeleteReferralID.SelectedItem).Equals("all"))
             {
@@ -78,6 +87,11 @@ namespace WindowsFormsApplication1
             }
 
             Model.deleteRef(ids, types, dates);
+        }
+
+        private void DeleteReferrals_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -38,5 +38,10 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+        private void passwordField_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

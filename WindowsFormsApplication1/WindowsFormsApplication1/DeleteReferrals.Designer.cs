@@ -54,7 +54,7 @@
             // DeleteRefSubmit
             // 
             this.DeleteRefSubmit.Location = new System.Drawing.Point(304, 429);
-            this.DeleteRefSubmit.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.DeleteRefSubmit.Margin = new System.Windows.Forms.Padding(6);
             this.DeleteRefSubmit.Name = "DeleteRefSubmit";
             this.DeleteRefSubmit.Size = new System.Drawing.Size(246, 77);
             this.DeleteRefSubmit.TabIndex = 32;
@@ -155,9 +155,10 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "DeleteReferrals";
             this.Text = "DeleteReferrals";
+            this.Load += new System.EventHandler(this.DeleteReferrals_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -32,6 +32,15 @@ namespace WindowsFormsApplication1
 
         private void DeleteStudentSubmit_Click(object sender, EventArgs e)
         {
+            adminPW authentication = new adminPW();
+            authentication.ShowDialog();
+
+            if (!(authentication.DialogResult == DialogResult.OK))
+            {
+                MessageBox.Show("Password authentication failed.");
+                return;
+            }
+
             List<string> ids = new List<string>();
             if (DeleteStudentID.GetItemText(DeleteStudentID.SelectedItem).Equals("all"))
             {

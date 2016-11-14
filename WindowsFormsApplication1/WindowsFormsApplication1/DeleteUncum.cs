@@ -56,6 +56,15 @@ namespace WindowsFormsApplication1
 
         private void DeleteUnCumSubmit_Click(object sender, EventArgs e)
         {
+            adminPW authentication = new adminPW();
+            authentication.ShowDialog();
+
+            if (!(authentication.DialogResult == DialogResult.OK))
+            {
+                MessageBox.Show("Password authentication failed.");
+                return;
+            }
+
             List<string> ids = new List<string>();
             if (DeleteUnCumID.GetItemText(DeleteUnCumID.SelectedItem).Equals("all"))
             {
