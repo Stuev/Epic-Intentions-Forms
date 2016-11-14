@@ -380,5 +380,13 @@ namespace WindowsFormsApplication1
             nextForm.ShowDialog();
             this.Show();
         }
+
+        private void EditAdminPW_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            EditAdminPassword nextForm = new EditAdminPassword();
+            nextForm.ShowDialog();
+            this.Show();
+        }
     }
 }

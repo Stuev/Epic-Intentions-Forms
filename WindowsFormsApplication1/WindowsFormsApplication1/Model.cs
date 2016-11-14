@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using System.Data;
 
 namespace WindowsFormsApplication1
 {
@@ -15,7 +16,7 @@ namespace WindowsFormsApplication1
         private static string database;
         private static string uid;
         private static string password;
-
+        private static long numGenCalls = 0;
         //DO NOT USE EXCEPT FOR THE LOGIN FIELD
         public Model(string pass)
         {
@@ -52,6 +53,11 @@ namespace WindowsFormsApplication1
                     MessageBox.Show("Cannot connect to server. Try again.");
                 }
 
+                return false;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
                 return false;
             }
         }
@@ -1690,32 +1696,38 @@ namespace WindowsFormsApplication1
             string query = "SELECT MIN(" + col + ") AS min FROM " + table + ";";
             System.Diagnostics.Debug.WriteLine(query);
 
-            if (OpenConnection() == true)
-            {
-
-                float returnval = 0;
-                //Create Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                //Create a data reader and Execute the command
-                MySqlDataReader dataReader = cmd.ExecuteReader();
-
-                //Read the data and store them in the list
-                while (dataReader.Read())
+            try {
+                if (OpenConnection() == true)
                 {
-                    returnval = float.Parse(dataReader["min"] + "");
+
+                    float returnval = 0;
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        returnval = float.Parse(dataReader["min"] + "");
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+
+                    //close Connection
+                    CloseConnection();
+
+                    return returnval;
                 }
-
-                //close Data Reader
-                dataReader.Close();
-
-                //close Connection
-                CloseConnection();
-
-                return returnval;
-
+                else
+                {
+                    return 0;
+                }
             }
-            else
+            catch (Exception ex)
             {
+                CloseConnection();
                 return 0;
             }
         }
@@ -1724,32 +1736,39 @@ namespace WindowsFormsApplication1
         {
             string query = "SELECT MAX(" + col + ") AS max FROM " + table + ";";
 
-            if (OpenConnection() == true)
+            try
             {
-
-                float returnval = 0;
-                //Create Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                //Create a data reader and Execute the command
-                MySqlDataReader dataReader = cmd.ExecuteReader();
-
-                //Read the data and store them in the list
-                while (dataReader.Read())
+                if (OpenConnection() == true)
                 {
-                    returnval = float.Parse(dataReader["max"] + "");
+
+                    float returnval = 0;
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        returnval = float.Parse(dataReader["max"] + "");
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+
+                    //close Connection
+                    CloseConnection();
+
+                    return returnval;
                 }
-
-                //close Data Reader
-                dataReader.Close();
-
-                //close Connection
-                CloseConnection();
-
-                return returnval;
-
+                else
+                {
+                    return 0;
+                }
             }
-            else
+            catch (Exception ex)
             {
+                CloseConnection();
                 return 0;
             }
         }
@@ -1985,17 +2004,38 @@ namespace WindowsFormsApplication1
 
         public static void deleteUnCum(List<string> id, List<string> classes,  List<string> grade, List<string> date)
         {
-            string idComp = genTextOrComp(id, "ID");
-            string classComp = genTextOrComp(classes, "Class");
-            string gradeComp = genTextOrComp(grade, "Grade");
-            string dateComp = genTextOrComp(date, "Grade_Entry_Date");
-            string query = "DELETE FROM un_cum_gpa WHERE " + idComp + " AND " + gradeComp + " AND " + dateComp + " AND " + classComp + ";";
+
 
             if (OpenConnection() == true)
             {
                 try
                 {
                     MySqlCommand cmd = new MySqlCommand();
+                    string query = "DELETE FROM un_cum_gpa WHERE";
+                    genIntOrComp(id, "ID", cmd, true);
+                    for (int i = 0; i < id.Count(); i++)
+                    {
+                        string tag = "@" + i + "_" + numGenCalls;
+                        //cmd.CommandText += " OR " + colName + " = " + tag;
+                        //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                        cmd.Parameters.Add(tag, SqlDbType.Int);
+                        cmd.Parameters[tag].Value = Int32.Parse(id[i]);
+                    }
+                    genTextOrComp(classes, "Class", cmd, false);
+                    for (int i = 0; i < classes.Count(); i++)
+                    {
+                        string tag = "@" + i + "_" + numGenCalls;
+                        //cmd.CommandText += " OR " + colName + " = " + tag;
+                        //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                        cmd.Parameters.AddWithValue(tag, classes[i]);
+                        //cmd.Parameters.Add(tag, SqlDbType.VarChar);
+                        //cmd.Parameters[tag].Value = classes[i];
+
+
+                    }
+                    genFloatOrComp(grade, "Grade", cmd, false);
+                    genDateOrComp(date, "Grade_Entry_Date", cmd, false);
+                    cmd.CommandText += ";";
 
                     cmd.CommandText = query;
 
@@ -2006,7 +2046,7 @@ namespace WindowsFormsApplication1
                     CloseConnection();
                     MessageBox.Show("Delete succesful");
                 }
-                catch (MySqlException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                     CloseConnection();
@@ -2031,18 +2071,37 @@ namespace WindowsFormsApplication1
 
         public static void deleteRef(List<string> id, List<string> type, List<string> date)
         {
-            string idComp = genTextOrComp(id, "ID");
-            string typeComp = genTextOrComp(type, "Type");
-            string dateComp = genTextOrComp(date, "Referral_Date");
-            string query = "DELETE FROM referrals WHERE " + idComp + " AND " + typeComp + " AND " + dateComp + ";";
+
+            
 
             if (OpenConnection() == true)
             {
                 try
                 {
                     MySqlCommand cmd = new MySqlCommand();
-
+                    string query = "DELETE FROM referrals WHERE ";
                     cmd.CommandText = query;
+                    genIntOrComp(id, "ID", cmd, true);
+                    for (int i = 0; i < id.Count(); i++)
+                    {
+                        string tag = "@" + i + "_" + numGenCalls;
+                        //cmd.CommandText += " OR " + colName + " = " + tag;
+                        //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                        cmd.Parameters.Add(tag, SqlDbType.Int);
+                        cmd.Parameters[tag].Value = Int32.Parse(id[i]);
+                    }
+                    genTextOrComp(type, "Type", cmd, false);
+                    for (int i = 0; i < type.Count(); i++)
+                    {
+                        string tag = "@" + i + "_" + numGenCalls;
+                        //cmd.CommandText += " OR " + colName + " = " + tag;
+                        //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                        cmd.Parameters.AddWithValue(tag, type[i]);
+                        //cmd.Parameters.Add(tag, SqlDbType.VarChar);
+                        //cmd.Parameters[tag].Value = type[i];
+                    }
+                    genDateOrComp(date, "Referral_Date", cmd, false);
+                    cmd.CommandText += ";";
 
                     cmd.Connection = connection;
 
@@ -2051,7 +2110,7 @@ namespace WindowsFormsApplication1
                     CloseConnection();
                     MessageBox.Show("Delete succesful");
                 }
-                catch (MySqlException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                     CloseConnection();
@@ -2076,18 +2135,51 @@ namespace WindowsFormsApplication1
 
         public static void deleteStudent(List<string> id, List<string> fnames, List<string> lnames)
         {
-            string idComp = genTextOrComp(id, "ID");
-            string fnameComp = genTextOrComp(fnames, "First_Name");
-            string lnameComp = genTextOrComp(lnames, "Last_name");
-            string query = "DELETE FROM student WHERE " + idComp + " AND " + fnameComp + " AND " + fnameComp + ";";
+            
 
             if (OpenConnection() == true)
             {
                 try
                 {
-                    MySqlCommand cmd = new MySqlCommand();
+                    string query = "DELETE FROM student WHERE ";
 
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
                     cmd.CommandText = query;
+                    genIntOrComp(id, "ID", cmd, true);
+                    for (int i = 0; i < id.Count(); i++)
+                    {
+                        string tag = "@" + i + "_" + numGenCalls;
+                        //cmd.CommandText += " OR " + colName + " = " + tag;
+                        //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                        cmd.Parameters.Add(tag, SqlDbType.Int);
+                        cmd.Parameters[tag].Value = Int32.Parse(id[i]);
+                    }
+                    genTextOrComp(fnames, "First_Name", cmd, false);
+                    for (int i = 0; i < fnames.Count(); i++)
+                    {
+                        string tag = "@" + i + "_" + numGenCalls;
+                        //cmd.CommandText += " OR " + colName + " = " + tag;
+                        //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                        cmd.Parameters.AddWithValue(tag, fnames[i]);
+                        //cmd.Parameters.Add(tag, SqlDbType.VarChar);
+                        //cmd.Parameters[tag].Value = "'" + fnames[i] + "'";
+
+                    }
+                    genTextOrComp(lnames, "Last_name", cmd, false);
+                    for (int i = 0; i < lnames.Count(); i++)
+                    {
+                        string tag = "@" + i + "_" + numGenCalls;
+                        //cmd.CommandText += " OR " + colName + " = " + tag;
+                        //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                        cmd.Parameters.AddWithValue(tag, lnames[i]);
+                        //cmd.Parameters.Add(tag, SqlDbType.VarChar);
+                        //cmd.Parameters[tag].Value = "'" + lnames[i] + "'";
+                        //System.Diagnostics.Debug.WriteLine(cmd.Parameters.);
+
+
+                    }
+                    cmd.CommandText += ";";
+                    System.Diagnostics.Debug.WriteLine(cmd.CommandText);
 
                     cmd.Connection = connection;
 
@@ -2096,7 +2188,7 @@ namespace WindowsFormsApplication1
                     CloseConnection();
                     MessageBox.Show("Delete succesful");
                 }
-                catch (MySqlException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                     CloseConnection();
@@ -2121,86 +2213,214 @@ namespace WindowsFormsApplication1
 
         public static void deleteCum(List<string> id, List<string> grade, List<string> date)
         {
-            string idComp = genTextOrComp(id, "ID");
-            string gradeComp = genTextOrComp(grade, "GPA");
-            string dateComp = genTextOrComp(date, "GPA_Entry_Date");
-            string query = "DELETE FROM cum_gpa WHERE " + idComp + " AND " + gradeComp + " AND " + dateComp + ";";
 
+            string saved = "";
             if (OpenConnection() == true)
             {
                 try
                 {
+
+                    string query = "DELETE FROM cum_gpa WHERE ";
                     MySqlCommand cmd = new MySqlCommand();
-
                     cmd.CommandText = query;
+                    genIntOrComp(id, "ID", cmd, true);
+                    for (int i = 0; i < id.Count(); i++)
+                    {
+                        string tag = "@" + i + "_" + numGenCalls;
+                        //cmd.CommandText += " OR " + colName + " = " + tag;
+                        //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                        cmd.Parameters.Add(tag, SqlDbType.Int);
+                        cmd.Parameters[tag].Value = Int32.Parse(id[i]);
+                        //cmd.Parameters.AddWithValue(tag, id[i]);
 
+                    }
+                    genFloatOrComp(grade, "GPA", cmd, false);
+                    genDateOrComp(date, "GPA_Entry_Date", cmd, false);
+                    cmd.CommandText += ";";
                     cmd.Connection = connection;
+                    saved = cmd.CommandText;
+                    System.Diagnostics.Debug.WriteLine(cmd.CommandText);
 
                     cmd.ExecuteNonQuery();
 
                     CloseConnection();
                     MessageBox.Show("Delete succesful");
                 }
-                catch (MySqlException ex)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message + "\n" + saved);
                     CloseConnection();
                 }
             }
         }
 
-        public static string genTextOrComp(List<string> items, string colName)
+        public static string genTextOrComp(List<string> items, string colName, MySqlCommand cmd, bool isFirst)
         {
-            string orComp = "(" + colName + " = '" + items[0] + "'";
+            numGenCalls++;
+            if (!isFirst)
+            {
+                cmd.CommandText += " AND ";
+            }
+            string tag = "@0_" + numGenCalls;
+            cmd.CommandText += "(" + colName + " = " + tag;
+            //cmd.Parameters.AddWithValue(tag, "'" + items[0] + "'");
             for (int i = 1; i < items.Count(); i++ )
             {
-                orComp += " OR " + colName + " = '" + items[i] + "'";
+                tag = "@" + i + "_" + numGenCalls;
+                cmd.CommandText += " OR " + colName + " = " + tag;
+                //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                //cmd.Parameters.AddWithValue(tag, "'" + items[i] + "'");
             }
-            orComp += ")";
-            return orComp;
+            cmd.CommandText += ")";
+            return cmd.CommandText;
         }
 
-        public static string genIntOrComp(List<string> items, string colName)
+        public static string genDateOrComp(List<string> items, string colName, MySqlCommand cmd, bool isFirst)
         {
-            string orComp = "(" + colName + " = " + items[0];
+            if (!isFirst)
+            {
+                cmd.CommandText += " AND ";
+            }
+            cmd.CommandText += "(" + colName + " = '" + items[0] + "'";
             for (int i = 1; i < items.Count(); i++)
             {
-                orComp += " OR " + colName + " = " + items[i];
+                cmd.CommandText += " OR " + colName + " = '" + items[i] + "'";
             }
-            orComp += ")";
-            return orComp;
+            cmd.CommandText += ")";
+            return cmd.CommandText;
         }
+
+        public static string genFloatOrComp(List<string> items, string colName, MySqlCommand cmd, bool isFirst)
+        {
+            if (!isFirst)
+            {
+                cmd.CommandText += " AND ";
+            }
+            cmd.CommandText += "(((" + colName + " - " + items[0] + ") between -.0001 AND .0001)";
+            for (int i = 1; i < items.Count(); i++)
+            {
+                cmd.CommandText += " OR ((" + colName + " - " + items[i] + ") between -.0001 AND .0001)";
+            }
+            cmd.CommandText += ")";
+            return cmd.CommandText;
+        }
+
+        public static string genIntOrComp(List<string> items, string colName, MySqlCommand cmd, bool isFirst)
+        {
+            numGenCalls++;
+            if (!isFirst)
+            {
+                cmd.CommandText += " AND ";
+            }
+            string tag = "@0_" + numGenCalls;
+            cmd.CommandText += "(" + colName + " = " + tag;
+            //cmd.Parameters.AddWithValue(tag, items[0]);
+
+            for (int i = 1; i < items.Count(); i++)
+            {
+                tag = "@" + i + "_" + numGenCalls;
+                cmd.CommandText += " OR " + colName + " = " + tag;
+                //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                //cmd.Parameters.AddWithValue(tag, items[i]);
+
+            }
+            cmd.CommandText += ")";
+            return cmd.CommandText;
+        }
+
+
 
         public static List<string>[] filterSelectStudent(float minGPA, float maxGPA, List<string> schools, int minGrade, int maxGrade, int minReferrals, int maxReferrals, int minDaysMissed, int maxDaysMissed, List<string> genders, List<string> races, List<string> statuses, float minClassGrade, float maxClassGrade, List<string> classes)
         {
-            string conditions = "";
-            if (schools.Count() < getSchools().Count())
+            string query = query = "SELECT student.ID, CONCAT(attends.Start_Date) as Start_Date, CONCAT(attends.End_Date) as End_Date, attends.School_Name, cum_gpa.GPA, CONCAT(cum_gpa.GPA_Entry_Date) as GPA_Entry_Date, CONCAT(MyCounts.Referral_Date), coalesce(MyCounts.referral_count, 0) as referral_count, MyCounts.Type, MyCounts.Description, student.First_Name, student.Last_Name, student.Grade_Level, CONCAT(student.Grade_Modified_Date) as Grade_Modified_Date, CONCAT(student.Registration_Date) as Registration_Date, student.Gender, student.Race, student.isCurrent, student.Days_Missed, un_cum_gpa.Grade_Num, un_cum_gpa.Class, un_cum_gpa.Grade, CONCAT(un_cum_gpa.Grade_Entry_Date) as Grade_Entry_Date FROM student LEFT JOIN cum_gpa ON student.ID = cum_gpa.ID LEFT JOIN attends ON cum_gpa.ID = attends.student_ID LEFT JOIN un_cum_gpa ON cum_gpa.ID = un_cum_gpa.ID left JOIN (SELECT id, count(id)referral_count, Referral_Date, Type, Description FROM referrals GROUP BY id) AS MyCounts ON cum_gpa.ID = MyCounts.id WHERE (coalesce(GPA, -1) between @minGPA AND @maxGPA) AND (Grade_Level between @minGrade AND @maxGrade ) AND (coalesce(referral_count, 0) between @minReferrals AND @maxReferrals) AND (Days_Missed between @minDaysMissed AND @maxDaysMissed) AND (coalesce(GRADE, -1) between " + (minClassGrade - .00001) + " AND " + (maxClassGrade + .00001) + ")";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+
+            if (schools != null && getSchools() != null && schools.Count() < getSchools().Count())
             {
-                conditions += " AND " + genTextOrComp(schools, "School_Name");
+                System.Diagnostics.Debug.WriteLine(schools[0]);
+
+                genTextOrComp(schools, "School_Name", cmd, false);
+                for (int i = 0; i < schools.Count(); i++)
+                {
+                    string tag = "@" + i + "_" + numGenCalls;
+                    //cmd.CommandText += " OR " + colName + " = " + tag;
+                    //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                    cmd.Parameters.AddWithValue(tag, schools[i]);
+                    //cmd.Parameters.Add(tag, SqlDbType.VarChar);
+                    //cmd.Parameters[tag].Value = "'" + lnames[i] + "'";
+                    //System.Diagnostics.Debug.WriteLine(cmd.Parameters.);
+
+
+                }
             }
-            if (genders.Count() < getGenders().Count())
+            if (genders != null && getGenders() != null && genders.Count() < getGenders().Count())
             {
-                conditions += " AND " + genTextOrComp(genders, "Gender");
+                genTextOrComp(genders, "Gender", cmd, false);
+                for (int i = 0; i < genders.Count(); i++)
+                {
+                    string tag = "@" + i + "_" + numGenCalls;
+                    //cmd.CommandText += " OR " + colName + " = " + tag;
+                    //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                    cmd.Parameters.AddWithValue(tag, genders[i]);
+                    //cmd.Parameters.Add(tag, SqlDbType.VarChar);
+                    //cmd.Parameters[tag].Value = "'" + lnames[i] + "'";
+                    //System.Diagnostics.Debug.WriteLine(cmd.Parameters.);
+
+
+                }
             }
-            if (races.Count() < getRaces().Count())
+            if (races != null && getRaces() != null && races.Count() < getRaces().Count())
             {
-                conditions += " AND " + genTextOrComp(races, "Race");
+                genTextOrComp(races, "Race", cmd, false);
+                for (int i = 0; i < races.Count(); i++)
+                {
+                    string tag = "@" + i + "_" + numGenCalls;
+                    //cmd.CommandText += " OR " + colName + " = " + tag;
+                    //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                    cmd.Parameters.AddWithValue(tag, races[i]);
+                    //cmd.Parameters.Add(tag, SqlDbType.VarChar);
+                    //cmd.Parameters[tag].Value = "'" + lnames[i] + "'";
+                    //System.Diagnostics.Debug.WriteLine(cmd.Parameters.);
+
+
+                }
             }
-            string[] status = { "1", "0"};
+            string[] status = { "1", "0" };
             if (statuses.Count() < 2)
             {
-                conditions += " AND " + genIntOrComp(statuses, "isCurrent");
+                genIntOrComp(statuses, "isCurrent", cmd, false);
+                for (int i = 0; i < status.Count(); i++)
+                {
+                    string tag = "@" + i + "_" + numGenCalls;
+                    //cmd.CommandText += " OR " + colName + " = " + tag;
+                    //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                    //cmd.Parameters.AddWithValue(tag, lnames[i]);
+                    cmd.Parameters.Add(tag, SqlDbType.Int);
+                    cmd.Parameters[tag].Value = Int32.Parse(status[i]);
+                    //System.Diagnostics.Debug.WriteLine(cmd.Parameters.);
+
+
+                }
 
             }
-            if (classes.Count() < getClasses().Count())
+            if (classes != null && getClasses() != null && classes.Count() < getClasses().Count())
             {
-                conditions += " AND " + genTextOrComp(classes, "Class");
+                genTextOrComp(classes, "Class", cmd, false);
+                for (int i = 0; i < classes.Count(); i++)
+                {
+                    string tag = "@" + i + "_" + numGenCalls;
+                    //cmd.CommandText += " OR " + colName + " = " + tag;
+                    //MessageBox.Show(cmd.CommandText + "\n" + tag);
+                    cmd.Parameters.AddWithValue(tag, classes[i]);
+                    //cmd.Parameters.Add(tag, SqlDbType.VarChar);
+                    //cmd.Parameters[tag].Value = "'" + lnames[i] + "'";
+                    //System.Diagnostics.Debug.WriteLine(cmd.Parameters.);
 
+
+                }
             }
-            string query = "SELECT student.ID, CONCAT(attends.Start_Date) as Start_Date, CONCAT(attends.End_Date) as End_Date, attends.School_Name, cum_gpa.GPA, CONCAT(cum_gpa.GPA_Entry_Date) as GPA_Entry_Date, CONCAT(MyCounts.Referral_Date), coalesce(MyCounts.referral_count, 0) as referral_count, MyCounts.Type, MyCounts.Description, student.First_Name, student.Last_Name, student.Grade_Level, CONCAT(student.Grade_Modified_Date) as Grade_Modified_Date, CONCAT(student.Registration_Date) as Registration_Date, student.Gender, student.Race, student.isCurrent, student.Days_Missed, un_cum_gpa.Grade_Num, un_cum_gpa.Class, un_cum_gpa.Grade, CONCAT(un_cum_gpa.Grade_Entry_Date) as Grade_Entry_Date FROM student LEFT JOIN cum_gpa ON student.ID = cum_gpa.ID LEFT JOIN attends ON cum_gpa.ID = attends.student_ID LEFT JOIN un_cum_gpa ON cum_gpa.ID = un_cum_gpa.ID left JOIN (SELECT id, count(id)referral_count, Referral_Date, Type, Description FROM referrals GROUP BY id) AS MyCounts ON cum_gpa.ID = MyCounts.id WHERE (coalesce(GPA, -1) between " + (minGPA - .00001) + " AND " + (maxGPA + .00001) + ") AND (Grade_Level between " + minGrade + " AND " + maxGrade + ") AND (coalesce(referral_count, 0) between " + minReferrals + " AND " + maxReferrals + ") AND (Days_Missed between " + minDaysMissed + " AND " + maxDaysMissed + ") " + conditions + " AND (coalesce(GRADE, -1) between " + (minClassGrade - .00001) + " AND " + (maxClassGrade + .00001) + ");";
-            System.Diagnostics.Debug.WriteLine(query);
 
-            if (OpenConnection() == true)
+                if (OpenConnection() == true)
             {
 
                 List<string>[] returnval = new List<string>[20];
@@ -2209,7 +2429,21 @@ namespace WindowsFormsApplication1
                     returnval[i] = new List<string>();
                 }
                 //Create Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                
+
+                // string query = "SELECT student.ID, CONCAT(attends.Start_Date) as Start_Date, CONCAT(attends.End_Date) as End_Date, attends.School_Name, cum_gpa.GPA, CONCAT(cum_gpa.GPA_Entry_Date) as GPA_Entry_Date, CONCAT(MyCounts.Referral_Date), coalesce(MyCounts.referral_count, 0) as referral_count, MyCounts.Type, MyCounts.Description, student.First_Name, student.Last_Name, student.Grade_Level, CONCAT(student.Grade_Modified_Date) as Grade_Modified_Date, CONCAT(student.Registration_Date) as Registration_Date, student.Gender, student.Race, student.isCurrent, student.Days_Missed, un_cum_gpa.Grade_Num, un_cum_gpa.Class, un_cum_gpa.Grade, CONCAT(un_cum_gpa.Grade_Entry_Date) as Grade_Entry_Date FROM student LEFT JOIN cum_gpa ON student.ID = cum_gpa.ID LEFT JOIN attends ON cum_gpa.ID = attends.student_ID LEFT JOIN un_cum_gpa ON cum_gpa.ID = un_cum_gpa.ID left JOIN (SELECT id, count(id)referral_count, Referral_Date, Type, Description FROM referrals GROUP BY id) AS MyCounts ON cum_gpa.ID = MyCounts.id WHERE (coalesce(GPA, -1) between " + (minGPA - .00001) + " AND " + (maxGPA + .00001) + ") AND (Grade_Level between " + minGrade + " AND " + maxGrade + ") AND (coalesce(referral_count, 0) between " + minReferrals + " AND " + maxReferrals + ") AND (Days_Missed between " + minDaysMissed + " AND " + maxDaysMissed + ") " + conditions + " AND (coalesce(GRADE, -1) between " + (minClassGrade - .00001) + " AND " + (maxClassGrade + .00001) + ");";
+                cmd.CommandText += ";";
+                cmd.Parameters.AddWithValue("@minGPA", (minGPA - .00001));
+                cmd.Parameters.AddWithValue("@maxGPA", (maxGPA + .00001));
+                cmd.Parameters.AddWithValue("@minGrade", (minGrade - .00001));
+                cmd.Parameters.AddWithValue("@maxGrade", (maxGrade + .00001));
+                cmd.Parameters.AddWithValue("@minReferrals", minReferrals);
+                cmd.Parameters.AddWithValue("@maxReferrals", maxReferrals);
+                cmd.Parameters.AddWithValue("@minDaysMissed", minDaysMissed);
+                cmd.Parameters.AddWithValue("@maxDaysMissed", maxDaysMissed);
+                //cmd.Parameters.AddWithValue("@conditions", conditions);
+
+
                 //Create a data reader and Execute the command
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 

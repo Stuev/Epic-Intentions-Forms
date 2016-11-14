@@ -179,6 +179,12 @@
     <Compile Include="EditSchool.Designer.cs">
       <DependentUpon>EditSchool.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditAdminPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditAdminPassword.Designer.cs">
+      <DependentUpon>EditAdminPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImportSchoolData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,11 +204,11 @@
     <Compile Include="Filter.Designer.cs">
       <DependentUpon>Filter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="adminPW.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="adminPW.Designer.cs">
+      <DependentUpon>adminPW.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -278,8 +284,11 @@
     <EmbeddedResource Include="Filter.resx">
       <DependentUpon>Filter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="adminPW.resx">
+      <DependentUpon>adminPW.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditAdminPassword.resx">
+      <DependentUpon>EditAdminPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportSchoolData.resx">
       <DependentUpon>ImportSchoolData.cs</DependentUpon>
