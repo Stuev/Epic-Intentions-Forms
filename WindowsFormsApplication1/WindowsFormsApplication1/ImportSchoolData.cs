@@ -124,16 +124,58 @@ namespace WindowsFormsApplication1
                     catch
                     {
                         oWB.Close(false);
-                        MessageBox.Show("error");
-                        //MessageBox.Show("There is an error in the Student ID. Please make sure there is a number.");
+                        //MessageBox.Show("error");
+                        MessageBox.Show("There is an error in the Student ID. Please make sure there is a number.");
                         this.Close();
                         return;
                     }
                     test = 1;
-                    firstName = oSheet.Cells[r, 2].Value.ToString();
-                    lastName = oSheet.Cells[r, 3].Value.ToString();
-                    gender = oSheet.Cells[r, 4].Value.ToString();
-                    race = oSheet.Cells[r, 5].Value.ToString();
+                    students = Model.getStudentIDs();
+                    bool isAlreadyStudent = false;
+                    foreach (string a in students)
+                    {
+                        if (a.TrimStart('0').Equals(studentID.ToString()))
+                        {
+                            isAlreadyStudent = true;
+                        }
+                    }
+                    if (isAlreadyStudent)
+                    {
+                        ;
+                    } else { 
+                        try
+                        {
+                            firstName = oSheet.Cells[r, 2].Value.ToString();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Please provide a first name");
+                            return;
+                        }
+                        try
+                        {
+                            lastName = oSheet.Cells[r, 3].Value.ToString();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Please provide a last name");
+                            return;
+                        }
+                    }
+                    try
+                    {
+                        gender = oSheet.Cells[r, 4].Value.ToString();
+                    } catch
+                    {
+                        gender = " ";
+                    }
+                    try
+                    {
+                        race = oSheet.Cells[r, 5].Value.ToString();
+                    } catch
+                    {
+                        race = " ";
+                    }
                     try
                     {
                         gpa = float.Parse((string)oSheet.Cells[r, 6].Value.ToString());
@@ -143,23 +185,22 @@ namespace WindowsFormsApplication1
                         try
                         {
                             gpa = float.Parse((string)oSheet.Cells[r, 7].Value.ToString());
-                            gpa = gpa / 25;
+                            gpa = Model.convertGPA(gpa);
                         }
                         catch
                         {
-                            ;
+                            gpa = 0;
                         }
                     }
-                    test = 2;
                 try
                 {
                     string gradeDate = oRng.Cells[r, 8].Value.ToString();
                     string[] gradeDate2 = gradeDate.Split(' ');
-                        gradeDate = gradeDate2[0];
-                        gradeDate2 = gradeDate.Split('/');
-                        string month = gradeDate2[0];
-                        string day = gradeDate2[1];
-                        string year = gradeDate2[2];
+                    gradeDate = gradeDate2[0];
+                    gradeDate2 = gradeDate.Split('/');
+                    string month = gradeDate2[0];
+                    string day = gradeDate2[1];
+                    string year = gradeDate2[2];
 //                double d = double.Parse((string) oRng.Cells[r, 8].Value.ToString());
  //                       MessageBox.Show(d.ToString() + "grademod");
  //                   DateTime conv = DateTime.FromOADate(d);
@@ -175,33 +216,68 @@ namespace WindowsFormsApplication1
                     String month = date.Month.ToString();
                     String day = date.Day.ToString();
                     gradeMod = year + '-' + month + '-' + day;
-                    
                 }
-                    daysAbsent = int.Parse((string)oSheet.Cells[r, 9].Value.ToString());
-                    numRefs = int.Parse((string)oSheet.Cells[r, 10].Value.ToString());
-                    school = oSheet.Cells[r, 11].Value.ToString();
+                    try
+                    {
+                        daysAbsent = int.Parse((string)oSheet.Cells[r, 9].Value.ToString());
+                    } catch
+                    {
+                        daysAbsent = 0;
+                    }
+                    try
+                    {
+                        numRefs = int.Parse((string)oSheet.Cells[r, 10].Value.ToString());
+                    } catch
+                    {
+                        numRefs = 0;
+                    }
+                    try
+                    {
+                        school = oSheet.Cells[r, 11].Value.ToString();
+                    } catch
+                    {
+                        school = " ";
+                    }                   
+                    
                     String y = "";
                     String m = "";
                     String da = "";
                 try
                 {
-                        string gradeDate = oRng.Cells[r, 12].Value.ToString();
-                        string[] gradeDate2 = gradeDate.Split(' ');
-                        gradeDate = gradeDate2[0];
-                        gradeDate2 = gradeDate.Split('/');
-                        m = gradeDate2[0];
-                        da = gradeDate2[1];
-                        y = gradeDate2[2];
-                        regDate = y + '-' + m + '-' + da;
+                    string gradeDate = oRng.Cells[r, 12].Value.ToString();
+                    string[] gradeDate2 = gradeDate.Split(' ');
+                    gradeDate = gradeDate2[0];
+                    gradeDate2 = gradeDate.Split('/');
+                    m = gradeDate2[0];
+                    da = gradeDate2[1];
+                    y = gradeDate2[2];
+                    regDate = y + '-' + m + '-' + da;
                 }
                 catch
                 {
-                    MessageBox.Show("regdate");
+                    DateTime date = DateTime.Now;
+                    String year = date.Year.ToString();
+                    String month = date.Month.ToString();
+                    String day = date.Day.ToString();
+                    gradeMod = year + '-' + month + '-' + day;
                 }
-                    grade = int.Parse((string)oSheet.Cells[r, 13].Value.ToString());
-               
+                    try
+                    {
+                        grade = int.Parse((string)oSheet.Cells[r, 13].Value.ToString());
+                    } catch
+                    {
+                        grade = 0;
+                    }
                     students = Model.getStudentIDs();
-                    if (students.Contains(studentID.ToString()))
+                    isAlreadyStudent = false;
+                    foreach (string a in students)
+                    {
+                        if (a.TrimStart('0').Equals(studentID.ToString()))
+                        {
+                            isAlreadyStudent = true;
+                        }
+                    }
+                    if (isAlreadyStudent)
                     {
                         try
                         {
