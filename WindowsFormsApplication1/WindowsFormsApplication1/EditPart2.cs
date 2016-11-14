@@ -44,6 +44,7 @@ namespace WindowsFormsApplication1
         private bool clicked = false;
         private List<string> unCumGPAClass = new List<string>();
         private List<string> oldPastID;
+        private List<string> oldAttendID;
 
         public EditPart2(string ID)
         {
@@ -56,6 +57,7 @@ namespace WindowsFormsApplication1
             oldCumGPAIDs = Model.SelectCumGPAID(ID);
             oldUnCumGPAIDs = Model.SelectUnCumGPAID(ID);
             oldPastID = Model.SelectAllPastID(ID);
+            oldAttendID = Model.SelectAttendsID(ID);
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -500,7 +502,7 @@ namespace WindowsFormsApplication1
 
             for (int i = 0; i < oldAttends[0].Count; i = i + 1)
             {
-                Model.UpdateAttends(thisID, oldAttends[1][i], attendsStartDate[i], attendsEndDate[i], oldAttendDate);
+                Model.UpdateAttends(attendsStartDate[i], attendsEndDate[i], oldAttendID[i]);
             }
 
             for (int i = 0; i < oldReferralList[0].Count; i = i + 1)
