@@ -66,22 +66,119 @@ namespace WindowsFormsApplication1
         {
             float minGPA = -1;
             if (checkBox1.Checked) {
-                minGPA = float.Parse(GPA1.Text);
+                try
+                {
+                    minGPA = float.Parse(GPA1.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Input for minimum GPA must be a number");
+                    return;
+                }
             }
-            float maxGPA = float.Parse(GPA2.Text);
+
+            float maxGPA;
+            try
+            {
+                maxGPA = float.Parse(GPA2.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Input for maximum GPA must be a number");
+                return;
+            }
+
             float minGrade = -1;
             if (checkBox2.Checked)
             {
-                minGrade = float.Parse(UnCumGrade1.Text);
+                try
+                {
+                    minGrade = float.Parse(UnCumGrade1.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Input for minimum class grade must be a number");
+                    return;
+                }
 
             }
-            float maxGrade = float.Parse(UnCumGrade2.Text);
-            int minGradeLevel = Int32.Parse(Grade1.Text);
-            int maxGradeLevel = Int32.Parse(Grade2.Text);
-            int minBehavior = Int32.Parse(Behavior1.Text);
-            int maxBehavior = Int32.Parse(Behavior2.Text);
-            int minAttendance = Int32.Parse(Attend1.Text);
-            int maxAttendance = Int32.Parse(Attend2.Text);
+
+            float maxGrade;
+            try
+            {
+                maxGrade = float.Parse(UnCumGrade2.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Input for maximum class grade must be a number");
+                return;
+            }
+
+            int minGradeLevel;
+            try
+            {
+                minGradeLevel = Int32.Parse(Grade1.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Input for minimum grade level must be a number");
+                return;
+            }
+
+            int maxGradeLevel;
+            try
+            {
+                maxGradeLevel = Int32.Parse(Grade2.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Input for maximum grade level must be a number");
+                return;
+            }
+
+            int minBehavior;
+            try
+            {
+                minBehavior = Int32.Parse(Behavior1.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Input for minimum referrals level must be a number");
+                return;
+            }
+
+            int maxBehavior;
+            try
+            {
+                maxBehavior = Int32.Parse(Behavior2.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Input for maximum referrals level must be a number");
+                return;
+            }
+
+            int minAttendance;
+            try
+            {
+                minAttendance = Int32.Parse(Attend1.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Input for minimum missed attendance must be a number");
+                return;
+            }
+
+            int maxAttendance;
+            try
+            {
+                maxAttendance = Int32.Parse(Attend2.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Input for maximum missed attendance must be a number");
+                return;
+            }
 
             List<string> genders = new List<string>();
             if (Gender.GetItemText(Gender.SelectedItem).Equals("all"))
