@@ -212,6 +212,51 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public static List<string> SelectAttendsID(string ID)
+        {
+            string query = "SELECT * FROM attends "
+            + "WHERE ID = '" + ID
+            + "';";
+
+            List<string> list = new List<string>();
+
+
+            if (OpenConnection() == true)
+            {
+
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        list.Add(dataReader["Attends_Num"] + "");
+                    }
+
+
+                    dataReader.Close();
+
+
+                    CloseConnection();
+
+
+                    return list;
+
+                }
+                catch
+                {
+                    MessageBox.Show("Please update the database to the current one on the Google Drive. -Elie, 11/14/16");
+                    return list;
+                }
+            }
+            else
+            {
+                return list;
+            }
+        }
+
         public static List<string> SelectAllPastID(string ID)
         {
             string query = "SELECT * FROM past_student "
@@ -365,27 +410,22 @@ namespace WindowsFormsApplication1
         }
 
 
-        public static void UpdateAttends(string ID, string school, 
-            string staDate, string endDate, string oldDate)
+        public static void UpdateAttends(string staDate, string endDate, string attendsNum)
         {
 
             string query; 
             if (endDate == "")
             {
                 query = "UPDATE attends SET Start_Date = \"" + staDate
-                + "\" WHERE Student_ID = \"" + ID
-                + "\" AND (School_Name = \"" + school
-                + "\", Start_Date = \"" + oldDate
+                + "\" WHERE Attends_Num = \"" + attendsNum
                 + "\";";
             }
             else
             {
                  query = "UPDATE attends SET Start_Date = \"" + staDate
                     + "\", End_Date = \"" + endDate
-                    + "\" WHERE Student_ID = \"" + ID
-                    + "\" AND (School_Name = \"" + school
-                    + "\", Start_Date = \"" + oldDate
-                    + "\";";
+                    + "\" WHERE Attends_Num = \"" + attendsNum
+                    + "\");";
             }
             if (OpenConnection() == true)
             {
