@@ -31,16 +31,29 @@ namespace WindowsFormsApplication1
             Attend2.Text = Model.getMaxDaysMissed() + "";
 
             List<string> classes = Model.getClasses();
-            classes.Insert(0, "all");
+            if (classes != null)
+            {
+                classes.Insert(0, "all");
+            }
 
             List<string> genders = Model.getGenders();
-            genders.Insert(0, "all");
+            if (genders != null)
+            {
+                genders.Insert(0, "all");
+
+            }
 
             List<string> schools = Model.getSchools();
-            schools.Insert(0, "all");
+            if (schools != null)
+            {
+                schools.Insert(0, "all");
+            }
 
             List<string> races = Model.getRaces();
-            races.Insert(0, "all");
+            if (races != null)
+            {
+                races.Insert(0, "all");
+            }
 
             List<string> isCurrents = new List<string>();
             isCurrents.Add("all");
