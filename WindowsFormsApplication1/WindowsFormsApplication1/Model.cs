@@ -206,9 +206,10 @@ namespace WindowsFormsApplication1
                     return list;
 
                 }
-                catch
+                catch (MySqlException ex)
                 {
-                    MessageBox.Show("Please update the database to the current one on the Google Drive. -Elie, 11/5/16");
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
                     return list;
                 }
             }
@@ -221,7 +222,7 @@ namespace WindowsFormsApplication1
         public static List<string> SelectAttendsID(string ID)
         {
             string query = "SELECT * FROM attends "
-            + "WHERE ID = '" + ID
+            + "WHERE Student_ID = '" + ID
             + "';";
 
             List<string> list = new List<string>();
@@ -251,9 +252,10 @@ namespace WindowsFormsApplication1
                     return list;
 
                 }
-                catch
+                catch (MySqlException ex)
                 {
-                    MessageBox.Show("Please update the database to the current one on the Google Drive. -Elie, 11/14/16");
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
                     return list;
                 }
             }
@@ -341,9 +343,10 @@ namespace WindowsFormsApplication1
                     return list;
 
                 }
-                catch
+                catch (MySqlException ex)
                 {
-                    MessageBox.Show("Please update the database to the current one on the Google Drive. -Elie, 11/5/16");
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
                     return list;
                 }
 
@@ -431,7 +434,7 @@ namespace WindowsFormsApplication1
                  query = "UPDATE attends SET Start_Date = \"" + staDate
                     + "\", End_Date = \"" + endDate
                     + "\" WHERE Attends_Num = \"" + attendsNum
-                    + "\");";
+                    + "\";";
             }
             if (OpenConnection() == true)
             {
