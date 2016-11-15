@@ -126,6 +126,35 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public static void UpdateStudentTableGradeDate(string ID, string Modified)
+        {
+            //Set up a SQL query, plugging in the passed in values into the strings
+            string query = "UPDATE student SET Grade_Modified_Date = \"" + Modified
+                + "\" WHERE ID = \"" + ID
+                + "\";";
+
+            if (OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    cmd.CommandText = query;
+
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
+            }
+        }
+
         /* Establish a method for updating the student table
          * 
          * Everything passed in are the fields of the student table:
