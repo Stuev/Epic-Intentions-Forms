@@ -158,7 +158,7 @@ namespace WindowsFormsApplication1
                                 toPrint[i] = cumGPAList[i][j];
                             }
                             //Fill with an array of values (First and Last Names).
-                            oSheet.get_Range("B" + k).Value2 = toPrint;
+                            oSheet.get_Range("A" + k, "C" + k).Value2 = toPrint;
                         }
                     }
 
