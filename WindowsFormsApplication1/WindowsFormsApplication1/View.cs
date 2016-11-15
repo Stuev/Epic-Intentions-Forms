@@ -172,11 +172,7 @@ namespace WindowsFormsApplication1
                             oSheet.get_Range("A" + k, "C" + k).Value2 = toPrint;
                         }
                     }
-                    //Fill A2:B6 with an array of values (First and Last Names).
-                    if (toPrint.Count() == 3)
-                    {
-                        oSheet.get_Range("A2", "C2").Value2 = toPrint;
-                    }
+
                     oRng = oSheet.get_Range("A1", "J1");
                     oRng.EntireColumn.AutoFit();
 
