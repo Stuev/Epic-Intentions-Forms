@@ -19,7 +19,7 @@
       <Value Profile="(Default)">server=localhost;user id=root;password=103Gordito03;persistsecurityinfo=True;database=epicintentions</Value>
     </Setting>
     <Setting Name="AdminPassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">password</Value>
+      <Value Profile="(Default)">karenumass</Value>
     </Setting>
   </Settings>
 </SettingsFile>
