@@ -75,6 +75,7 @@ namespace WindowsFormsApplication1
 
             if (Model.InsertUnCumGPA(ID, unCumGPA, curDay, className))
             {
+                Model.UpdateStudentTableGradeDate(ID, curDay);
                 this.Close();
             }
             else
