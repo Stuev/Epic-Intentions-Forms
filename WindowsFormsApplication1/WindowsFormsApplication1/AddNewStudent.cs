@@ -125,7 +125,7 @@ namespace WindowsFormsApplication1
             if (AddGPA.Text != "")
             {
                 try
-                //{
+                {
                     gpa = Double.Parse(AddGPA.Text);
                 } catch
                 {
