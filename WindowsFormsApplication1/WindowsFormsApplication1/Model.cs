@@ -2008,6 +2008,7 @@ namespace WindowsFormsApplication1
             List<string> genList = new List<string>();
             genList.Add("M");
             genList.Add("F");
+            return genList;
         }
 
         public static List<string> getRaces()
