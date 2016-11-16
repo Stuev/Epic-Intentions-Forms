@@ -1105,23 +1105,6 @@ namespace WindowsFormsApplication1
             }
         }
 
-
-
-        public static void DeleteReferral()
-        {
-
-        }
-
-        public static void DeleteCumGPA()
-        {
-
-        }
-
-        public static void DeleteUnCumGPA()
-        {
-
-        }
-
         public static string FindIDFromName(string First, string Last)
         {
             string query = "SELECT * FROM student WHERE "
@@ -2116,7 +2099,7 @@ namespace WindowsFormsApplication1
                     cmd.ExecuteNonQuery();
 
                     CloseConnection();
-                    MessageBox.Show("Delete succesful");
+                    MessageBox.Show("Delete successful");
                 }
                 catch (Exception ex)
                 {
@@ -2180,7 +2163,7 @@ namespace WindowsFormsApplication1
                     cmd.ExecuteNonQuery();
 
                     CloseConnection();
-                    MessageBox.Show("Delete succesful");
+                    MessageBox.Show("Delete successful");
                 }
                 catch (Exception ex)
                 {
@@ -2258,7 +2241,7 @@ namespace WindowsFormsApplication1
                     cmd.ExecuteNonQuery();
 
                     CloseConnection();
-                    MessageBox.Show("Delete succesful");
+                    MessageBox.Show("Delete successful");
                 }
                 catch (Exception ex)
                 {
@@ -2316,7 +2299,7 @@ namespace WindowsFormsApplication1
                     cmd.ExecuteNonQuery();
 
                     CloseConnection();
-                    MessageBox.Show("Delete succesful");
+                    MessageBox.Show("Delete successful");
                 }
                 catch (Exception ex)
                 {
