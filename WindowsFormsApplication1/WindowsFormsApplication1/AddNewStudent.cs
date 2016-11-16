@@ -222,5 +222,10 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+        private void AddGender_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

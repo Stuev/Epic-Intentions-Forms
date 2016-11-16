@@ -2005,7 +2005,9 @@ namespace WindowsFormsApplication1
 
         public static List<string> getGenders()
         {
-            return selectCol("student", "gender");
+            List<string> genList = new List<string>();
+            genList.Add("M");
+            genList.Add("F");
         }
 
         public static List<string> getRaces()
